@@ -11,6 +11,7 @@ public class CardHolderHorizontal : MonoBehaviour
         public float Evaluate(float time) => Mathf.Lerp(min, max, curve.Evaluate(time));
     }
 
+    [SerializeField] private int _maxAmount;
     [SerializeField] private RectTransform _dragSurface;
     [SerializeField] private CardAnimation _position, _rotation;
 
@@ -33,6 +34,8 @@ public class CardHolderHorizontal : MonoBehaviour
     }
     public float GetPosition(int index) => _position.Evaluate(_cards.Length <= 1 ? 0.5f : index * _inverseLength);
     public float GetRotation(int index) => _rotation.Evaluate(_cards.Length <= 1 ? 0.5f : index * _inverseLength);
+
+    public bool CanAddCard() => _cards.Length < _maxAmount;
 
     public void OnBeginDrag(Card card)
     {

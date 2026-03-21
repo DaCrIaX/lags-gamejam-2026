@@ -857,6 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _maxAmount: 5
   _dragSurface: {fileID: 787280757}
   _position:
     curve:
@@ -1099,6 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _maxAmount: 5
   _dragSurface: {fileID: 787280757}
   _position:
     curve:

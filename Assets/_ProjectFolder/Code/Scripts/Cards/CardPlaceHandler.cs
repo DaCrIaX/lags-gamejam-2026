@@ -7,6 +7,7 @@ public class CardPlaceHandler : MonoBehaviour, IDropHandler
 
     public async void OnDrop(PointerEventData eventData)
     {
+        if (!_holder.CanAddCard()) return;
         if (!eventData.pointerDrag.TryGetComponent(out Card card)) return;
 
         card.SetParent(_holder.transform);
