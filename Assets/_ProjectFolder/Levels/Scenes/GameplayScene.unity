@@ -525,8 +525,9 @@ GameObject:
   - component: {fileID: 154605557}
   - component: {fileID: 154605556}
   - component: {fileID: 154605555}
+  - component: {fileID: 154605558}
   m_Layer: 5
-  m_Name: deck handler
+  m_Name: hand deck handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,6 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _connected: {fileID: 1879722154}
   _container: {fileID: 1416212099}
   _maxAmount: 5
   _position:
@@ -679,6 +681,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     min: -20
     max: 20
+  _audioSwipe: {fileID: 1416212101}
+  _audioDrop: {fileID: 154605558}
 --- !u!114 &154605557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +700,27 @@ MonoBehaviour:
   _prefab: {fileID: 4206602725805252688, guid: 8591b77058125254a97d3c62aa462725, type: 3}
   _spawnDelay: 0.2
   _giveAmount: 5
+--- !u!114 &154605558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
 --- !u!1001 &163844577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1380,6 +1405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914045191}
   - component: {fileID: 914045193}
+  - component: {fileID: 914045194}
   m_Layer: 5
   m_Name: container
   m_TagString: Untagged
@@ -1457,6 +1483,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &914045194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914045190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
 --- !u!1 &960669128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,6 +1548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac144ccbfdd2de243aac6dcaff068e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayManager
+  _camera: {fileID: 569188645}
+  _canvas: {fileID: 1794520919}
   _dragArea: {fileID: 787280757}
 --- !u!1 &1084299293
 GameObject:
@@ -1696,6 +1745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416212099}
   - component: {fileID: 1416212100}
+  - component: {fileID: 1416212101}
   m_Layer: 5
   m_Name: container
   m_TagString: Untagged
@@ -1773,6 +1823,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1416212101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416212098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
 --- !u!1 &1630525005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1952,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4239837995615314420, guid: 0b95de10549d2de42b9c555a9d0740e3, type: 3}
   m_PrefabInstance: {fileID: 1778160704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1794520919 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 833796191157742400, guid: ef1f7abb63ac03744b69b42dd3231b64, type: 3}
+  m_PrefabInstance: {fileID: 151688840}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829400812
 GameObject:
@@ -2003,6 +2079,7 @@ GameObject:
   - component: {fileID: 1879722151}
   - component: {fileID: 1879722154}
   - component: {fileID: 1879722153}
+  - component: {fileID: 1879722155}
   m_Layer: 5
   m_Name: recipe handler
   m_TagString: Untagged
@@ -2092,6 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _connected: {fileID: 154605556}
   _container: {fileID: 914045191}
   _maxAmount: 3
   _position:
@@ -2148,6 +2226,29 @@ MonoBehaviour:
       m_RotationOrder: 4
     min: 0
     max: 0
+  _audioSwipe: {fileID: 914045194}
+  _audioDrop: {fileID: 1879722155}
+--- !u!114 &1879722155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879722149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
 --- !u!1001 &2012680134
 PrefabInstance:
   m_ObjectHideFlags: 0

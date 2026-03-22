@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class DeckController : MonoBehaviour
 {
     [SerializeReference] private SO_Database _database;
-    [SerializeField] private CardHolder _holder;
+    [SerializeField] private CardGroup _holder;
     [SerializeField] private Card _prefab;
 
     [SerializeField] private float _spawnDelay;

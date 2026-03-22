@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4598859341341036064}
   - component: {fileID: 7515386160910722596}
   - component: {fileID: 749857584702860595}
+  - component: {fileID: 5657017623266608435}
   m_Layer: 5
   m_Name: card visual
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   _smoothSpeed: 10
   _offsetMultiply: 2.5
   _cardSize: {fileID: 2060247583002901616}
+--- !u!114 &5657017623266608435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377113063130734874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd471f057fe11443b6fd57f54419961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.CardSelectable
+  _timeClicked: 0.2
 --- !u!1 &8503013855838948095
 GameObject:
   m_ObjectHideFlags: 0

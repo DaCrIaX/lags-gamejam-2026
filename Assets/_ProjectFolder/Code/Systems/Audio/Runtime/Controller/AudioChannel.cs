@@ -22,7 +22,7 @@ namespace UnityEngine.Audio
         public virtual void PlayAtPoint(IAudioGenerator audio, Vector3 position) { }
         public virtual void PlayOneShot(IAudioGenerator audio, float pitch = 1f)
         {
-            if (Source == null) return;
+            if (Source == null || audio == null) return;
             if (audio is not AudioClip clip) return;
 
             Source.pitch = pitch;

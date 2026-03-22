@@ -1,5 +1,7 @@
 namespace UnityEngine.Audio
 {
+    using AddressableAssets;
+
     public abstract class AudioEmitterBehaviour : MonoBehaviour
     {
         [SerializeField] protected Channel _channel = Channel.SoundFx;
@@ -7,6 +9,12 @@ namespace UnityEngine.Audio
         protected IAudioManager _manager;
 
         protected virtual void Awake() => _manager = AudioManager.Instance;
+
+        protected async Awaitable<IAudioGenerator> LoadAsset(AssetReferenceT<AudioClip> reference, bool hasLoaded = false)
+        {
+            if (!reference.IsValid()) return null;
+            return await _manager.LoadAudioAsset(reference, hasLoaded);
+        }
 
         public abstract void Play();
         public abstract void PlayOneShot();

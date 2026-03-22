@@ -1,6 +1,6 @@
 namespace UnityEngine.EventSystems
 {
-    public class CardHolderHorizontal : CardHolder
+    public class CardGroupHorizontal : CardGroup
     {
         public override void OnBeginDrag(CardTransform card)
         {
@@ -17,16 +17,20 @@ namespace UnityEngine.EventSystems
                 int selectedIdx = _gameplay.Selected.SiblingIndex;
                 int siblingIdx = _cards[i].SiblingIndex;
 
-                if (position.x > siblingX && selectedIdx < siblingIdx)
-                    _gameplay.Selected.SiblingIndex = siblingIdx;
-                else if (position.x < siblingX && selectedIdx > siblingIdx)
-                    _gameplay.Selected.SiblingIndex = siblingIdx;
+                if (position.x > siblingX && selectedIdx < siblingIdx) Swipe(siblingIdx);
+                else if (position.x < siblingX && selectedIdx > siblingIdx) Swipe(siblingIdx);
             }
         }
         public override void OnDropElement(Vector2 position)
         {
             _gameplay.Selected.ResetCardParent();
             _gameplay.SelectCard(null);
+        }
+
+        private void Swipe(int index)
+        {
+            _gameplay.Selected.SiblingIndex = index;
+            _audioSwipe?.PlayOneShot();
         }
     }
 }

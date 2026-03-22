@@ -1,10 +1,15 @@
 namespace UnityEngine.EventSystems
 {
-    public abstract class CardHolder : MonoBehaviour
+    using Audio;
+
+    public abstract class CardGroup : MonoBehaviour
     {
+        [SerializeField] private CardGroup _connected;
         [SerializeField] private Transform _container;
         [SerializeField] private int _maxAmount;
+
         [SerializeField] private LayoutHandler _position, _rotation;
+        [SerializeReference] protected AudioEmitter _audioSwipe, _audioDrop;
 
         protected GameplayManager _gameplay;
         protected CardTransform[] _cards;
@@ -38,5 +43,22 @@ namespace UnityEngine.EventSystems
         public abstract void OnBeginDrag(CardTransform card);
         public abstract void OnDragElement(Vector2 position);
         public abstract void OnDropElement(Vector2 position);
+
+        public void DropItemToConnection(CardTransform card)
+        {
+            if (_connected)
+                DropItem(card, _connected);
+        }
+        public async void DropItem(CardTransform card, CardGroup holder)
+        {
+            if (!holder.CanAddElement) return;
+            card.SetParent(holder.Container);
+            _audioDrop?.PlayOneShot();
+            
+            await Awaitable.EndOfFrameAsync();
+            card.RefreshParent();
+            card.SearchParentGroup();
+            holder.RefreshCardsArray();
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace UnityEngine.EventSystems
     using Animations;
 
     [RequireComponent(typeof(CardTransform))]
-    public class CardHover : CardBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler, IPointerMoveHandler
+    public class CardHover : CardBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerMoveHandler
     {
         [SerializeField] private float _waveAmplitude = 1f, _waveFrequency = 1f;
         [SerializeField] private float _smoothSpeed, _offsetMultiply;
@@ -51,7 +51,6 @@ namespace UnityEngine.EventSystems
         }
 
         public void OnPointerDown(PointerEventData eventData) => _cardSize.ScaleOut();
-        public void OnPointerUp(PointerEventData eventData) { }
         public void OnPointerMove(PointerEventData eventData) => _input = eventData.pointerCurrentRaycast.worldPosition;
     }
 }

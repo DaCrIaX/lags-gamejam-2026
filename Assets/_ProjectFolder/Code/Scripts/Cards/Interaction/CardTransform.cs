@@ -4,12 +4,15 @@ namespace UnityEngine.EventSystems
     {
         [SerializeField] private RectTransform _transform, _cardTransform;
 
+        private GameplayManager _manager;
+        private CardGroup _cardGroup;
         private CanvasGroup _group;
-        private CardHolder _parent;
 
-        public CardHolder Parent => _parent;
+        public GameplayManager Manager => _manager;
+        public CardGroup CardGroup => _cardGroup;
         public RectTransform RectTransform => _transform;
         public RectTransform CardRectTransform => _cardTransform;
+
         public int SiblingIndex
         {
             get => _transform.GetSiblingIndex();
@@ -21,13 +24,17 @@ namespace UnityEngine.EventSystems
         public bool IsDragging { get; set; }
         public bool IsHovering { get; set; }
 
-        private void Awake() => _group = GetComponent<CanvasGroup>();
-        private void Start() => _parent = GetComponentInParent<CardHolder>();
-        private void OnEnable() => GameplayManager.Instance.onObjectSelectedChanged += ChangeBlockRaycast;
-        private void OnDisable() => GameplayManager.Instance.onObjectSelectedChanged -= ChangeBlockRaycast;
+        private void Awake()
+        {
+            _manager = GameplayManager.Instance;
+            _group = GetComponent<CanvasGroup>();
+        }
+        private void Start() => SearchParentGroup();
+        private void OnEnable() => _manager.onObjectSelectedChanged += ChangeBlockRaycast;
+        private void OnDisable() => _manager.onObjectSelectedChanged -= ChangeBlockRaycast;
 
-        public void SearchParentGroup() => Start();
-        public void RefreshParent() => _parent.RefreshCardsArray();
+        public void SearchParentGroup() => _cardGroup = GetComponentInParent<CardGroup>();
+        public void RefreshParent() => _cardGroup.RefreshCardsArray();
         public void ChangeBlockRaycast(bool value) => _group.blocksRaycasts = value;
 
         public void ResetCardParent() => _cardTransform.SetParent(_transform);

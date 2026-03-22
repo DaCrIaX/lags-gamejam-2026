@@ -14,7 +14,7 @@ namespace UnityEngine.Audio
         {
             if (_preloadAsset)
             {
-                await _manager.LoadAudioAsset(_audioReference);
+                await LoadAsset(_audioReference);
                 _hasLoaded = true;
             }
 
@@ -28,17 +28,15 @@ namespace UnityEngine.Audio
 
         public override async void Play()
         {
-            var audio = await _manager.LoadAudioAsset(_audioReference, _hasLoaded);
-            _hasLoaded = true;
-
+            var audio = await LoadAsset(_audioReference, _hasLoaded);
             _manager.Play(_channel, audio);
+            _hasLoaded = true;
         }
         public override async void PlayOneShot()
         {
-            var audio = await _manager.LoadAudioAsset(_audioReference, _hasLoaded);
-            _hasLoaded = true;
-
+            var audio = await LoadAsset(_audioReference, _hasLoaded);
             _manager.PlayOneShot(_channel, audio);
+            _hasLoaded = true;
         }
     }
 }
