@@ -18,21 +18,25 @@ namespace UnityEngine.EventSystems
 
         public Transform Container => _container;
         public int MaxAmount => _maxAmount;
-        public bool CanAddElement => _cards.Length < _maxAmount;
+        public int Amount => _cards != null ? _cards.Length : 0;
+        public bool CanAddElement => Amount < _maxAmount;
 
         protected virtual void Awake() => _gameplay = GameplayManager.Instance;
         protected virtual void Start() => RefreshCardsArray();
 
+        public async void ClearChildren()
+        {
+            for (int i = _container.childCount - 1; i >= 0; i--)
+                Destroy(_container.GetChild(i).gameObject);
+
+            await Awaitable.NextFrameAsync();
+            RefreshCardsArray();
+        }
         public void RefreshCardsArray()
         {
             _cards = GetComponentsInChildren<CardTransform>();
             _inverseLength = 1f / _cards.Length;
             _inverseLength += _inverseLength * 0.5f;
-        }
-        public void ClearChildren()
-        {
-            for (int i = _container.childCount - 1; i >= 0; i--)
-                Destroy(_container.GetChild(i).gameObject);
         }
 
         public float GetPosition(int index) => GetAnimation(ref _position, index);
