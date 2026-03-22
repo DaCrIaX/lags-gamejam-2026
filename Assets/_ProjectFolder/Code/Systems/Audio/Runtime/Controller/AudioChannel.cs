@@ -3,7 +3,7 @@ namespace UnityEngine.Audio
     public abstract class AudioChannel : MonoBehaviour, ISourceChannel
     {
         [SerializeField] protected Channel _channel;
-        [SerializeField] protected AudioMixerGroup _mixerGroup;
+        [SerializeReference] protected AudioMixerGroup _mixerGroup;
 
         protected IAudioGenerator _defaultResource;
 
@@ -31,5 +31,6 @@ namespace UnityEngine.Audio
         public virtual void PlayOneShotAtPoint(IAudioGenerator audio, Vector3 position, float pitch = 1f) { }
 
         public void ResetAudio() => Play(_defaultResource);
+        public void SaveCurrentAudio() => _defaultResource = Source.generator;
     }
 }

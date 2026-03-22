@@ -11,5 +11,6 @@ namespace UnityEngine.Audio
         void PlayOneShot(IAudioGenerator audio, float pitch = 1f);
         void PlayOneShotAtPoint(IAudioGenerator audio, Vector3 position, float pitch = 1f);
         void ResetAudio();
+        void SaveCurrentAudio();
     }
 }

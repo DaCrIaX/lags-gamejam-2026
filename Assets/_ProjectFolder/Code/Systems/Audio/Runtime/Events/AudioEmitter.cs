@@ -6,7 +6,7 @@ namespace UnityEngine.Audio
     {
         [Header("Audio Reference")]
         [SerializeField] protected AssetReferenceT<AudioClip> _audioReference;
-        [SerializeField] private bool _preloadAsset, _playOnAwake;
+        [SerializeField] private bool _preloadAsset, _playOnAwake, _saveClipOnAwake;
 
         protected bool _hasLoaded;
 
@@ -19,6 +19,7 @@ namespace UnityEngine.Audio
             }
 
             if (_playOnAwake) Play();
+            if (_saveClipOnAwake) _manager.SaveCurrentAudio(_channel);
         }
         private void OnDestroy()
         {

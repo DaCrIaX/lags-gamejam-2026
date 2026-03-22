@@ -66,5 +66,10 @@ namespace UnityEngine.Audio
             if (_channelMap.TryGetValue(channel, out var source))
                 source.ResetAudio();
         }
+        public void SaveCurrentAudio(Channel channel)
+        {
+            if (_channelMap.TryGetValue(channel, out var source))
+                source.SaveCurrentAudio();
+        }
     }
 }
