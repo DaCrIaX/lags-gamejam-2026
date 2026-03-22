@@ -13,7 +13,7 @@ namespace UnityEngine.EventSystems
         [Header("VFX")]
         [SerializeField] private TweenRectPositionSwipe _cardShadow;
 
-        private Vector2 _positionTarget;
+        private Vector3 _positionTarget;
         private Vector3 _rotationDelta;
 
         private void LateUpdate()
@@ -54,14 +54,13 @@ namespace UnityEngine.EventSystems
         }
         public void OnDrag(PointerEventData eventData)
         {
-            _cardShadow.SetPosition(_card.CardTransform.position);
-
             Vector2 bounds = Bounds;
             Vector2 point = eventData.position;
             point.x = Mathf.Clamp(point.x, bounds.x, Screen.width - bounds.x);
             point.y = Mathf.Clamp(point.y, bounds.y, Screen.height - bounds.y);
 
-            _positionTarget = _camera.ScreenToWorldPoint(point);
+            _positionTarget = _camera.ScreenToWorldPoint(new Vector3(point.x, point.y, _canvas.planeDistance));
+            _cardShadow.SetPosition(_card.CardTransform.position);
             _card.Parent?.OnDragElement(_positionTarget);
         }
     }

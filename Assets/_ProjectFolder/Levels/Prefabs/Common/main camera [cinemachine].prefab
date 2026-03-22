@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836970219268700878, guid: e33f7a3a92ee60043989ef6c9764cff9, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 836970219268700878, guid: e33f7a3a92ee60043989ef6c9764cff9, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2400253234832322273, guid: e33f7a3a92ee60043989ef6c9764cff9, type: 3}
       propertyPath: m_Name
       value: 'main camera [cinemachine]'

@@ -116,10 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc86de4979e53c489e221a3da685a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardHoverAnimation
-  _waveAmplitude: 10
-  _waveFrequency: 1.5
+  _waveAmplitude: 2.5
+  _waveFrequency: 1
   _smoothSpeed: 10
-  _offsetMultiply: 10
+  _offsetMultiply: 2.5
   _cardSize: {fileID: 2060247583002901616}
 --- !u!1 &8503013855838948095
 GameObject:
