@@ -7,7 +7,7 @@ namespace UnityEngine.EventSystems
         [SerializeField] private LayoutHandler _position, _rotation;
 
         protected GameplayManager _gameplay;
-        protected Card[] _cards;
+        protected CardTransform[] _cards;
 
         protected float _inverseLength;
 
@@ -20,7 +20,7 @@ namespace UnityEngine.EventSystems
 
         public void RefreshCardsArray()
         {
-            _cards = GetComponentsInChildren<Card>();
+            _cards = GetComponentsInChildren<CardTransform>();
             _inverseLength = 1f / _cards.Length;
             _inverseLength += _inverseLength * 0.5f;
         }
@@ -35,7 +35,7 @@ namespace UnityEngine.EventSystems
         private float GetAnimation(ref LayoutHandler animation, int index) =>
             animation.Evaluate(_cards.Length <= 1 ? 0.5f : index * _inverseLength);
 
-        public abstract void OnBeginDrag(Card card);
+        public abstract void OnBeginDrag(CardTransform card);
         public abstract void OnDragElement(Vector2 position);
         public abstract void OnDropElement(Vector2 position);
     }

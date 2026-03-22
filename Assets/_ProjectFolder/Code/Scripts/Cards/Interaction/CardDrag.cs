@@ -3,7 +3,7 @@ namespace UnityEngine.EventSystems
     using Animations;
     using InputSystem;
 
-    [RequireComponent(typeof(Card))]
+    [RequireComponent(typeof(CardTransform))]
     public class CardDrag : CardBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private Vector2 _cardSize;
@@ -28,16 +28,16 @@ namespace UnityEngine.EventSystems
                 var targetLocalPos = new Vector3(0, _card.Parent.GetPosition(index), 0);
                 var targetRot = Quaternion.Euler(0, 0, -_card.Parent.GetRotation(index));
 
-                _card.CardTransform.localPosition = Vector3.Lerp(_card.CardTransform.localPosition, targetLocalPos, speed);
-                _card.CardTransform.localRotation = Quaternion.Lerp(_card.CardTransform.localRotation, targetRot, speed);
+                _card.CardRectTransform.localPosition = Vector3.Lerp(_card.CardRectTransform.localPosition, targetLocalPos, speed);
+                _card.CardRectTransform.localRotation = Quaternion.Lerp(_card.CardRectTransform.localRotation, targetRot, speed);
             }
             else
             {
                 Vector2 movementRotation = Mouse.current.delta.value * _deltaMultiply;
                 _rotationDelta = Vector3.Lerp(_rotationDelta, movementRotation, speed);
 
-                _card.CardTransform.position = Vector2.Lerp(_card.CardTransform.position, _positionTarget, speed);
-                _card.CardTransform.eulerAngles = new(0, 0, Mathf.Clamp(_rotationDelta.x, -60, 60));
+                _card.CardRectTransform.position = Vector2.Lerp(_card.CardRectTransform.position, _positionTarget, speed);
+                _card.CardRectTransform.eulerAngles = new(0, 0, Mathf.Clamp(_rotationDelta.x, -60, 60));
             }
         }
 
@@ -60,7 +60,7 @@ namespace UnityEngine.EventSystems
             point.y = Mathf.Clamp(point.y, bounds.y, Screen.height - bounds.y);
 
             _positionTarget = _camera.ScreenToWorldPoint(new Vector3(point.x, point.y, _canvas.planeDistance));
-            _cardShadow.SetPosition(_card.CardTransform.position);
+            _cardShadow.SetPosition(_card.CardRectTransform.position);
             _card.Parent?.OnDragElement(_positionTarget);
         }
     }

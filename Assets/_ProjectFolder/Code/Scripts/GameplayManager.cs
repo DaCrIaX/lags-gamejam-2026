@@ -6,13 +6,13 @@ public class GameplayManager : SingletonBasic<GameplayManager>
 {
     [SerializeField] private RectTransform _dragArea;
 
-    public Card Selected { get; private set; }
+    public CardTransform Selected { get; private set; }
     public RectTransform DragArea => _dragArea;
 
     public bool IsDraggingObject => Selected != null;
     public Action<bool> onObjectSelectedChanged;
 
-    public void SelectCard(Card card)
+    public void SelectCard(CardTransform card)
     {
         Selected = card;
         onObjectSelectedChanged?.Invoke(!IsDraggingObject);

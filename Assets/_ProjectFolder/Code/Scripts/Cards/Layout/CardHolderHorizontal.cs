@@ -2,7 +2,7 @@ namespace UnityEngine.EventSystems
 {
     public class CardHolderHorizontal : CardHolder
     {
-        public override void OnBeginDrag(Card card)
+        public override void OnBeginDrag(CardTransform card)
         {
             _gameplay.SelectCard(card);
             _gameplay.Selected.SetCardParent(_gameplay.DragArea);

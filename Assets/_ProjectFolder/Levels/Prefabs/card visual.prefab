@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.Card
   _transform: {fileID: 0}
-  _tiltTransform: {fileID: 1115784423842129465}
+  _cardTransform: {fileID: 1115784423842129465}
 --- !u!114 &7515386160910722596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: f1db67376f68853418bae8626eb943da, type: 2}
+  m_Material: {fileID: 2100000, guid: 848b048cce63aa24ea1cd318aa2b8b73, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -267,6 +267,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _normalFactor: 1
+  _axisFactor: -1
   _scaleFactor: 1.05
 --- !u!1 &8681718604314124835
 GameObject:

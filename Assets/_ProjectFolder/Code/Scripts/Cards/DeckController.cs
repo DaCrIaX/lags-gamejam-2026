@@ -4,11 +4,14 @@ using UnityEngine.EventSystems;
 
 public class DeckController : MonoBehaviour
 {
+    [SerializeReference] private SO_Database _database;
     [SerializeField] private CardHolder _holder;
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private float _spawnDelay;
+    [SerializeField] private Card _prefab;
 
+    [SerializeField] private float _spawnDelay;
     [SerializeField] private int _giveAmount;
+
+    private void Start() => AddNewCards();
 
     [ContextMenu("Add New Cards")]
     public void AddNewCards() => StartCoroutine(SpawnCards(_giveAmount));
@@ -22,7 +25,7 @@ public class DeckController : MonoBehaviour
         for (int i = 0; i < limit; i++)
         {
             yield return new WaitForSeconds(_spawnDelay);
-            Instantiate(_prefab, _holder.Container);
+            Instantiate(_prefab, _holder.Container).Setup(_database.GetRandomIngredient());
             _holder.RefreshCardsArray();
         }
     }

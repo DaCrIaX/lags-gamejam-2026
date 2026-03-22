@@ -4,7 +4,7 @@ namespace UnityEngine.EventSystems
 {
     using Animations;
 
-    [RequireComponent(typeof(Card))]
+    [RequireComponent(typeof(CardTransform))]
     public class CardHover : CardBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler, IPointerMoveHandler
     {
         [SerializeField] private float _waveAmplitude = 1f, _waveFrequency = 1f;
@@ -24,14 +24,14 @@ namespace UnityEngine.EventSystems
             float sine = Mathf.Sin(time) * _waveAmplitude;
             float cosine = Mathf.Cos(time) * _waveAmplitude;
 
-            Vector2 offset = (Vector2)_card.Transform.position - _input;
+            Vector2 offset = (Vector2)_card.RectTransform.position - _input;
             float tiltX = -offset.y * _offsetMultiply;
             float tiltY = offset.x * _offsetMultiply;
 
             float speed = _smoothSpeed * Time.deltaTime;
-            float lerpX = Mathf.LerpAngle(_card.Transform.eulerAngles.x, tiltX + sine, speed);
-            float lerpY = Mathf.LerpAngle(_card.Transform.eulerAngles.y, tiltY + cosine, speed);
-            _card.Transform.eulerAngles = new Vector3(lerpX, lerpY, 0f);
+            float lerpX = Mathf.LerpAngle(_card.RectTransform.eulerAngles.x, tiltX + sine, speed);
+            float lerpY = Mathf.LerpAngle(_card.RectTransform.eulerAngles.y, tiltY + cosine, speed);
+            _card.RectTransform.eulerAngles = new Vector3(lerpX, lerpY, 0f);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -40,14 +40,14 @@ namespace UnityEngine.EventSystems
             _cardSize.ScaleIn();
             _card.IsHovering = true;
             _input = eventData.pointerCurrentRaycast.worldPosition;
-            _card.Transform.LocalPositionZ(1);
+            _card.RectTransform.LocalPositionZ(1);
         }
         public void OnPointerExit(PointerEventData eventData)
         {
             _cardSize.ScaleOut();
             _card.IsHovering = false;
-            _card.Transform.LocalPositionZ(0);
-            _reset = Tween.Rotation(_card.Transform, Quaternion.identity, 0.2f);
+            _card.RectTransform.LocalPositionZ(0);
+            _reset = Tween.Rotation(_card.RectTransform, Quaternion.identity, 0.2f);
         }
 
         public void OnPointerDown(PointerEventData eventData) => _cardSize.ScaleOut();

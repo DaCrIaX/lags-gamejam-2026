@@ -10,7 +10,7 @@ namespace UnityEngine.EventSystems
         public async void OnDrop(PointerEventData eventData)
         {
             if (!_holder.CanAddElement) return;
-            if (!eventData.pointerDrag.TryGetComponent(out Card card)) return;
+            if (!eventData.pointerDrag.TryGetComponent(out CardTransform card)) return;
 
             card.SetParent(_holder.Container);
             await Awaitable.EndOfFrameAsync();
