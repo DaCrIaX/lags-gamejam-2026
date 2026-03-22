@@ -1,69 +1,37 @@
-using PrimeTween;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.WSA;
-
-public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+namespace UnityEngine.EventSystems
 {
-    [SerializeField] private Transform _parent, _transform;
-    [SerializeField] private float _smoothSpeed = 10f;
-
-    [SerializeField] private CanvasGroup _cast;
-    [SerializeField] private Transform _shadow;
-    [SerializeField] private float _height;
-    [SerializeField] private float _fadeTime = 0.25f;
-
-    private CardHolderHorizontal _holder;
-    private bool _isDragging = false;
-
-    private Vector2 _shadowPosition;
-    private Tween _shadowTween;
-
-    public int SiblingIndex { get => _parent.GetSiblingIndex(); set => _parent.SetSiblingIndex(value); }
-    public Vector2 GetSiblingPosition => _parent.position;
-
-    private void Awake() => RefreshCardHolder();
-    private void Start() => _shadowPosition = _shadow.localPosition;
-    private void LateUpdate()
+    public class Card : MonoBehaviour
     {
-        if (!_holder) return;
+        [SerializeField] private Transform _transform, _tiltTransform;
 
-        int index = SiblingIndex;
-        float speed = Time.deltaTime * _smoothSpeed;
+        private CanvasGroup _group;
+        private CardHolder _parent;
 
-        if (!_isDragging)
+        public CardHolder Parent => _parent;
+        public Transform Transform => _transform;
+        public Transform CardTransform => _tiltTransform;
+        public int SiblingIndex
         {
-            var targetLocalPos = new Vector3(0, _holder.GetPosition(index), 0);
-            _transform.localPosition = Vector3.Lerp(_transform.localPosition, targetLocalPos, speed);
+            get => _transform.GetSiblingIndex();
+            set => _transform.SetSiblingIndex(value);
         }
 
-        var targetRot = Quaternion.Euler(0, 0, -_holder.GetRotation(index));
-        _transform.localRotation = Quaternion.Lerp(_transform.localRotation, targetRot, speed);
-    }
+        public Vector2 Position => _transform.position;
 
-    public void RefreshCardHolder() => _holder = GetComponentInParent<CardHolderHorizontal>();
-    public void SetContainer(Transform parent) => _transform.SetParent(parent);
-    public void ResetContainer() => _transform.SetParent(_parent);
-    public void SetParent(Transform parent) => _parent.SetParent(parent);
+        public bool IsDragging { get; set; }
+        public bool IsHovering { get; set; }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        _cast.blocksRaycasts = false;
-        _holder?.OnBeginDrag(this);
-        _shadowTween.Complete();
-        _isDragging = true;
-    }
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        _cast.blocksRaycasts = true;
-        _shadowTween = Tween.LocalPosition(_shadow, _shadowPosition, _fadeTime);
-        _holder?.OnEndDragElement(eventData.position);
-        _isDragging = false;
-    }
-    public void OnDrag(PointerEventData eventData)
-    {
-        _transform.position = eventData.position;
-        _shadow.position = new(_transform.position.x, _transform.position.y - _height);
-        _holder?.OnDragElement(_transform.position);
+        private void Awake() => _group = GetComponent<CanvasGroup>();
+        private void Start() => _parent = GetComponentInParent<CardHolder>();
+        private void OnEnable() => GameplayManager.Instance.onObjectSelectedChanged += ChangeBlockRaycast;
+        private void OnDisable() => GameplayManager.Instance.onObjectSelectedChanged -= ChangeBlockRaycast;
+
+        public void ChangeBlockRaycast(bool value) => _group.blocksRaycasts = value;
+        public void RefreshParent() => _parent.RefreshCardsArray();
+        public void SearchParentGroup() => Start();
+
+        public void ResetCardParent() => _tiltTransform.SetParent(_transform);
+        public void SetCardParent(Transform parent) => _tiltTransform.SetParent(parent);
+        public void SetParent(Transform parent) => _transform.SetParent(parent);
     }
 }
