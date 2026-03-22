@@ -1,8 +1,11 @@
 namespace UnityEngine.EventSystems
 {
+    [RequireComponent(typeof(CardHolder))]
     public class CardHolderDroppable : MonoBehaviour, IDropHandler
     {
-        [SerializeField] private CardHolder _holder;
+        private CardHolder _holder;
+
+        private void Awake() => _holder = GetComponent<CardHolder>();
 
         public async void OnDrop(PointerEventData eventData)
         {

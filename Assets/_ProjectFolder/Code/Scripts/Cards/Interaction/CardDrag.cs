@@ -4,17 +4,18 @@ namespace UnityEngine.EventSystems
     using InputSystem;
 
     [RequireComponent(typeof(Card))]
-    public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class CardDrag : CardBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        [SerializeField] private TweenRectPositionSwipe _shadow;
+        [SerializeField] private Vector2 _cardSize;
         [SerializeField] private float _smoothSpeed = 10f;
         [SerializeField] private float _deltaMultiply = 5f;
 
-        private Card _card;
+        [Header("VFX")]
+        [SerializeField] private TweenRectPositionSwipe _cardShadow;
+
         private Vector2 _positionTarget;
         private Vector3 _rotationDelta;
 
-        private void Awake() => _card = GetComponent<Card>();
         private void LateUpdate()
         {
             if (!_card.Parent) return;
@@ -36,7 +37,7 @@ namespace UnityEngine.EventSystems
                 _rotationDelta = Vector3.Lerp(_rotationDelta, movementRotation, speed);
 
                 _card.CardTransform.position = Vector2.Lerp(_card.CardTransform.position, _positionTarget, speed);
-                _card.CardTransform.eulerAngles = new(_card.CardTransform.eulerAngles.x, _card.CardTransform.eulerAngles.y, Mathf.Clamp(_rotationDelta.x, -60, 60));
+                _card.CardTransform.eulerAngles = new(0, 0, Mathf.Clamp(_rotationDelta.x, -60, 60));
             }
         }
 
@@ -47,15 +48,21 @@ namespace UnityEngine.EventSystems
         }
         public void OnEndDrag(PointerEventData eventData)
         {
-            _card.Parent?.OnDropElement(eventData.position);
+            _card.Parent?.OnDropElement(eventData.pointerCurrentRaycast.worldPosition);
             _card.IsDragging = false;
-            _shadow?.ForceSwipeIn();
+            _cardShadow?.ForceSwipeIn();
         }
         public void OnDrag(PointerEventData eventData)
         {
-            _shadow.SetPosition(_card.CardTransform.position);
-            _positionTarget = eventData.position;
-            _card.Parent?.OnDragElement(eventData.position);
+            _cardShadow.SetPosition(_card.CardTransform.position);
+
+            Vector2 bounds = Bounds;
+            Vector2 point = eventData.position;
+            point.x = Mathf.Clamp(point.x, bounds.x, Screen.width - bounds.x);
+            point.y = Mathf.Clamp(point.y, bounds.y, Screen.height - bounds.y);
+
+            _positionTarget = _camera.ScreenToWorldPoint(point);
+            _card.Parent?.OnDragElement(_positionTarget);
         }
     }
 }

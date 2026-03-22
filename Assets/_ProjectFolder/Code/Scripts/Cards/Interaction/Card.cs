@@ -2,14 +2,14 @@ namespace UnityEngine.EventSystems
 {
     public class Card : MonoBehaviour
     {
-        [SerializeField] private Transform _transform, _tiltTransform;
+        [SerializeField] private RectTransform _transform, _tiltTransform;
 
         private CanvasGroup _group;
         private CardHolder _parent;
 
         public CardHolder Parent => _parent;
-        public Transform Transform => _transform;
-        public Transform CardTransform => _tiltTransform;
+        public RectTransform Transform => _transform;
+        public RectTransform CardTransform => _tiltTransform;
         public int SiblingIndex
         {
             get => _transform.GetSiblingIndex();
@@ -26,9 +26,9 @@ namespace UnityEngine.EventSystems
         private void OnEnable() => GameplayManager.Instance.onObjectSelectedChanged += ChangeBlockRaycast;
         private void OnDisable() => GameplayManager.Instance.onObjectSelectedChanged -= ChangeBlockRaycast;
 
-        public void ChangeBlockRaycast(bool value) => _group.blocksRaycasts = value;
-        public void RefreshParent() => _parent.RefreshCardsArray();
         public void SearchParentGroup() => Start();
+        public void RefreshParent() => _parent.RefreshCardsArray();
+        public void ChangeBlockRaycast(bool value) => _group.blocksRaycasts = value;
 
         public void ResetCardParent() => _tiltTransform.SetParent(_transform);
         public void SetCardParent(Transform parent) => _tiltTransform.SetParent(parent);
