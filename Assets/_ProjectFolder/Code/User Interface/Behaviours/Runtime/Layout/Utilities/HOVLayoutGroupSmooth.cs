@@ -2,8 +2,8 @@ namespace UnityEngine.UI
 {
     public abstract class HOVLayoutGroupSmooth : HorizontalOrVerticalLayoutGroup
     {
-        [SerializeField] private float _duration = 1f;
         [SerializeField] private AnimationCurve _curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        [SerializeField] private float _duration = 1f;
 
         protected Vector2[] _origin, _target;
         private bool _initialized, _animating;
