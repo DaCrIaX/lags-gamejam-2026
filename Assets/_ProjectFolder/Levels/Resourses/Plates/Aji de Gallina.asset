@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccab60a12856b14db32778377c19c5f, type: 3}
+  m_Name: Aji de Gallina
+  m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
+  _name: "Aj\xED de Gallina"
+  _image: {fileID: 0}
+  _ingredients:
+  - {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - {fileID: 11400000, guid: 30d1a12a312b732449ee01bdb1aab342, type: 2}
+  - {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}

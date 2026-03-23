@@ -3,9 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Plate", menuName = "cards/dish/plate")]
 public class SO_Dish : ScriptableObject
 {
-    [SerializeField] private Sprite _sprite;
     [SerializeField] private string _name;
+    [SerializeField] private Sprite _image;
 
-    public Sprite Image => _sprite;
-    public string Name => _name;
+    [SerializeReference] private SO_IngredientBase[] _ingredients;
 }

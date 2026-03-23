@@ -17,27 +17,16 @@ namespace UnityEngine.EventSystems
 
         private void LateUpdate()
         {
-            if (!_card.CardGroup) return;
+            if (!_card.IsDragging) return;
 
             int index = _card.SiblingIndex;
             float speed = Time.deltaTime * _smoothSpeed;
 
-            if (!_card.IsDragging)
-            {
-                var targetLocalPos = new Vector3(0, _card.CardGroup.GetPosition(index), 0);
-                var targetRot = Quaternion.Euler(0, 0, -_card.CardGroup.GetRotation(index));
+            Vector2 movementRotation = Mouse.current.delta.value * _deltaMultiply;
+            _rotationDelta = Vector3.Lerp(_rotationDelta, movementRotation, speed);
 
-                _card.CardRectTransform.localPosition = Vector3.Lerp(_card.CardRectTransform.localPosition, targetLocalPos, speed);
-                _card.CardRectTransform.localRotation = Quaternion.Lerp(_card.CardRectTransform.localRotation, targetRot, speed);
-            }
-            else
-            {
-                Vector2 movementRotation = Mouse.current.delta.value * _deltaMultiply;
-                _rotationDelta = Vector3.Lerp(_rotationDelta, movementRotation, speed);
-
-                _card.CardRectTransform.position = Vector2.Lerp(_card.CardRectTransform.position, _positionTarget, speed);
-                _card.CardRectTransform.eulerAngles = new(0, 0, Mathf.Clamp(_rotationDelta.x, -60, 60));
-            }
+            _card.CardRectTransform.position = Vector2.Lerp(_card.CardRectTransform.position, _positionTarget, speed);
+            _card.CardRectTransform.eulerAngles = new(0, 0, Mathf.Clamp(_rotationDelta.x, -60, 60));
         }
 
         public void OnBeginDrag(PointerEventData eventData)

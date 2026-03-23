@@ -4,7 +4,9 @@ using UnityEngine;
 public class SO_Database : ScriptableObject
 {
     [SerializeReference] private SO_IngredientBase[] _ingredients;
-    [SerializeReference] private SO_Combination[] _combinations;
+    [SerializeReference] private SO_IngredientSpecial[] _specialIngredients;
+
+    [SerializeReference] private SO_Dish[] _combinations;
 
     public SO_IngredientBase GetRandomIngredient()
     {

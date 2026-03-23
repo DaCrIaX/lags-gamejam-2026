@@ -89,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.Card
   _transform: {fileID: 0}
   _cardTransform: {fileID: 1115784423842129465}
+  _snapSpeed: 10
 --- !u!114 &7515386160910722596
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ namespace UnityEngine.Animations
 
         [ContextMenu("Enable Group")] public void EnableGroup() => SetGroupStatus(true);
         [ContextMenu("Disable Group")] public void DisableGroup() => SetGroupStatus(false);
-        private void SetGroupStatus(bool value)
+        public void SetGroupStatus(bool value)
         {
             StopAllCoroutines();
             StartCoroutine(TweenDelay(value));
@@ -45,7 +45,7 @@ namespace UnityEngine.Animations
 
             foreach (var tween in _tweens)
             {
-                tween.Play(value);
+                tween.ForcePlay(value);
 
                 if (_timeInBetween != 0)
                     yield return _waitTimeInBetween;

@@ -13,8 +13,21 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: Assembly-CSharp::SO_Database
   _ingredients:
-  - {fileID: 11400000, guid: c799270c4194e6842a79c6d07052b469, type: 2}
-  - {fileID: 11400000, guid: 55d259f9b497b6145943efcc1ca3f1a0, type: 2}
-  - {fileID: 11400000, guid: 098e2ae876e678b4b812794f02ea1eff, type: 2}
+  - {fileID: 11400000, guid: 9bb0d1053bf257c4186f63716b105231, type: 2}
+  - {fileID: 11400000, guid: 74100fc98bda9214cb6c020b7dbfaab4, type: 2}
+  - {fileID: 11400000, guid: 7ef30edae1f464f40b0f29cee2eeaf65, type: 2}
+  - {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
+  - {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}
+  - {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
+  - {fileID: 11400000, guid: b1046d953832137428803f73fad0e9a1, type: 2}
+  - {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
+  _specialIngredients: []
   _combinations:
+  - {fileID: 11400000, guid: f022d8beab6a2b04eaef32841e63ac7d, type: 2}
+  - {fileID: 11400000, guid: 5ead699d06f1d504eb57fc4e90014744, type: 2}
+  - {fileID: 11400000, guid: 9e1020ccfce936246a73c4dba49480dc, type: 2}
+  - {fileID: 11400000, guid: 4921ab138f4b8dc4da14782359cd4583, type: 2}
+  - {fileID: 11400000, guid: ab907ef64e0f31c43ad535cd621a312f, type: 2}
+  - {fileID: 11400000, guid: 6e31a5ae59045cf4aaf8141769419c4d, type: 2}
   - {fileID: 11400000, guid: 685706a2e9446f04e93668eabbb09ca4, type: 2}
