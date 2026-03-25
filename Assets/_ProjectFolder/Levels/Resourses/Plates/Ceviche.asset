@@ -15,6 +15,9 @@ MonoBehaviour:
   _name: Ceviche
   _image: {fileID: 0}
   _ingredients:
-  - {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
-  - {fileID: 11400000, guid: b1046d953832137428803f73fad0e9a1, type: 2}
-  - {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}
+  - ingredient: {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: b1046d953832137428803f73fad0e9a1, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}
+    amount: 1

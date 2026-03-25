@@ -2,14 +2,13 @@ namespace UnityEngine.EventSystems
 {
     using Audio;
 
-    public abstract class CardGroup : MonoBehaviour
+    public abstract class HOVCardsGroup : MonoBehaviour
     {
-        [SerializeField] private CardGroup _connected;
-        [SerializeField] private Transform _container;
+        [SerializeReference] private Transform _container;
+        [SerializeReference] private AudioEmitter _audioSwipe;
         [SerializeField] private int _maxAmount;
 
         [SerializeField] private LayoutHandler _position, _rotation;
-        [SerializeReference] protected AudioEmitter _audioSwipe, _audioDrop;
 
         protected GameplayManager _gameplay;
         protected CardTransform[] _cards;
@@ -19,10 +18,11 @@ namespace UnityEngine.EventSystems
         public Transform Container => _container;
         public int MaxAmount => _maxAmount;
         public int Amount => _cards != null ? _cards.Length : 0;
-        public bool CanAddElement => Amount < _maxAmount;
+        public bool HasAvailableSpace => Amount < _maxAmount;
 
         protected virtual void Awake() => _gameplay = GameplayManager.Instance;
         protected virtual void Start() => RefreshCardsArray();
+        protected virtual void OnTransformChildrenChanged() => RefreshCardsArray();
 
         public async void ClearChildren()
         {
@@ -32,7 +32,7 @@ namespace UnityEngine.EventSystems
             await Awaitable.NextFrameAsync();
             RefreshCardsArray();
         }
-        public void RefreshCardsArray()
+        private void RefreshCardsArray()
         {
             _cards = GetComponentsInChildren<CardTransform>();
             _inverseLength = 1f / _cards.Length;
@@ -41,28 +41,23 @@ namespace UnityEngine.EventSystems
 
         public float GetPosition(int index) => GetAnimation(ref _position, index);
         public float GetRotation(int index) => GetAnimation(ref _rotation, index);
-        private float GetAnimation(ref LayoutHandler animation, int index) =>
-            animation.Evaluate(_cards.Length <= 1 ? 0.5f : index * _inverseLength);
+        private float GetAnimation(ref LayoutHandler layout, int index) =>
+            layout.Evaluate(Amount <= 1 ? 0.5f : index * _inverseLength);
 
         public abstract void OnBeginDrag(CardTransform card);
         public abstract void OnDragElement(Vector2 position);
         public abstract void OnDropElement(Vector2 position);
-
-        public void DropItemToConnection(CardTransform card)
+        protected virtual void OnSwipe(int index)
         {
-            if (_connected)
-                DropItem(card, _connected);
+            _gameplay.Selected.SiblingIndex = index;
+            _audioSwipe?.PlayOneShot();
         }
-        public async void DropItem(CardTransform card, CardGroup holder)
+
+        public bool DropItem(CardTransform card)
         {
-            if (!holder.CanAddElement) return;
-            card.SetParent(holder.Container);
-            _audioDrop?.PlayOneShot();
-            
-            await Awaitable.EndOfFrameAsync();
-            card.RefreshParent();
-            card.SearchParentGroup();
-            holder.RefreshCardsArray();
+            if (!HasAvailableSpace) return false;
+            card.SetParent(Container);
+            return true;
         }
     }
 }

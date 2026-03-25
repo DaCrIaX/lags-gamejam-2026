@@ -1,6 +1,6 @@
 namespace UnityEngine.EventSystems
 {
-    public class CardGroupHorizontal : CardGroup
+    public class HorizontalCardsGroup : HOVCardsGroup
     {
         public override void OnBeginDrag(CardTransform card)
         {
@@ -14,23 +14,17 @@ namespace UnityEngine.EventSystems
                 if (_cards[i] == _gameplay.Selected) continue;
 
                 float siblingX = _cards[i].Position.x;
-                int selectedIdx = _gameplay.Selected.SiblingIndex;
                 int siblingIdx = _cards[i].SiblingIndex;
+                int selectedIdx = _gameplay.Selected.SiblingIndex;
 
-                if (position.x > siblingX && selectedIdx < siblingIdx) Swipe(siblingIdx);
-                else if (position.x < siblingX && selectedIdx > siblingIdx) Swipe(siblingIdx);
+                if (position.x > siblingX && selectedIdx < siblingIdx) OnSwipe(siblingIdx);
+                else if (position.x < siblingX && selectedIdx > siblingIdx) OnSwipe(siblingIdx);
             }
         }
         public override void OnDropElement(Vector2 position)
         {
             _gameplay.Selected.ResetCardParent();
             _gameplay.SelectCard(null);
-        }
-
-        private void Swipe(int index)
-        {
-            _gameplay.Selected.SiblingIndex = index;
-            _audioSwipe?.PlayOneShot();
         }
     }
 }

@@ -1,26 +1,14 @@
 using UnityEngine;
 using UnityEngine.Splines;
-using UnityEngine.Animations;
-using UnityEngine.EventSystems;
+using System;
 
-public class RoundManager : MonoBehaviour
+public class RoundManager : SingletonBasic<RoundManager>
 {
-    [SerializeField] private CardManager _cardManager;
-    [SerializeField] private TweenGroup _canvas;
-
-    [SerializeField] private CardGroup _recipe;
     [SerializeField] private SplineContainer _spline;
 
-    private void Start()
-    {
-        _canvas.EnableGroup();
-        _cardManager.AddNewCards();
-    }
-    public void SendRecipe()
-    {
-        var cards = _recipe.GetComponentsInChildren<Card>();
+    public Action<SO_Recipe> onDiscoveredRecipe;
+    public Action onNextRound;
 
-        _recipe.ClearChildren();
-        _cardManager.AddNewCards();
-    }
+    public void DiscoverRecipe(SO_Recipe recipe) => onDiscoveredRecipe?.Invoke(recipe);
+    public void CompleteRound() => onNextRound?.Invoke();
 }

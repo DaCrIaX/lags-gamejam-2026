@@ -560,8 +560,9 @@ GameObject:
   - component: {fileID: 154605553}
   - component: {fileID: 154605560}
   - component: {fileID: 154605559}
-  - component: {fileID: 154605556}
+  - component: {fileID: 154605561}
   - component: {fileID: 154605555}
+  - component: {fileID: 154605562}
   - component: {fileID: 154605558}
   m_Layer: 5
   m_Name: hand
@@ -640,86 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acf97171b1930e4bab4261b8345c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPlaceHandler
---- !u!114 &154605556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154605551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
-  _connected: {fileID: 1879722154}
-  _container: {fileID: 1416212099}
-  _maxAmount: 5
-  _position:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 4.369388
-        outSlope: 4.369388
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.07257022
-      - serializedVersion: 3
-        time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: -4.4580007
-        outSlope: -4.4580007
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05880618
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    min: 0
-    max: 25
-  _rotation:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    min: -20
-    max: 20
-  _audioSwipe: {fileID: 1416212101}
-  _audioDrop: {fileID: 154605558}
 --- !u!114 &154605558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +708,39 @@ MonoBehaviour:
     useUnscaledTime: 0
     _useFixedUpdate: 0
     _updateType: 0
+--- !u!114 &154605561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0282a713ac5c64183448c23f36e4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardGroupNavigation
+  _directions:
+  - name: Up Direction
+    cardType: 3
+    group: {fileID: 914045195}
+--- !u!114 &154605562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e334852184921324286e1f9377ef43db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckController
+  _prefab: {fileID: 4206602725805252688, guid: 8591b77058125254a97d3c62aa462725, type: 3}
+  _startDelay: 1
+  _spawnDelay: 0.2
+  _startAmount: 5
+  _roundAmount: 7
 --- !u!1001 &163844577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1032,9 +986,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 960669133}
-        m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
-        m_MethodName: SendRecipe
+      - m_Target: {fileID: 1879722159}
+        m_TargetAssemblyTypeName: RecipeHandler, Assembly-CSharp
+        m_MethodName: EvaluatePlate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1100,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &353546683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1194,6 +1148,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &370830722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370830723}
+  - component: {fileID: 370830724}
+  m_Layer: 0
+  m_Name: inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370830723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370830722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 960669129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370830724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370830722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345ecde1e4a224b459f6da20eb7b85d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  _availableItems:
+  - {fileID: 11400000, guid: 9bb0d1053bf257c4186f63716b105231, type: 2}
+  - {fileID: 11400000, guid: 74100fc98bda9214cb6c020b7dbfaab4, type: 2}
+  - {fileID: 11400000, guid: 7ef30edae1f464f40b0f29cee2eeaf65, type: 2}
+  - {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
+  - {fileID: 11400000, guid: 30d1a12a312b732449ee01bdb1aab342, type: 2}
+  - {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}
+  - {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
+  - {fileID: 11400000, guid: b1046d953832137428803f73fad0e9a1, type: 2}
+  - {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1802,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694224594}
   m_CullTransparentMesh: 1
+--- !u!1 &739713152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739713153}
+  - component: {fileID: 739713154}
+  m_Layer: 5
+  m_Name: special cards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &739713153
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739713152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1114967423}
+  m_Father: {fileID: 2012680135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -50, y: 0}
+  m_SizeDelta: {x: 450, y: 850}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &739713154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739713152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
+  m_Content: {fileID: 0}
+  m_Horizontal: 0
+  m_Vertical: 0
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 25
+  m_Viewport: {fileID: 1114967423}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &787280756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,9 +2066,10 @@ GameObject:
   m_Component:
   - component: {fileID: 914045191}
   - component: {fileID: 914045193}
+  - component: {fileID: 914045195}
   - component: {fileID: 914045194}
   m_Layer: 5
-  m_Name: container
+  m_Name: recipe container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,6 +2167,75 @@ MonoBehaviour:
   _preloadAsset: 0
   _playOnAwake: 0
   _saveClipOnAwake: 0
+--- !u!114 &914045195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914045190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _container: {fileID: 914045191}
+  _audioSwipe: {fileID: 914045194}
+  _maxAmount: 3
+  _position:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    min: 0
+    max: 0
+  _rotation:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    min: 0
+    max: 0
 --- !u!1 &960669128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,7 +2247,6 @@ GameObject:
   - component: {fileID: 960669129}
   - component: {fileID: 960669130}
   - component: {fileID: 960669133}
-  - component: {fileID: 960669132}
   - component: {fileID: 960669131}
   m_Layer: 0
   m_Name: game manager
@@ -2122,7 +2267,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 370830723}
   m_Father: {fileID: 1084299294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &960669130
@@ -2162,24 +2308,6 @@ MonoBehaviour:
   _preloadAsset: 0
   _playOnAwake: 1
   _saveClipOnAwake: 1
---- !u!114 &960669132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 960669128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e334852184921324286e1f9377ef43db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeckController
-  _database: {fileID: 11400000, guid: 4241eb273db3e80418d914b2bb02563e, type: 2}
-  _handGroup: {fileID: 154605556}
-  _prefab: {fileID: 4206602725805252688, guid: 8591b77058125254a97d3c62aa462725, type: 3}
-  _startDelay: 1
-  _spawnDelay: 0.2
-  _giveAmount: 5
 --- !u!114 &960669133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,9 +2320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee29ed2f0d223e49ab950a4e702a0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoundManager
-  _cardManager: {fileID: 960669132}
-  _canvas: {fileID: 1794520920}
-  _recipe: {fileID: 1879722154}
   _spline: {fileID: 1323919968}
 --- !u!1 &1061846007
 GameObject:
@@ -2442,6 +2567,96 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093866628}
   m_CullTransparentMesh: 1
+--- !u!1 &1114967422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114967423}
+  - component: {fileID: 1114967425}
+  - component: {fileID: 1114967424}
+  - component: {fileID: 1114967426}
+  m_Layer: 5
+  m_Name: viewport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1114967423
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114967422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 739713153}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1114967424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114967422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1114967425
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114967422}
+  m_CullTransparentMesh: 1
+--- !u!114 &1114967426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114967422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &1188245716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,9 +2996,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1416212099}
   - component: {fileID: 1416212100}
+  - component: {fileID: 1416212102}
   - component: {fileID: 1416212101}
   m_Layer: 5
-  m_Name: container
+  m_Name: hand container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2881,6 +3097,84 @@ MonoBehaviour:
   _preloadAsset: 0
   _playOnAwake: 0
   _saveClipOnAwake: 0
+--- !u!114 &1416212102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416212098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
+  _container: {fileID: 1416212099}
+  _audioSwipe: {fileID: 1416212101}
+  _maxAmount: 7
+  _position:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 4.369388
+        outSlope: 4.369388
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.07257022
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -4.4580007
+        outSlope: -4.4580007
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.05880618
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    min: 0
+    max: 25
+  _rotation:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    min: -20
+    max: 20
 --- !u!1 &1444762713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3146,7 +3440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: PrimeTween.Animations::UnityEngine.Animations.TweenGroup
   _timeToStart: 0.25
   _timeInBetween: 0
-  _playOnAwake: 0
+  _playOnAwake: 1
   _inverseCallback: 0
   _onValueChanged:
     m_PersistentCalls:
@@ -3272,8 +3566,9 @@ GameObject:
   - component: {fileID: 1879722151}
   - component: {fileID: 1879722157}
   - component: {fileID: 1879722156}
-  - component: {fileID: 1879722154}
+  - component: {fileID: 1879722158}
   - component: {fileID: 1879722153}
+  - component: {fileID: 1879722159}
   - component: {fileID: 1879722155}
   m_Layer: 5
   m_Name: recipe
@@ -3353,77 +3648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acf97171b1930e4bab4261b8345c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPlaceHandler
---- !u!114 &1879722154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879722149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72380dcf5c818c84684bba66fe8f90a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
-  _connected: {fileID: 154605556}
-  _container: {fileID: 914045191}
-  _maxAmount: 3
-  _position:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    min: 0
-    max: 0
-  _rotation:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    min: 0
-    max: 0
-  _audioSwipe: {fileID: 914045194}
-  _audioDrop: {fileID: 1879722155}
 --- !u!114 &1879722155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3459,7 +3683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PrimeTween.Animations::UnityEngine.Animations.TweenRectPositionSwipe
   _direction: 1
-  _overrideDistance: {x: 0, y: 500}
+  _overrideDistance: {x: 0, y: 550}
 --- !u!114 &1879722157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,6 +3715,39 @@ MonoBehaviour:
     useUnscaledTime: 0
     _useFixedUpdate: 0
     _updateType: 0
+--- !u!114 &1879722158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879722149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0282a713ac5c64183448c23f36e4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardGroupNavigation
+  _directions:
+  - name: Down Direction
+    cardType: 3
+    group: {fileID: 1416212102}
+  - name: Right Direction
+    cardType: 4
+    group: {fileID: 0}
+--- !u!114 &1879722159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879722149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ea5315a2762b643bfaa2a2d1226c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeManager
+  _database: {fileID: 11400000, guid: 4241eb273db3e80418d914b2bb02563e, type: 2}
+  _checkingTime: 1
 --- !u!1001 &2012680134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3596,6 +3853,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1188245717}
+    - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 739713153}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
 --- !u!224 &2012680135 stripped

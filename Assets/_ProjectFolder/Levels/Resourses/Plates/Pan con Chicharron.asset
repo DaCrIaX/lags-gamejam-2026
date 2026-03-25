@@ -15,6 +15,9 @@ MonoBehaviour:
   _name: "Pan con Chicharr\xF3n"
   _image: {fileID: 0}
   _ingredients:
-  - {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
-  - {fileID: 11400000, guid: 7ef30edae1f464f40b0f29cee2eeaf65, type: 2}
-  - {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - ingredient: {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 7ef30edae1f464f40b0f29cee2eeaf65, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+    amount: 1

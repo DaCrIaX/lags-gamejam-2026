@@ -8,8 +8,12 @@ namespace UnityEngine.EventSystems
         public void OnPointerDown(PointerEventData eventData) => _currentTime = Time.time;
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (Time.time - _currentTime < _timeClicked)
-                _card.CardGroup.DropItemToConnection(_card);
+            if (!_card.Ingredient || Time.time - _currentTime > _timeClicked) return;
+
+            var navigation = GetComponentInParent<CardsGroupNavigation>();
+            if (!navigation) return;
+
+            navigation.SetCardDirection(_cardTransform, _card.Ingredient.CardType);
         }
     }
 }

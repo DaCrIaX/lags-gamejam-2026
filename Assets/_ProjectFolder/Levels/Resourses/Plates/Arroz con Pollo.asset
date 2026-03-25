@@ -15,6 +15,9 @@ MonoBehaviour:
   _name: Arroz con Pollo
   _image: {fileID: 0}
   _ingredients:
-  - {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
-  - {fileID: 11400000, guid: 30d1a12a312b732449ee01bdb1aab342, type: 2}
-  - {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - ingredient: {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 30d1a12a312b732449ee01bdb1aab342, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+    amount: 1

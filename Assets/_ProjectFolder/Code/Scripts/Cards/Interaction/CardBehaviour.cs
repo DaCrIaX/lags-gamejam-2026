@@ -1,13 +1,19 @@
 namespace UnityEngine.EventSystems
 {
-    [RequireComponent(typeof(CardTransform))]
     public abstract class CardBehaviour : MonoBehaviour
     {
-        protected CardTransform _card;
+        protected Card _card;
+        protected CardTransform _cardTransform;
 
-        protected Vector2 CardSize => _card.CardRectTransform.rect.size;
+        public CardTransform CardTransform => _cardTransform;
+
+        protected Vector2 CardSize => _cardTransform.CardRectTransform.rect.size;
         protected Vector2 Bounds => 0.5f * CardSize;
 
-        protected virtual void Awake() => _card = GetComponent<CardTransform>();
+        protected virtual void Awake()
+        {
+            _card = GetComponentInParent<Card>();
+            _cardTransform = GetComponentInParent<CardTransform>();
+        }
     }
 }

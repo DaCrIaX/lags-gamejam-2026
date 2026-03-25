@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 1115784423842129465}
   - component: {fileID: 3981293463699120727}
   - component: {fileID: 5574688944129838982}
-  - component: {fileID: 4598859341341036064}
   - component: {fileID: 7515386160910722596}
   - component: {fileID: 749857584702860595}
   - component: {fileID: 5657017623266608435}
   m_Layer: 5
-  m_Name: card visual
+  m_Name: card visual fx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,21 +74,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4598859341341036064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377113063130734874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d0dd8d15217384cb08eab912cd10e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.Card
-  _transform: {fileID: 0}
-  _cardTransform: {fileID: 1115784423842129465}
-  _snapSpeed: 10
 --- !u!114 &7515386160910722596
 MonoBehaviour:
   m_ObjectHideFlags: 0

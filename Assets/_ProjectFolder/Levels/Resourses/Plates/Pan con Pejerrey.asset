@@ -15,6 +15,9 @@ MonoBehaviour:
   _name: Pan con Pejerrey
   _image: {fileID: 0}
   _ingredients:
-  - {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
-  - {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
-  - {fileID: 11400000, guid: 74100fc98bda9214cb6c020b7dbfaab4, type: 2}
+  - ingredient: {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
+    amount: 1
+  - ingredient: {fileID: 11400000, guid: 74100fc98bda9214cb6c020b7dbfaab4, type: 2}
+    amount: 1

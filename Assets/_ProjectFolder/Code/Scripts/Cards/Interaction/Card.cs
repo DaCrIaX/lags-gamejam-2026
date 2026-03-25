@@ -1,11 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
+[SelectionBase]
 public class Card : MonoBehaviour
 {
-    [SerializeField] private Image _image;
+    [SerializeReference] private Image _image;
     [SerializeReference] private SO_IngredientBase _ingredient;
 
+    private CardTransform _transform;
+
+    public CardTransform Transform => _transform;
+    public SO_IngredientBase Ingredient => _ingredient;
+
+    private void Awake() => _transform = GetComponentInChildren<CardTransform>();
     private void OnValidate() => Setup(_ingredient);
 
     public void Setup(SO_IngredientBase ingredient)

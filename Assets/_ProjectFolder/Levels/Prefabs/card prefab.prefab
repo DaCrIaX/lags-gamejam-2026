@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7594066331619548339}
   - component: {fileID: 4206602725805252688}
+  - component: {fileID: -2253769799802306438}
   m_Layer: 5
   m_Name: card prefab
   m_TagString: Untagged
@@ -51,6 +52,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Card
   _image: {fileID: 1211040289861984816}
   _ingredient: {fileID: 0}
+--- !u!114 &-2253769799802306438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019007910381108479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d0dd8d15217384cb08eab912cd10e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.CardTransform
+  _transform: {fileID: 7594066331619548339}
+  _cardTransform: {fileID: 7629428828793179773}
+  _snapSpeed: 10
 --- !u!1001 &7394133360094849092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,7 +77,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 377113063130734874, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
       propertyPath: m_Name
-      value: card prefab
+      value: card visual
       objectReference: {fileID: 0}
     - target: {fileID: 1115784423842129465, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
       propertyPath: m_LocalPosition.x
