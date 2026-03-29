@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class RoundManager : SingletonBasic<RoundManager>
 {
     [SerializeField] private SplineContainer _spline;
     [SerializeField] private Transform _npc;
     [SerializeField] private float _npcSpeed = 1f;
+    [SerializeField] private Material _material;
+    [SerializeField] private Sprite[] _images;
 
     [SerializeField] private Score _score;
     [SerializeField] private TimerBase _timer;
@@ -47,6 +50,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     private IEnumerator ShowAnimation()
     {
         float time = 0f;
+        _material.mainTexture = _images[Random.Range(0, _images.Length)].texture;
 
         while (time <= 0.5f)
         {
@@ -54,7 +58,8 @@ public class RoundManager : SingletonBasic<RoundManager>
             time += Time.deltaTime * _npcSpeed;
             _npc.position = _spline.EvaluatePosition(time);
         }
-        
+
+        _npc.position = _spline.EvaluatePosition(0.5f);
     }
     private IEnumerator LeaveAnimation()
     {

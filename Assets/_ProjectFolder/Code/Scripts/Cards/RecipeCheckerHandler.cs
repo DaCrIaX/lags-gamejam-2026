@@ -32,8 +32,12 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
     public void EvaluatePlate()
     {
-        FindIngredients(out var ingredients); print(ingredients.Count);
-        if (ingredients.Count <= 2) return;
+        FindIngredients(out var ingredients);
+
+        int count = 0;
+        foreach (var item in ingredients) count += item.Value;
+
+        if (count < 3) return;
         bool foundMatch = false;
         int score = 0;
 
