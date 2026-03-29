@@ -10,7 +10,7 @@ public class HorizontalCardsLayout : HorizontalLayoutGroupSmooth
         base.Awake();
         _gameplay = GameplayManager.Instance;
     }
-    protected override void Update()
+    protected override void LateUpdate()
     {
         if (Application.isPlaying)
         {
@@ -18,6 +18,6 @@ public class HorizontalCardsLayout : HorizontalLayoutGroupSmooth
             _duration = _gameplay.LerpTimeInLayout;
         }
         
-        base.Update();
+        base.LateUpdate();
     }
 }

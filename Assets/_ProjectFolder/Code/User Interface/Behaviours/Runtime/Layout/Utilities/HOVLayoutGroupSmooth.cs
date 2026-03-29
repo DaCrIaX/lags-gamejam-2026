@@ -39,7 +39,7 @@ namespace UnityEngine.UI
             _initialized = _animating = true;
         }
 
-        protected void LateUpdate()
+        protected virtual void LateUpdate()
         {
             if (!Application.isPlaying || !_animating) return;
             _time += Time.deltaTime * _inverseDuration;

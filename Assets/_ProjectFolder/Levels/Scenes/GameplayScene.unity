@@ -8978,7 +8978,7 @@ MonoBehaviour:
   _startDisable: 1
   _playOnAwake: 0
   _settings:
-    duration: 0
+    duration: 1
     ease: 0
     customEase:
       serializedVersion: 2
@@ -8986,7 +8986,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    cycles: 0
+    cycles: 1
     cycleMode: 0
     startDelay: 0
     endDelay: 0
