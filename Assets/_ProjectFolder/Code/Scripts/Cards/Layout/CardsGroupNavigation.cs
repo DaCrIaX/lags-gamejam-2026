@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Audio;
 
 namespace UnityEngine.EventSystems
 {
@@ -11,6 +12,7 @@ namespace UnityEngine.EventSystems
             public HOVCardsGroup group;
         }
 
+        [SerializeField] private AudioEmitter _onNavigateSound;
         [SerializeField] private Direction[] _directions;
 
         public void SetCardDirection(CardTransform card, CardType type)
@@ -21,6 +23,7 @@ namespace UnityEngine.EventSystems
                 if (!direction.group.HasAvailableSpace) continue;
 
                 card.SetParent(direction.group.Container);
+                _onNavigateSound.PlayOneShot();
                 return;
             }
         }

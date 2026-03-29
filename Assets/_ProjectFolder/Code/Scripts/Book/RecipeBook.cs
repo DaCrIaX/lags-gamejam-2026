@@ -14,6 +14,7 @@ public class RecipeBook : MonoBehaviour
     private List<SO_Recipe> _discovered = new();
     private int _index = 0;
 
+    private void Start() => _button.SetActive(false);
     private void OnEnable() => RoundManager.Instance.onRecipeDiscovered += OnUpdateList;
     private void OnDisable() => RoundManager.Instance.onRecipeDiscovered -= OnUpdateList;
 

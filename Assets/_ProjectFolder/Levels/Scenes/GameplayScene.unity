@@ -506,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1023041396701264685, guid: d057eae770aaddc44a608a8ea55b6e4f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.808
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1023041396701264685, guid: d057eae770aaddc44a608a8ea55b6e4f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -542,11 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613614230820010505, guid: d057eae770aaddc44a608a8ea55b6e4f, type: 3}
       propertyPath: field of view
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4613614230820010505, guid: d057eae770aaddc44a608a8ea55b6e4f, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 87
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 7697834638651715110, guid: d057eae770aaddc44a608a8ea55b6e4f, type: 3}
       propertyPath: m_Name
@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 154605555}
   - component: {fileID: 154605562}
   - component: {fileID: 154605558}
+  - component: {fileID: 154605563}
   m_Layer: 5
   m_Name: hand
   m_TagString: Untagged
@@ -988,6 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acf97171b1930e4bab4261b8345c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPlaceHandler
+  _dropAudio: {fileID: 154605563}
 --- !u!114 &154605558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0282a713ac5c64183448c23f36e4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardGroupNavigation
+  _onNavigateSound: {fileID: 154605563}
   _directions:
   - name: Up Direction
     cardType: 3
@@ -1085,6 +1088,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckController
   _audioSpawn: {fileID: 154605558}
   _prefab: {fileID: 4206602725805252688, guid: 8591b77058125254a97d3c62aa462725, type: 3}
+--- !u!114 &154605563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: bde4812ac14df3c4db5718cf52501801
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
+  _saveClipOnAwake: 0
 --- !u!1001 &163844577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1749,10 +1774,10 @@ Light:
     serializedVersion: 2
     m_Bits: 119
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1893,72 +1918,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353546686}
-  - component: {fileID: 353546685}
-  - component: {fileID: 353546684}
-  m_Layer: 6
-  m_Name: cube
+  m_Layer: 3
+  m_Name: npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &353546684
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353546682}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &353546685
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353546682}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &353546686
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,10 +1934,11 @@ Transform:
   m_GameObject: {fileID: 353546682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 12}
+  m_LocalPosition: {x: 0, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1043611695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &354668306
@@ -2106,7 +2073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -2155,9 +2122,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
@@ -4440,6 +4407,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f877527c3529cfe4a89ac5dce1f881d2, type: 3}
   m_PrefabInstance: {fileID: 1041100637}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1043611694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043611695}
+  - component: {fileID: 1043611698}
+  - component: {fileID: 1043611697}
+  m_Layer: 3
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043611695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043611694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 353546686}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1043611697
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043611694}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1043611698
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043611694}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1049318401
 GameObject:
   m_ObjectHideFlags: 0
@@ -5517,6 +5574,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 559685330}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ButtonUnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1204625727}
         m_TargetAssemblyTypeName: UnityEngine.Audio.AudioFadeout, Audio
         m_MethodName: Play
@@ -7064,10 +7133,10 @@ Light:
     serializedVersion: 2
     m_Bits: 119
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -8219,6 +8288,7 @@ GameObject:
   - component: {fileID: 1879722155}
   - component: {fileID: 1879722160}
   - component: {fileID: 1879722161}
+  - component: {fileID: 1879722162}
   m_Layer: 5
   m_Name: recipe
   m_TagString: Untagged
@@ -8297,6 +8367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acf97171b1930e4bab4261b8345c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardPlaceHandler
+  _dropAudio: {fileID: 1879722162}
 --- !u!114 &1879722155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8376,6 +8447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0282a713ac5c64183448c23f36e4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardGroupNavigation
+  _onNavigateSound: {fileID: 1879722162}
   _directions:
   - name: Down Direction
     cardType: 3
@@ -8437,6 +8509,28 @@ MonoBehaviour:
   _channel: 1
   _audioReference:
     m_AssetGUID: 9b6b07e8bab0ef9499da4af2db7348e4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
+  _saveClipOnAwake: 0
+--- !u!114 &1879722162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879722149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: bde4812ac14df3c4db5718cf52501801
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
