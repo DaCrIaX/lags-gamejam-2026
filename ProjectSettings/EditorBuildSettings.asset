@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ProjectFolder/Levels/Scenes/CreditsScene.unity
     guid: 2e4d466cdd96e7248a1438f71f2488c1
+  - enabled: 1
+    path: Assets/_ProjectFolder/Levels/Scenes/HistoryScene.unity
+    guid: 4402a355d423e8d49840a71a76d83c4e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: cff586aac67c8124da84b13dc64d8691, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
