@@ -12,6 +12,8 @@ namespace UnityEngine.Animations
         protected TweenSettings _settings => _tweenCore.Settings;
         protected TweenSettings<T> _tweenSettings;
 
+        public float Duration => _settings.duration;
+
         protected virtual void Awake()
         {
             _tweenCore = GetComponent<ITween>();
