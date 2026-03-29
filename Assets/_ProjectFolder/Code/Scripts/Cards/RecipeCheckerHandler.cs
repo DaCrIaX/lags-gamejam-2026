@@ -33,7 +33,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     public void EvaluatePlate()
     {
         FindIngredients(out var ingredients);
-        if (ingredients.Count == 0) return;
+        if (ingredients.Count < 3) return;
         bool foundMatch = false;
         int score = 0;
 
