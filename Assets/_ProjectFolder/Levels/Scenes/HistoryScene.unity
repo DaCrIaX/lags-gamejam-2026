@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1343124157}
+      - m_Target: {fileID: 669794625}
         m_TargetAssemblyTypeName: History, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -349,7 +349,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1198915007384264007, guid: ace4a049e9827784e982a23954fbc31d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1343124154}
+      addedObject: {fileID: 669794624}
     - targetCorrespondingSourceObject: {fileID: 1198915007384264007, guid: ace4a049e9827784e982a23954fbc31d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 608119488}
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1343124157}
+      - m_Target: {fileID: 669794625}
         m_TargetAssemblyTypeName: History, Assembly-CSharp
         m_MethodName: Previus
         m_Mode: 1
@@ -685,6 +685,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Systems.Scene::UnityEngine.SceneManagement.SceneLoaderButton
   _path: Assets/_ProjectFolder/Levels/Scenes/GameplayScene.unity
+--- !u!1 &669794623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669794624}
+  - component: {fileID: 669794625}
+  m_Layer: 5
+  m_Name: container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &669794624
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669794623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1343124154}
+  - {fileID: 924259573}
+  m_Father: {fileID: 287947316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 750, y: -300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &669794625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669794623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b5e5f7450b00f41805932ecb8db7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::History
+  _text: {fileID: 1343124155}
+  _fadeAnimation: {fileID: 1343124157}
+  _pages:
+  - Si xd
+  - :u
+  - Porque sigues aqui?
 --- !u!1 &817922186
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +1046,7 @@ RectTransform:
   m_Children:
   - {fileID: 570116279}
   - {fileID: 12179886}
-  m_Father: {fileID: 1343124154}
+  m_Father: {fileID: 669794624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1171,6 +1227,8 @@ GameObject:
   - component: {fileID: 1343124154}
   - component: {fileID: 1343124156}
   - component: {fileID: 1343124155}
+  - component: {fileID: 1343124159}
+  - component: {fileID: 1343124158}
   - component: {fileID: 1343124157}
   m_Layer: 5
   m_Name: text
@@ -1186,18 +1244,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343124153}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 924259573}
-  m_Father: {fileID: 287947316}
+  m_Children: []
+  m_Father: {fileID: 669794624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 750, y: -300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343124155
 MonoBehaviour:
@@ -1308,14 +1365,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 1343124153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b5e5f7450b00f41805932ecb8db7f3, type: 3}
+  m_Script: {fileID: 11500000, guid: a2225d3a2085b1b4a8a7cb06b0fef314, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::History
-  _text: {fileID: 1343124155}
-  _pages:
-  - Si xd
-  - :u
-  - Porque sigues aqui?
+  m_EditorClassIdentifier: PrimeTween.Animations::UnityEngine.Animations.TweenCanvasGroup
+  _disableOnHidden: 0
+  _modifyInteraction: 0
+--- !u!114 &1343124158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343124153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1bea9ea0271b94f902a4c2474daf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PrimeTween.Animations::UnityEngine.Animations.TweenCore
+  _group: {fileID: 0}
+  _startDisable: 1
+  _playOnAwake: 1
+  _settings:
+    duration: 0.2
+    ease: 0
+    customEase:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    cycles: 1
+    cycleMode: 0
+    startDelay: 0
+    endDelay: 0
+    useUnscaledTime: 0
+    _useFixedUpdate: 0
+    _updateType: 0
+--- !u!225 &1343124159
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343124153}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1362509622
 PrefabInstance:
   m_ObjectHideFlags: 0

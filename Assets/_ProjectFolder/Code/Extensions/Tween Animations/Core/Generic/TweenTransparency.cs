@@ -35,11 +35,20 @@ namespace UnityEngine.Animations
             PerformVisibility(true);
             _tweenCore?.Play(true);
         }
+        public void ForceFadeIn()
+        {
+            PerformVisibility(true);
+            _tweenCore.ForcePlay(true);
+        }
 
         [ContextMenu("FadeOut")]
         public void FadeOut()
         {
             _tweenCore?.Play(false);
+        }
+        public void ForceFadeOut()
+        {
+            _tweenCore.ForcePlay(false);
         }
     }
 }
