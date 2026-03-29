@@ -33,4 +33,20 @@ public class SO_Recipe : ScriptableObject
 
         return plateIngredients.Sum(x => x.Value) == _ingredients.Sum(x => x.amount);
     }
+
+    public int GetMatchCount(Dictionary<SO_IngredientBase, int> plateIngredients)
+    {
+        int currentMatches = 0;
+
+        foreach (var req in _ingredients)
+        {
+            if (plateIngredients.TryGetValue(req.ingredient, out int amountInPlate))
+            {
+                if (amountInPlate == req.amount)
+                    currentMatches++;
+            }
+        }
+
+        return currentMatches;
+    }
 }

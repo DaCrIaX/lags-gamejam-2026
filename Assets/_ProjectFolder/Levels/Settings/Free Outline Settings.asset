@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Bits: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   renderQueue: 0
   occlusion: 2
   maskingStrategy: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
   occludedColor: {r: 1, g: 0, b: 0, a: 1}
   blendMode: 0
   extrusionMethod: 5
-  scaling: 0
-  width: 10
+  scaling: 1
+  width: 100
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 0

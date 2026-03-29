@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CardsSpawnHandler : HOVCardsGroupHandler
 {
+    [SerializeField] private AudioEmitter _audioSpawn;
     [SerializeField] private Card _prefab;
 
     private void Start() => StartCoroutine(SpawnCardsRoutine(Mathf.Min(_manager.StartAmount, _group.MaxAmount)));
@@ -16,6 +18,8 @@ public class CardsSpawnHandler : HOVCardsGroupHandler
 
         int limit = Mathf.Clamp(amount, 0, _group.MaxAmount);
         if (!_inventory.TryGetIngredients(limit, out var ingredients)) yield break;
+
+        _audioSpawn.PlayOneShot();
 
         foreach (var item in ingredients)
         {

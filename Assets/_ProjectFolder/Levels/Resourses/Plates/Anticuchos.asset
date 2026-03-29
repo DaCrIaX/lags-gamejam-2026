@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Anticuchos
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: Anticuchos con Papa a la Huancaina
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: 8c2b87cfd1f05e442a73fb06604544b3, type: 3}
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
     amount: 1

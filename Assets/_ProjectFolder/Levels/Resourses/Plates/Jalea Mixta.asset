@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jalea Mixta
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: Jalea Mixta
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: c8835b5dec46bab4cb8d379de34998d0, type: 3}
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
     amount: 1

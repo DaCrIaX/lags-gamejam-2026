@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Audio;
 
 public class RecipeCheckerHandler : HOVCardsGroupHandler
 {
     [SerializeReference] private SO_Database _database;
+    [SerializeField] private TweenGroup _uiAnimation;
+    [SerializeField] private AudioEmitter _sendAudio, _successAudio, _failAudio;
 
     private void FindIngredients(out Dictionary<SO_IngredientBase, int> ingredients)
     {
@@ -31,32 +35,46 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
         FindIngredients(out var ingredients);
         if (ingredients.Count == 0) return;
         bool foundMatch = false;
+        int score = 0;
 
         foreach (var recipe in _database.Recipes)
         {
+            int newScore = recipe.GetMatchCount(ingredients);
+            if (newScore > score) score = newScore;
+
             if (recipe.IsMatch(ingredients))
             {
                 print($"<color=green>Combinación Exacta: {recipe.name}</color>");
                 RemoveIngredientsFromInventory(ingredients);
                 _roundManager?.DiscoverRecipe(recipe);
-                foundMatch = true;
+                _successAudio.PlayOneShot();
+                foundMatch = true;   
                 break;
             }
         }
 
         _group?.ClearChildren();
+        _sendAudio.PlayOneShot();
+        _roundManager.SendedIngredients(score * 100);
 
         if (!foundMatch)
         {
             print("no match found");
+            _failAudio.PlayOneShot();
+            _roundManager?.NextRound();
         }
-
-        StartCoroutine(NextRoundRoutine());
+        else
+        {
+            StartCoroutine(NextRoundRoutine());
+        }
     }
 
     private IEnumerator NextRoundRoutine()
     {
-        yield return new WaitForSeconds(_manager.CompareCardsRecipeTime);
-        _roundManager?.CompleteRound();
+        _uiAnimation.DisableGroup();
+        yield return new WaitForSeconds(_manager.PreviewNewRecipeDuration + 0.5f);
+
+        _roundManager?.NextRound();
+        _uiAnimation.EnableGroup();
     }
 }

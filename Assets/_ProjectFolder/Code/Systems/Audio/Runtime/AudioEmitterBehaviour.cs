@@ -12,7 +12,7 @@ namespace UnityEngine.Audio
 
         protected async Awaitable<IAudioGenerator> LoadAsset(AssetReferenceT<AudioClip> reference, bool hasLoaded = false)
         {
-            if (!reference.IsValid()) return null;
+            if (reference == null) return null;
             return await _manager.LoadAudioAsset(reference, hasLoaded);
         }
 

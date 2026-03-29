@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arroz con Pollo
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: Arroz con Pollo
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: 4dc7548e6d1cf2841a4bf126cf310ed2, type: 3}
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
     amount: 1

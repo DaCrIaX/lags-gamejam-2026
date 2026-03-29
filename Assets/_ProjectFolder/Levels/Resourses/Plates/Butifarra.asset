@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Butifarra
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: Burifarra
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: ce8ee13a4006c814f911462b887dc9a1, type: 3}
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
     amount: 1

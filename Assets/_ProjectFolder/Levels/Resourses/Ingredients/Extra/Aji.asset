@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO_IngredientExtra
   _cardType: 2
   _type: 3
-  _image: {fileID: 21300000, guid: 763c52ab9d7b2624badc428f46b4348e, type: 3}
+  _image: {fileID: 21300000, guid: 5a55be204c16dc246aad3a9f4e3c41dd, type: 3}
   _name: Aji
   _material: {fileID: 2100000, guid: 50c3e7f9e541b0a409a71b6a6c173eb5, type: 2}

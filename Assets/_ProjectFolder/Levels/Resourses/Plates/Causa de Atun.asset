@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Causa de Atun
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: "Causa de At\xFAn"
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: bc27807f19f16554aac8a26281fe6ee6, type: 3}
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
     amount: 1

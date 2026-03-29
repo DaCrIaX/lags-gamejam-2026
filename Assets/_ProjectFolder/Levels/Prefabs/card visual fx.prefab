@@ -86,9 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56db462b7e6e60468fc854521e5aefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  _cardSize: {x: 250, y: 325}
-  _smoothSpeed: 10
-  _deltaMultiply: 5
   _cardShadow: {fileID: 7293462614378083276}
 --- !u!114 &749857584702860595
 MonoBehaviour:
@@ -102,10 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc86de4979e53c489e221a3da685a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardHoverAnimation
-  _waveAmplitude: 2.5
-  _waveFrequency: 1
-  _smoothSpeed: 10
-  _offsetMultiply: 2.5
   _cardSize: {fileID: 2060247583002901616}
 --- !u!114 &5657017623266608435
 MonoBehaviour:
@@ -179,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: 848b048cce63aa24ea1cd318aa2b8b73, type: 2}
+  m_Material: {fileID: 2100000, guid: 50c3e7f9e541b0a409a71b6a6c173eb5, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -187,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 763c52ab9d7b2624badc428f46b4348e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a55be204c16dc246aad3a9f4e3c41dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

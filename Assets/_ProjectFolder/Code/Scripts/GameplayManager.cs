@@ -11,9 +11,10 @@ public class GameplayManager : SingletonBasic<GameplayManager>
     [Header("Gameplay")]
     [SerializeField] private float _startDelay;
     [SerializeField] private float _spawnDelay;
-    [SerializeField] private int _startAmount;
-    [SerializeField] private int _roundAmount;
-    [SerializeField] private float _compareCardsRecipeTime;
+    [SerializeField] private int _startCardsAmount = 5, _cardsInRoundAmount = 7;
+    [SerializeField] private int _maxRounds;
+    [SerializeField] private float _previewNewRecipeDuration = 1f;
+    [SerializeField] private float _responseTime = 15f;
 
     [Header("Cards Movement In Layout")]
     [SerializeField] private float _lerpTimeInLayout;
@@ -35,11 +36,13 @@ public class GameplayManager : SingletonBasic<GameplayManager>
     public RectTransform DragArea => _dragArea;
     public CardTransform Selected { get; private set; }
 
-    public float CompareCardsRecipeTime => _compareCardsRecipeTime;
     public float StartDelay => _startDelay;
     public float SpawnDelay => _spawnDelay;
-    public int StartAmount => _startAmount;
-    public int RoundAmount => _roundAmount;
+    public int StartAmount => _startCardsAmount;
+    public int RoundAmount => _cardsInRoundAmount;
+    public float PreviewNewRecipeDuration => _previewNewRecipeDuration;
+    public int MaxRounds => _maxRounds;
+    public float ResponseTime => _responseTime;
 
     public float LerpTimeInLayout => _lerpTimeInLayout;
     public float LerpSpeed => _lerpSpeed;

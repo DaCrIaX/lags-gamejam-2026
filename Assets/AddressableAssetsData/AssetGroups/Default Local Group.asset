@@ -14,7 +14,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 63f4b8053d8898e4ba0e86a727d8c00a
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 12d4583a80aecb54890d63fbf522309c
+    m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/Barajar.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3459c02ef1db46d4ea82b873744d7106
+    m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/RECETA.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 366ef239fb506224493f30fe88460fdd
+    m_Address: Assets/_ProjectFolder/Art/Audio/Menu y Creditos/CREDITOS.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cf0140d8344cf9438d57db61e5ceb49
+    m_Address: Assets/_ProjectFolder/Art/Audio/Boton Menu/Click-01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6764e759ef0f374419046fc400a07c75
+    m_Address: Assets/_ProjectFolder/Art/Audio/Boton Menu/Click-02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a2b8ac89892dde4a9ac4295c052dd68
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/S.A.L-Stage01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f679930aeb56544cb1278c444bcd134
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/S.A.L-Stage04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 819c35d94aaa9ed41a3e66f6f56379d1
+    m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/Seleccion.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e524b45402d49d4a9e2a5ef6673e95d
+    m_Address: Assets/_ProjectFolder/Art/Audio/Menu y Creditos/HuariqueMenuTheme.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b2fe3965c419aa45a1bdaa438d7558b
+    m_Address: Assets/_ProjectFolder/Art/Audio/Boton Menu/Click-03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b6b07e8bab0ef9499da4af2db7348e4
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/PLATO-FALLO.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6fa7b3691272ce4d9e23d0fbd1f28d5
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/S.A.L-Stage02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bde4812ac14df3c4db5718cf52501801
+    m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/ROBAR CARTA.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0d2a3aa2cec7424aabb57e9589554fd
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/PLATO-EXITO.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7be23836c801cf43ab4b564e5d34182
+    m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/S.A.L-Stage03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b0192bd24d0998446a1b68e9810eae7a, type: 2}
   m_SchemaSet:

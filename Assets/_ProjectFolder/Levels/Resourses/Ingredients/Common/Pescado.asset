@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO_IngredientNormal
   _cardType: 1
   _type: 0
-  _image: {fileID: 21300000, guid: 763c52ab9d7b2624badc428f46b4348e, type: 3}
+  _image: {fileID: 21300000, guid: 4ff3eb9a2efd14046b2265b8b5c6d97a, type: 3}
   _name: Pescado
   _material: {fileID: 2100000, guid: cca0cab25a8f50a4f8d1eca94052f9de, type: 2}

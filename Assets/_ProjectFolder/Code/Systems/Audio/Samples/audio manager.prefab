@@ -369,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioTransition
   _channel: 0
   _mixerGroup: {fileID: -374573234517788964, guid: 357ad364fb018e742bbf1274963721c6, type: 2}
-  _crossFadeTime: 1
+  _crossFadeTime: 0.75
 --- !u!114 &8308879320577410561
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: main settings
   m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioSettings
   _channel: 0
-  _defaultVolume: 0.75
-  _currentVolume: 0
+  _defaultVolume: 0.25
+  _currentVolume: 0.25
   _isMuted: 0
