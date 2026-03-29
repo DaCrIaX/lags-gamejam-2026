@@ -23,6 +23,7 @@ namespace UnityEngine.Animations
         private async void OnEnable()
         {
             IsEnabled = !_startDisable;
+            await Awaitable.WaitForSecondsAsync(0.1f);
             onEnabled?.Invoke();
 
             await Awaitable.NextFrameAsync();

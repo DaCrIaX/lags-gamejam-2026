@@ -7,9 +7,8 @@ namespace UnityEngine.Animations
         [SerializeField] protected Direction _direction;
         [SerializeField] protected Vector2 _overrideDistance;
 
-        protected override void Awake()
+        protected void Start()
         {
-            base.Awake();
             var size = _rectTransform.rect.size;
             var direction = _direction.Get();
 
