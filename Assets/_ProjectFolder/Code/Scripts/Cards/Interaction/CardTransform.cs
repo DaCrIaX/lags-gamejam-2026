@@ -3,7 +3,6 @@ namespace UnityEngine.EventSystems
     public class CardTransform : MonoBehaviour
     {
         [SerializeField] private RectTransform _transform, _cardTransform;
-        [SerializeField] private float _gridSnapSpeed = 10f;
 
         private GameplayManager _manager;
         private HOVCardsGroup _cardGroup;
@@ -40,7 +39,7 @@ namespace UnityEngine.EventSystems
             if (!CardGroup || IsDragging) return;
 
             int index = SiblingIndex;
-            float speed = _gridSnapSpeed * Time.deltaTime;
+            float speed = _manager.LerpSpeed * Time.deltaTime;
 
             var targetLocalPos = new Vector3(0, _cardGroup.GetPosition(index), 0);
             var targetRot = Quaternion.Euler(0, 0, -_cardGroup.GetRotation(index));

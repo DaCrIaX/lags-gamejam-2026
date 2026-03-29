@@ -5,7 +5,6 @@ using UnityEngine;
 public class RecipeCheckerHandler : HOVCardsGroupHandler
 {
     [SerializeReference] private SO_Database _database;
-    [SerializeField, Range(1f, 10f)] private float _checkingTime = 1f;
 
     private void FindIngredients(out Dictionary<SO_IngredientBase, int> ingredients)
     {
@@ -31,28 +30,33 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     {
         FindIngredients(out var ingredients);
         if (ingredients.Count == 0) return;
+        bool foundMatch = false;
 
         foreach (var recipe in _database.Recipes)
         {
             if (recipe.IsMatch(ingredients))
             {
+                print($"<color=green>Combinación Exacta: {recipe.name}</color>");
                 RemoveIngredientsFromInventory(ingredients);
-                StartCoroutine(NextRoundRoutine(recipe));
-                return;
+                _roundManager?.DiscoverRecipe(recipe);
+                foundMatch = true;
+                break;
             }
         }
 
-        print("No hay receta válida con estos ingredientes exactos.");
+        _group?.ClearChildren();
+
+        if (!foundMatch)
+        {
+            print("no match found");
+        }
+
+        StartCoroutine(NextRoundRoutine());
     }
 
-    private IEnumerator NextRoundRoutine(SO_Recipe recipe)
+    private IEnumerator NextRoundRoutine()
     {
-        _group?.ClearChildren();
-        _roundManager?.DiscoverRecipe(recipe);
-
-        print($"<color=green>Combinación Exacta: {recipe.name}</color>");
-        yield return new WaitForSeconds(_checkingTime);
-        
+        yield return new WaitForSeconds(_manager.CompareCardsRecipeTime);
         _roundManager?.CompleteRound();
     }
 }

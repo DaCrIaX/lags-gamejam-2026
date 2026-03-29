@@ -2,6 +2,7 @@ namespace UnityEngine.EventSystems
 {
     public abstract class CardBehaviour : MonoBehaviour
     {
+        protected GameplayManager _gameplay;
         protected Card _card;
         protected CardTransform _cardTransform;
 
@@ -12,6 +13,7 @@ namespace UnityEngine.EventSystems
 
         protected virtual void Awake()
         {
+            _gameplay = GameplayManager.Instance;
             _card = GetComponentInParent<Card>();
             _cardTransform = GetComponentInParent<CardTransform>();
         }

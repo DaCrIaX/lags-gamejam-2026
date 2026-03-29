@@ -6,15 +6,6 @@ namespace UnityEngine.EventSystems
 
     public class CardHover : CardBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerMoveHandler
     {
-        [Header("Wave Movement")]
-        [SerializeField] private float _amplitude = 2.5f;
-        [SerializeField] private float _frequency = 1f;
-        
-        [Header("Input Hover Effect")]
-        [SerializeField] private float _smoothSpeed = 10f;
-        [SerializeField] private float _offsetMultiply = 2.5f;
-
-        [Header("VFX")]
         [SerializeField] private TweenScale _cardSize;
 
         private Tween _reset;
@@ -24,15 +15,15 @@ namespace UnityEngine.EventSystems
         {
             if (_cardTransform.IsDragging || !_cardTransform.IsHovering) return;
 
-            float time = Time.time * _frequency;
-            float sine = Mathf.Sin(time) * _amplitude;
-            float cosine = Mathf.Cos(time) * _amplitude;
+            float time = Time.time * _gameplay.Frequency;
+            float sine = Mathf.Sin(time) * _gameplay.Amplitude;
+            float cosine = Mathf.Cos(time) * _gameplay.Amplitude;
 
             Vector2 offset = (Vector2)_cardTransform.RectTransform.position - _input;
-            float tiltX = -offset.y * _offsetMultiply;
-            float tiltY = offset.x * _offsetMultiply;
+            float tiltX = -offset.y * _gameplay.Offset;
+            float tiltY = offset.x * _gameplay.Offset;
 
-            float speed = _smoothSpeed * Time.deltaTime;
+            float speed = _gameplay.DeltaSpeed * Time.deltaTime;
             float lerpX = Mathf.LerpAngle(_cardTransform.RectTransform.eulerAngles.x, tiltX + sine, speed);
             float lerpY = Mathf.LerpAngle(_cardTransform.RectTransform.eulerAngles.y, tiltY + cosine, speed);
             _cardTransform.RectTransform.eulerAngles = new Vector3(lerpX, lerpY, 0f);

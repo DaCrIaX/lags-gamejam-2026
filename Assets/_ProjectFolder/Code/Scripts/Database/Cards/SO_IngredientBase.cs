@@ -13,6 +13,7 @@ public enum IngredientType
     Condimento
 }
 
+[Serializable]
 public abstract class SO_IngredientBase : ScriptableObject
 {
     [SerializeField] private CardType _cardType = CardType.Normal;

@@ -7,7 +7,7 @@ public class RoundManager : SingletonBasic<RoundManager>
 {
     [SerializeField] private SplineContainer _spline;
     [SerializeField] private Transform _npc;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 1f;
 
     public Action<SO_Recipe> onRecipeDiscovered;
     public Action onNextRound;

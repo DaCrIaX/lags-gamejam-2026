@@ -5,10 +5,6 @@ namespace UnityEngine.EventSystems
 
     public class CardDrag : CardBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        [SerializeField] private float _smoothSpeed = 10f;
-        [SerializeField] private float _inputDeltaMultiply = 5f;
-
-        [Header("VFX")]
         [SerializeField] private TweenRectPositionSwipe _cardShadow;
 
         private Vector3 _positionTarget, _rotationDelta;
@@ -18,9 +14,9 @@ namespace UnityEngine.EventSystems
             if (!_cardTransform.IsDragging) return;
 
             int index = _cardTransform.SiblingIndex;
-            float speed = Time.deltaTime * _smoothSpeed;
+            float speed = Time.deltaTime * _gameplay.DragVelocity;
 
-            Vector2 movementRotation = Mouse.current.delta.value * _inputDeltaMultiply;
+            Vector2 movementRotation = Mouse.current.delta.value * _gameplay.DragDeltaMultiply;
             _rotationDelta = Vector3.Lerp(_rotationDelta, movementRotation, speed);
 
             _cardTransform.CardRectTransform.position = Vector2.Lerp(_cardTransform.CardRectTransform.position, _positionTarget, speed);
