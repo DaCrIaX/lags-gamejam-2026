@@ -10,8 +10,14 @@ public class History : MonoBehaviour
     [SerializeField, TextArea(1, 10)] private string[] _pages;
 
     private int _index = 0;
+    [SerializeField, Range(0,10)] public int _pageTime = 2;
 
-    private void Start() => UpdateUI();
+    private void Start()
+    {
+        UpdateUI();
+        StartCoroutine(UpdateUIRoutine());
+    }
+
     private void UpdateUI() => _text.SetText(_pages[_index]);
 
     private IEnumerator UpdateUIRoutine()
@@ -20,6 +26,8 @@ public class History : MonoBehaviour
         yield return new WaitForSeconds(_fadeAnimation.Duration);
         UpdateUI();
         _fadeAnimation.FadeIn();
+        yield return new WaitForSeconds(_pageTime);
+        Next();
     }
 
     public void Next()
