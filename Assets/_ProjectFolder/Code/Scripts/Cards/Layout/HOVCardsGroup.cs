@@ -1,6 +1,7 @@
 namespace UnityEngine.EventSystems
 {
     using Audio;
+    using Events;
 
     public abstract class HOVCardsGroup : MonoBehaviour
     {
@@ -9,6 +10,7 @@ namespace UnityEngine.EventSystems
         [SerializeField] private int _maxAmount;
 
         [SerializeField] private LayoutHandler _position, _rotation;
+        [SerializeField] private UnityEvent<bool> _isNotEmpty;
 
         protected GameplayManager _gameplay;
         protected CardTransform[] _cards;
@@ -35,6 +37,7 @@ namespace UnityEngine.EventSystems
         private void RefreshCardsArray()
         {
             _cards = GetComponentsInChildren<CardTransform>();
+            _isNotEmpty.Invoke(_cards.Length != 0);
             _inverseLength = 1f / _cards.Length;
             _inverseLength += _inverseLength * 0.5f;
         }

@@ -7,8 +7,8 @@ using UnityEngine.Audio;
 public class RecipeCheckerHandler : HOVCardsGroupHandler
 {
     [SerializeReference] private SO_Database _database;
-    [SerializeField] private TweenGroup _uiAnimation;
-    [SerializeField] private AudioEmitter _sendAudio, _successAudio, _failAudio;
+    [SerializeField] private TweenGroup _groupAnimation;
+    [SerializeField] private AudioEmitterID _audio;
 
     private void FindIngredients(out Dictionary<SO_IngredientBase, int> ingredients)
     {
@@ -51,21 +51,21 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
                 print($"<color=green>Combinación Exacta: {recipe.name}</color>");
                 RemoveIngredientsFromInventory(ingredients);
                 _roundManager?.DiscoverRecipe(recipe);
-                _successAudio.PlayOneShot();
+                _audio.PlayOneShot("Success");
                 foundMatch = true;   
                 break;
             }
         }
 
         _group?.ClearChildren();
-        _sendAudio.PlayOneShot();
+        _audio.PlayOneShot("Send");
         _roundManager.SendedIngredients(score * 100);
+        _groupAnimation.DisableGroup();
 
         if (!foundMatch)
         {
-            print("no match found");
-            _failAudio.PlayOneShot();
-            _roundManager?.NextRound();
+            _audio.PlayOneShot("Failure");
+            _roundManager?.CompleteRound();
         }
         else
         {
@@ -75,10 +75,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
     private IEnumerator NextRoundRoutine()
     {
-        _uiAnimation.DisableGroup();
         yield return new WaitForSeconds(_manager.PreviewNewRecipeDuration + 0.5f);
-
-        _roundManager?.NextRound();
-        _uiAnimation.EnableGroup();
+        _roundManager?.CompleteRound();
     }
 }

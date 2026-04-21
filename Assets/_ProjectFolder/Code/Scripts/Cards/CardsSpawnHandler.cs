@@ -7,9 +7,8 @@ public class CardsSpawnHandler : HOVCardsGroupHandler
     [SerializeField] private AudioEmitter _audioSpawn;
     [SerializeField] private Card _prefab;
 
-    private void Start() => StartCoroutine(SpawnCardsRoutine(Mathf.Min(_manager.StartAmount, _group.MaxAmount)));
-    private void OnEnable() => _roundManager.onNextRound += OnNextRound;
-    private void OnDisable() => _roundManager.onNextRound -= OnNextRound;
+    private void OnEnable() => _roundManager.onChoiceEvent += OnNextRound;
+    private void OnDisable() => _roundManager.onChoiceEvent -= OnNextRound;
     private void OnNextRound() => StartCoroutine(SpawnCardsRoutine(_manager.RoundAmount - _group.Amount));
 
     private IEnumerator SpawnCardsRoutine(int amount)

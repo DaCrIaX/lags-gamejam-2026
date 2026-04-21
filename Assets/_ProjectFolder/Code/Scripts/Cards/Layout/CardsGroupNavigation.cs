@@ -20,7 +20,8 @@ namespace UnityEngine.EventSystems
             foreach (Direction direction in _directions)
             {
                 if (!direction.group || !direction.cardType.HasFlag(type)) continue;
-                if (!direction.group.HasAvailableSpace) continue;
+                if (!direction.group.gameObject.activeSelf) continue;
+                if (!direction.group.HasAvailableSpace) return;
 
                 card.SetParent(direction.group.Container);
                 _onNavigateSound.PlayOneShot();

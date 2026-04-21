@@ -1,65 +1,64 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Splines;
-using UnityEngine.Animations;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class RoundManager : SingletonBasic<RoundManager>
 {
-    [SerializeField] private SplineContainer _spline;
-    [SerializeField] private Transform _npc;
-    [SerializeField] private float _npcSpeed = 1f;
-    [SerializeField] private Material _material;
-    [SerializeField] private Sprite[] _images;
+    [SerializeField] private NPC _character;
 
+    [Header("Controller")]
     [SerializeField] private Score _score;
-    [SerializeField] private TimerBase _timer;
-    [SerializeField] private TweenRectPositionSwipe _timerAnimation;
-    [SerializeField] private SceneLoader _loader;
+    [SerializeField] private GameObject _choiceCamera, _choiceArea, _recipeBuildArea;
 
-    public Action<SO_Recipe> onRecipeDiscovered;
-    public Action onNextRound;
+    public event Action<SO_Recipe> onRecipeDiscovered;
+    public event Action onChoiceEvent, onRoundBegin;
 
     private void Start()
     {
-        StartCoroutine(ShowAnimation());
         _score.SetMaxRound(GameplayManager.Instance.MaxRounds);
+        NextRound();
     }
 
     public void DiscoverRecipe(SO_Recipe recipe) => onRecipeDiscovered?.Invoke(recipe);
     public void SendedIngredients(int score)
     {
         _score.AddScore(score);
-        _timerAnimation.SwipeOut();
-        _timer.Stop();
+        //_timerAnimation.SwipeOut();
+        //_timer.Stop();
+    }
+    public void CompleteRound()
+    {
+        //if (_score.CurrentRound >= _score.MaxRound)
+        //{
+        //    _loader.SwipeScene();
+        //    return;
+        //}
+
+        //_score.NextRound();
+        StartCoroutine(LeaveAnimation());
     }
     public void NextRound()
     {
-        if (_score.CurrentRound >= _score.MaxRound)
-        {
-            _loader.SwipeScene();
-            return;
-        }
-
-        _score.NextRound();
-        StartCoroutine(LeaveAnimation());
+        _choiceArea.SetActive(false);
+        _choiceCamera.SetActive(false);
+        _recipeBuildArea.SetActive(true);
+        StartCoroutine(ShowAnimation());
     }
 
     private IEnumerator ShowAnimation()
     {
         float time = 0f;
-        _material.mainTexture = _images[Random.Range(0, _images.Length)].texture;
+        _character.SetSkinRandom();
 
         while (time <= 0.5f)
         {
             yield return null;
-            time += Time.deltaTime * _npcSpeed;
-            _npc.position = _spline.EvaluatePosition(time);
+            time += Time.deltaTime * _character.Speed;
+            _character.SetOnSpline(time);
         }
 
-        _npc.position = _spline.EvaluatePosition(0.5f);
+        _character.SetOnSpline(0.5f);
+        onRoundBegin?.Invoke();
     }
     private IEnumerator LeaveAnimation()
     {
@@ -68,13 +67,16 @@ public class RoundManager : SingletonBasic<RoundManager>
         while (time < 1f)
         {
             yield return null;
-            time += Time.deltaTime * _npcSpeed;
-            _npc.position = _spline.EvaluatePosition(time);
+            time += Time.deltaTime * _character.Speed;
+            _character.SetOnSpline(time);
         }
 
-        yield return ShowAnimation();
-        onNextRound?.Invoke();
-        _timerAnimation.SwipeIn();
-        _timer.Play(GameplayManager.Instance.ResponseTime);
+        _choiceCamera.SetActive(true);
+        _recipeBuildArea.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _choiceArea.SetActive(true);
+        onChoiceEvent?.Invoke();
     }
 }

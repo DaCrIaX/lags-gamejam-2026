@@ -66,7 +66,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnityEngine.EventSystems.CardTransform
   _transform: {fileID: 7594066331619548339}
   _cardTransform: {fileID: 7629428828793179773}
-  _snapSpeed: 10
 --- !u!1001 &7394133360094849092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,6 +77,14 @@ PrefabInstance:
     - target: {fileID: 377113063130734874, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
       propertyPath: m_Name
       value: card visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115784423842129465, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115784423842129465, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 1115784423842129465, guid: 35f62cfc2556024448cbb1da07b55728, type: 3}
       propertyPath: m_LocalPosition.x
