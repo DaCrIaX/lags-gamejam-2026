@@ -7,9 +7,15 @@ public class CardsSpawnHandler : HOVCardsGroupHandler
     [SerializeField] private AudioEmitter _audioSpawn;
     [SerializeField] private Card _prefab;
 
+    public bool IsRandom { private get; set; }
+
     private void OnEnable() => _roundManager.onChoiceEvent += OnNextRound;
     private void OnDisable() => _roundManager.onChoiceEvent -= OnNextRound;
-    private void OnNextRound() => StartCoroutine(SpawnCardsRoutine(_manager.RoundAmount - _group.Amount));
+    private void OnNextRound()
+    {
+        int amount = IsRandom ? Random.Range(2, _manager.RoundAmount) : _manager.RoundAmount;
+        StartCoroutine(SpawnCardsRoutine(amount - _group.Amount));
+    }
 
     private IEnumerator SpawnCardsRoutine(int amount)
     {

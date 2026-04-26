@@ -18,7 +18,7 @@ namespace UnityEngine.EventSystems
         protected float _inverseLength;
 
         public Transform Container => _container;
-        public int MaxAmount => _maxAmount;
+        public int MaxAmount { get => _maxAmount; set => _maxAmount = value; }
         public int Amount => _cards != null ? _cards.Length : 0;
         public bool HasAvailableSpace => Amount < _maxAmount;
 

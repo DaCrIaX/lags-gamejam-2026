@@ -5,50 +5,82 @@ using UnityEngine;
 public class RoundManager : SingletonBasic<RoundManager>
 {
     [SerializeField] private NPC _character;
+    [SerializeField] private ClientManager _clientManager;
 
     [Header("Controller")]
     [SerializeField] private Score _score;
+    [SerializeField] private SuspiciousBar _suspicious;
     [SerializeField] private GameObject _choiceCamera, _choiceArea, _recipeBuildArea;
 
+    public event Action<SO_ClientProfile> onSpecialClientAppears;
     public event Action<SO_Recipe> onRecipeDiscovered;
     public event Action onChoiceEvent, onRoundBegin;
 
-    private void Start()
-    {
-        _score.SetMaxRound(GameplayManager.Instance.MaxRounds);
-        NextRound();
-    }
+    private SO_ClientProfile _currentClientProfile;
+    private DishEvaluationResult _lastEvaluationResult;
 
+    private void Start() => NextRound();
+    public SO_ClientProfile GetCurrentClient() => _currentClientProfile;
+    public void SendedIngredients(int score) => _score.AddScore(score);
+    public void CompleteRound() => StartCoroutine(LeaveAnimation());
     public void DiscoverRecipe(SO_Recipe recipe) => onRecipeDiscovered?.Invoke(recipe);
-    public void SendedIngredients(int score)
+    public void SetLastEvaluationResult(DishEvaluationResult result) => _lastEvaluationResult = result;
+    public void UpdateSuspicion(int suspicionChange)
     {
-        _score.AddScore(score);
-        //_timerAnimation.SwipeOut();
-        //_timer.Stop();
-    }
-    public void CompleteRound()
-    {
-        //if (_score.CurrentRound >= _score.MaxRound)
-        //{
-        //    _loader.SwipeScene();
-        //    return;
-        //}
+        if (_currentClientProfile == null)
+        {
+            _suspicious.AddAmount(suspicionChange);
+            return;
+        }
 
-        //_score.NextRound();
-        StartCoroutine(LeaveAnimation());
+        int finalSuspicionChange = ApplyClientModifiers(suspicionChange);
+        _suspicious.AddAmount(finalSuspicionChange);
     }
+
     public void NextRound()
     {
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);
+
+        _currentClientProfile = _clientManager.SelectNextClient();
+
+        if (_currentClientProfile.IsSpecial)
+            onSpecialClientAppears?.Invoke(_currentClientProfile);
+
         StartCoroutine(ShowAnimation());
     }
 
+    private int ApplyClientModifiers(int suspicionChange)
+    {
+        if (_currentClientProfile == null)
+            return suspicionChange;
+
+        // Mapear cambio de sospecha al tipo de plato
+        int modifier = 0;
+
+        if (_lastEvaluationResult != null)
+        {
+            switch (_lastEvaluationResult.Type)
+            {
+                case DishEvaluationResult.DishType.PerfectMatch:
+                    modifier = _currentClientProfile.PerfectMatchSuspicionMod;
+                    break;
+                case DishEvaluationResult.DishType.CommonDish:
+                    modifier = _currentClientProfile.CommonDishSuspicionMod;
+                    break;
+                case DishEvaluationResult.DishType.InvalidDish:
+                    modifier = _currentClientProfile.InvalidDishSuspicionMod;
+                    break;
+            }
+        }
+
+        return suspicionChange + modifier;
+    }
     private IEnumerator ShowAnimation()
     {
         float time = 0f;
-        _character.SetSkinRandom();
+        _character.SetClientProfile(_currentClientProfile);
 
         while (time <= 0.5f)
         {

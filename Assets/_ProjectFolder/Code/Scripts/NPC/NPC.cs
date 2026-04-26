@@ -7,13 +7,48 @@ public class NPC : MonoBehaviour
     [SerializeField] private float _npcSpeed = 1f;
 
     [SerializeField] private Material _material;
-    [SerializeField] private Sprite[] _images;
+
+    private Transform _transform;
+    private SO_ClientProfile _currentProfile;
+
+    [Header("Indicadores Visuales")]
+    [SerializeField] private GameObject _specialClientIndicator;
 
     public float Speed => _npcSpeed;
-    private Transform _transform;
+    public SO_ClientProfile CurrentProfile => _currentProfile;
 
-    private void Awake() => _transform = transform;
+    private void Awake()
+    {
+        _transform = transform;
+        SetOnSpline(0f);
+    }
 
-    public void SetSkinRandom() => _material.mainTexture = _images[Random.Range(0, _images.Length)].texture;
+    /// <summary>
+    /// Configura el NPC con el perfil del cliente
+    /// </summary>
+    public void SetClientProfile(SO_ClientProfile profile)
+    {
+        _currentProfile = profile;
+
+        // Cambiar skin
+        Sprite skinSprite = profile.GetRandomSkin();
+        if (_material != null)
+            _material.mainTexture = skinSprite.texture;
+
+        // Indicador visual si es especial
+        if (_specialClientIndicator != null)
+            _specialClientIndicator.SetActive(profile.IsSpecial);
+
+        Debug.Log($"[NPC] Cliente asignado: {profile.ClientName} ({profile.Type})");
+    }
+
+    /// <summary>
+    /// Anima al NPC a lo largo de la spline
+    /// </summary>
     public void SetOnSpline(float time) => _transform.position = _spline.EvaluatePosition(time);
+
+    /// <summary>
+    /// Obtiene si el cliente actual es especial
+    /// </summary>
+    public bool IsSpecialClient() => _currentProfile != null && _currentProfile.IsSpecial;
 }

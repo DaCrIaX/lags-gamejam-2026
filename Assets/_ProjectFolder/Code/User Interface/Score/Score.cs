@@ -1,30 +1,19 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class Score : MonoBehaviour
+public class Score : PoolSingleBehaviour<ScoreParticle>
 {
     [SerializeField] private TextMeshProUGUI _text;
 
-    private int _round, _maxRounds, _score;
-
-    public int CurrentRound => _round;
-    public int MaxRound => _maxRounds;
+    private int _score;
 
     public void AddScore(int value)
     {
-        _score += value;
-        UpdateUI();
-    }
-    public void NextRound()
-    {
-        _round++;
-        UpdateUI();
-    }
-    public void SetMaxRound(int maxRound)
-    {
-        _maxRounds = maxRound;
-        UpdateUI();
-    }
+        var particle = _pool.Get() as ScoreParticle;
+        particle.SetText(value);
 
-    private void UpdateUI() => _text.SetText($"score: {_score}\nround: {_round}/{_maxRounds}");
+        _score += value;
+        _text.SetText($"score: {_score}");
+    }
 }

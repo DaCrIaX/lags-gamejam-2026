@@ -12,7 +12,6 @@ public class GameplayManager : SingletonBasic<GameplayManager>
     [SerializeField] private float _startDelay;
     [SerializeField] private float _spawnDelay;
     [SerializeField] private int _startCardsAmount = 5, _cardsInRoundAmount = 7;
-    [SerializeField] private int _maxRounds;
     [SerializeField] private float _previewNewRecipeDuration = 1f;
     [SerializeField] private float _responseTime = 15f;
 
@@ -39,9 +38,8 @@ public class GameplayManager : SingletonBasic<GameplayManager>
     public float StartDelay => _startDelay;
     public float SpawnDelay => _spawnDelay;
     public int StartAmount => _startCardsAmount;
-    public int RoundAmount => _cardsInRoundAmount;
+    public int RoundAmount { get => _cardsInRoundAmount; set => _cardsInRoundAmount = value; }
     public float PreviewNewRecipeDuration => _previewNewRecipeDuration;
-    public int MaxRounds => _maxRounds;
     public float ResponseTime => _responseTime;
 
     public float LerpTimeInLayout => _lerpTimeInLayout;

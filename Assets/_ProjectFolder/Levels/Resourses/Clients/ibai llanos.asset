@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1deb0b0aa578c43b4933632372a982, type: 3}
+  m_Name: ibai llanos
+  m_EditorClassIdentifier: Assembly-CSharp::SO_ClientProfile
+  _clientName: Ibai Llanos
+  _type: 2
+  _skins:
+  - {fileID: 21300000, guid: 31e60b3b8edc70645b5981a67095e29b, type: 3}
+  _appearanceChance: 0.15
+  _isSpecial: 1
+  _perfectMatchSuspicionMod: -30
+  _commonDishSuspicionMod: 10
+  _invalidDishSuspicionMod: 15
+  _scoreMultiplier: 3
+  _description: 

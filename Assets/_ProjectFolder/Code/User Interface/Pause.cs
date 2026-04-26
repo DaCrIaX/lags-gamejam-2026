@@ -7,7 +7,6 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] private InputActionReference _pauseButton;
     [SerializeField] private TweenCanvasGroup _fadeAnimation;
-    [SerializeField] private AudioEmitter _audio;
 
     private bool _isPaused;
 
@@ -24,7 +23,6 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0f;
         
         _isPaused = true;
-        _audio.Play();
         _fadeAnimation.FadeIn();
     }
     public void ButtonUnPause()
@@ -32,7 +30,6 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1f;
 
         _isPaused = false;
-        _audio.ResetAudio();
         _fadeAnimation.FadeOut();
     }
 }
