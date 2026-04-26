@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class DeveloperBool : DeveloperBehaviour
+public class DeveloperBool : MonoBehaviour
 {
     [SerializeField] private UnityEvent<bool> _onValueChagend;
 
-    protected override void OnPerforme(InputAction.CallbackContext ctx)
-    {
-        _isActive = !_isActive;
-        _onValueChagend.Invoke(_isActive);
-    }
+    private void Awake() => DeveloperBehaviour.onValueChanged += OnPerforme;
+    private void OnDestroy() => DeveloperBehaviour.onValueChanged -= OnPerforme;
+    private void Start() => OnPerforme(DeveloperBehaviour.isActive);
+
+    private void OnPerforme(bool isActive) => _onValueChagend.Invoke(isActive);
 }

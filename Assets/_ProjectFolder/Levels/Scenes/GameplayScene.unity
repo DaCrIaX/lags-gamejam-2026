@@ -6220,6 +6220,7 @@ GameObject:
   - component: {fileID: 960669134}
   - component: {fileID: 960669135}
   - component: {fileID: 960669137}
+  - component: {fileID: 960669138}
   m_Layer: 0
   m_Name: game manager
   m_TagString: Untagged
@@ -6398,7 +6399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8b22b02e7906546901cb4de218d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeveloperValue
-  _action: {fileID: 2879840422149526994, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _defaultValue: 5
   _newValue: 7
   _onValueChagend:
@@ -6416,6 +6416,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &960669138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960669128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af760bd442f97464cb25f1bdc3d9da10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeveloperBehaviour
+  _action: {fileID: 2879840422149526994, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &976609984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10112,7 +10125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8b22b02e7906546901cb4de218d040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeveloperValue
-  _action: {fileID: 2879840422149526994, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _defaultValue: 3
   _newValue: 5
   _onValueChagend:
@@ -12160,7 +12172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5288a8987c92143a75ea967a919236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeveloperBool
-  _action: {fileID: 2879840422149526994, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _onValueChagend:
     m_PersistentCalls:
       m_Calls:
