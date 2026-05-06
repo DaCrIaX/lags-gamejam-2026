@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO_IngredientNormal
   _cardType: 1
   _type: 0
-  _image: {fileID: 21300000, guid: 09e535906fed34245acce06eb528fde0, type: 3}
+  _sprite:
+    m_TableReference:
+      m_TableCollectionName: GUID:4d1e678ac9e0ce14f8b977e5c0c59ede
+    m_TableEntryReference:
+      m_KeyId: 19251468791808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   _name: Carne
   _material: {fileID: 2100000, guid: cca0cab25a8f50a4f8d1eca94052f9de, type: 2}

@@ -30,7 +30,7 @@ public class RecipeBook : MonoBehaviour
         _dish.sprite = _discovered[_index].Image;
 
         for (int i = 0; i < _ingredients.Length; i++)
-            _ingredients[i].sprite = _discovered[_index].Ingredients[i].ingredient.Image;
+            _ingredients[i].sprite = _discovered[_index].Ingredients[i].ingredient.Image.LoadAsset();
     }
 
     public void OpenBook() => UpdateIndex();

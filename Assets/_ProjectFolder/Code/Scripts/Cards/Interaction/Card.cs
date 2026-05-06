@@ -15,13 +15,25 @@ public class Card : MonoBehaviour
 
     private void Awake() => _transform = GetComponentInChildren<CardTransform>();
     private void OnValidate() => Setup(_ingredient);
+    private void OnLocalizationChange(Sprite newImage) => _image?.SetImage(newImage);
+
+    private void Start()
+    {
+        if (_ingredient)
+            _ingredient.Image.AssetChanged += OnLocalizationChange;
+    }
+    private void OnDestroy()
+    {
+        if (_ingredient)
+            _ingredient.Image.AssetChanged -= OnLocalizationChange;
+    }
 
     public void Setup(SO_IngredientBase ingredient)
     {
-        if (ingredient == null) return;
-
+        if (ingredient == null || !Application.isPlaying) return;
         _ingredient = ingredient;
-        _image?.SetImage(ingredient.Image);
+
+        _image?.SetImage(ingredient.Image.LoadAsset());
         _image?.SetMaterial(ingredient.Material);
     }
 }

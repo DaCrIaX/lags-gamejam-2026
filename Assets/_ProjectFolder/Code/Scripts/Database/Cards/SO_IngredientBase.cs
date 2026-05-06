@@ -21,13 +21,12 @@ public abstract class SO_IngredientBase : ScriptableObject
     [SerializeField] private IngredientType _type;
     [Space]
     [SerializeField] private LocalizedSprite _sprite;
-    [SerializeReference] private Sprite _image;
     [SerializeField] private string _name;
 
     [Space]
     [SerializeReference] private Material _material;
 
-    public Sprite Image => _image;
+    public LocalizedSprite Image => _sprite;
     public string Name => _name;
 
     public CardType CardType => _cardType;

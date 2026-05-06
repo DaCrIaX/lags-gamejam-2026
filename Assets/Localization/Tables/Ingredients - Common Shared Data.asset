@@ -19,9 +19,50 @@ MonoBehaviour:
     m_Key: Aji
     m_Metadata:
       m_Items: []
+  - m_Id: 19238105739264
+    m_Key: Arroz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19251468791808
+    m_Key: Carne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19267960795136
+    m_Key: Cebolla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19288508690432
+    m_Key: Cerdo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19301070630912
+    m_Key: Limon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19312814682112
+    m_Key: Pan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19323707289600
+    m_Key: Papa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19338206998528
+    m_Key: Pescado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19353541373952
+    m_Key: Pollo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19366065565696
+    m_Key: Queso
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 5806511147537662230
+    - rid: 5806511147537662236
   m_KeyGenerator:
     rid: 5806511147537662229
   references:
@@ -40,4 +81,50 @@ MonoBehaviour:
           - en
           - es
         m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - rid: 5806511147537662236
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 19238105739264
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19251468791808
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19267960795136
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19288508690432
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19301070630912
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19312814682112
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19323707289600
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19338206998528
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19353541373952
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19366065565696
+          m_TableCodes:
+          - en
+          - es
+        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

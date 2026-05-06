@@ -7,8 +7,9 @@ namespace UnityEngine.Animations
         [SerializeField] protected Direction _direction;
         [SerializeField] protected Vector2 _overrideDistance;
 
-        protected void Start()
+        protected override void Awake()
         {
+            base.Awake();
             var size = _rectTransform.rect.size;
             var direction = _direction.Get();
 
@@ -17,6 +18,10 @@ namespace UnityEngine.Animations
 
             _from = _to = _rectTransform.localPosition;
             _to += new Vector3(direction.x * size.x, direction.y * size.y, 0f);
+        }
+        protected void Start()
+        {
+            
         }
 
         protected override void OnPlay(bool value)
