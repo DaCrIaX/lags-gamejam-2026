@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [Flags] public enum CardType
 {
@@ -19,6 +20,7 @@ public abstract class SO_IngredientBase : ScriptableObject
     [SerializeField] private CardType _cardType = CardType.Normal;
     [SerializeField] private IngredientType _type;
     [Space]
+    [SerializeField] private LocalizedSprite _sprite;
     [SerializeReference] private Sprite _image;
     [SerializeField] private string _name;
 

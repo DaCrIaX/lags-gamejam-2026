@@ -15,6 +15,30 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 98e355c1e3f88a045bf3d12d8c7b2f63
   m_SerializeEntries:
+  - m_GUID: 4d1e678ac9e0ce14f8b977e5c0c59ede
+    m_Address: Assets/Localization/Tables/Ingredients - Common Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a55be204c16dc246aad3a9f4e3c41dd
+    m_Address: Aji
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90087f9c3db1c5641bd2d06a7b0e685d
+    m_Address: Assets/Localization/Tables/Cards Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3f2becbfffa9fe49ad67812d974efaa
+    m_Address: Aji de Gallina
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: efe8538adc0abfc4599b82871c1fa0f6
     m_Address: Assets/Localization/Tables/Gameplay Shared Data.asset
     m_ReadOnly: 1
