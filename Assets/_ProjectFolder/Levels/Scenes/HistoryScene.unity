@@ -786,16 +786,17 @@ MonoBehaviour:
   _text: {fileID: 1343124155}
   _fadeAnimation: {fileID: 1343124157}
   _pages:
-  - Year 19XX - Military Curfew
-  - The armed forces have taken control of the country following a coup against the
-    president.
-  - All imports have been completely banned and possession of any foreign product
-    is punishable by law.
-  - I've seen many restaurants like mine fall apart.
-  - I am one of the last ones left...
-  - One of the last ones willing to cook what people truly want.
-  - And I will cook...
-  - ...until their last bite.
+  - "A\xF1o 19XX - Toque de queda"
+  - "Las fuerzas armadas han tomado el control del\npa\xEDs tras un golpe de Estado
+    contra el presidente."
+  - "Todo tipo de importaci\xF3n ha sido prohibida y la posesi\xF3n de cualquier
+    producto extranjero es penado por ley."
+  - "He visto muchos huecos como el m\xEDo caerse a pedazos."
+  - Soy uno de los pocos que quedan...
+  - "Uno de aquellos que a\xFAn est\xE1n dispuestos a cocinar lo que la gente quiere
+    realmente."
+  - "Y cocinar\xE9..."
+  - "...hasta comer el \xFAltimo bocado."
   _pageTime: 6
 --- !u!1 &817922186
 GameObject:
@@ -854,7 +855,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next
+  m_text: Siguiente
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
   m_sharedMaterial: {fileID: 639449358017232448, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
@@ -881,8 +882,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -991,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip
+  m_text: Saltar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
   m_sharedMaterial: {fileID: 639449358017232448, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
@@ -1018,8 +1019,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1192,7 +1193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Atras
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
   m_sharedMaterial: {fileID: 639449358017232448, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
@@ -1219,8 +1220,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
