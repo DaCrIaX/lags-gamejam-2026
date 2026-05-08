@@ -27,7 +27,7 @@ public class RecipeBook : MonoBehaviour
     private void UpdateIndex()
     {
         _name.SetText(_discovered[_index].Name);
-        _dish.sprite = _discovered[_index].Image;
+        _dish.sprite = _discovered[_index].Image.LoadAsset();
 
         for (int i = 0; i < _ingredients.Length; i++)
             _ingredients[i].sprite = _discovered[_index].Ingredients[i].ingredient.Image.LoadAsset();

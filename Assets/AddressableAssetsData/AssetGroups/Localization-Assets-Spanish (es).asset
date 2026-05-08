@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Spanish (es)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-Assets-Spanish (es)
+  m_GUID: b809fcac0a3b1fb47b335e5d918b14f7
+  m_SerializeEntries:
+  - m_GUID: 076fe44f56f9ed6418b6dfc825a6b7e6
+    m_Address: Pan con Pejerrey - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 281de32dc7d110841a6babe8527a0879
+    m_Address: Arroz con Pollo - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3849059b02b20ef46a94cfc6b15a131d
+    m_Address: Butiffarra - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39ffebd8c581648478eb164c744d10ba
+    m_Address: Arroz - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 428e81d46283b9341b7beabd0c06c73b
+    m_Address: Anticuchos - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ae7ecae275201f49a7a5e9f20226c4f
+    m_Address: Lomo saltado - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 694ebd3220dbada4a881bef3a22d1f37
+    m_Address: Pan con Chicharron - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73e8b8f45c49cac45be4c1702e8baf42
+    m_Address: Aji - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b15f5f8dc6152c4db7fbddcb193d291
+    m_Address: Pan - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 988b4f1fa9a28b446954bdcf2ec8ac3c
+    m_Address: Aji de Gallina - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b321e0793f1ba64a9a3aaf0d05e2be9
+    m_Address: Pollo - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cd04484415d9c64cab2ecc6fd2d61c0
+    m_Address: Jalea Mixta - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5ab84d5c820b53419c1314066820af8
+    m_Address: Limon - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b893106f4d6aace4e9eca5be6aaea322
+    m_Address: Pescado - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc7773198dec3c74f8254c6642f8b0be
+    m_Address: Causa de Atun - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcfa603c323cb0343ab2dd5ef0aaa282
+    m_Address: Papa Rellena - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d52ee7ec9ff27f34795205a44373b2ba
+    m_Address: Carne - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df279e635a697fa4ea0866501820cef4
+    m_Address: Cerdo - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9fcffa05ee8ab244a8432501fdcbb72
+    m_Address: Ceviche - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0f0ce4335bbd084181a57ec6fb1edb5
+    m_Address: Cebolla - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa50be6285fd7c34081fd2814f708ebd
+    m_Address: Papa - es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: b0192bd24d0998446a1b68e9810eae7a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 224ece732962eb049b553480f35ede1f, type: 2}
+    - {fileID: 11400000, guid: c085fc894a4f16e469a75feff5044e76, type: 2}

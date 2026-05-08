@@ -14,7 +14,7 @@ public class RecipeDiscoveredPreview : MonoBehaviour
     private void PerformeNewRecipe(SO_Recipe recipe)
     {
         _animation.FadeIn();
-        _imagePreview.sprite = recipe.Image;
+        _imagePreview.sprite = recipe.Image.LoadAsset();
         StartCoroutine(PreviewDelay());
     }
     private IEnumerator PreviewDelay()

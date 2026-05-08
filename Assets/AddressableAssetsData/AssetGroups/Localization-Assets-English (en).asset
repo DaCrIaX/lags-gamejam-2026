@@ -14,7 +14,133 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-Assets-English (en)
   m_GUID: b2ec5ac14122f5547a7b83448b36c884
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 00fa34d1c33e0e04fb12141c136e4df0
+    m_Address: Papa Rellena
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09e535906fed34245acce06eb528fde0
+    m_Address: Carne
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25acfafee9ac1034e97f96977651e28e
+    m_Address: Lomo saltado
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 315628216b00b184ba3a551289270a07
+    m_Address: Cerdo
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32bf9ab4cd9be1b4c94b887207ccee4f
+    m_Address: Pan con Chicharron
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4092708f60052494b823400168729dc5
+    m_Address: Pan
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dc7548e6d1cf2841a4bf126cf310ed2
+    m_Address: Arroz con Pollo
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ff3eb9a2efd14046b2265b8b5c6d97a
+    m_Address: Pescado
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a55be204c16dc246aad3a9f4e3c41dd
+    m_Address: Aji
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7616c68f0de850b4aba3914544e2afbe
+    m_Address: Pan con Pejerrey
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80e55e105c8dc0f49a8a2c4270743c6d
+    m_Address: Pollo
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87cdb975c932e9d4785837da49b288ac
+    m_Address: Ceviche
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c2b87cfd1f05e442a73fb06604544b3
+    m_Address: Anticuchos
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3969863062bf5b4d9d07b88e0323626
+    m_Address: Arroz
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc27807f19f16554aac8a26281fe6ee6
+    m_Address: Causa de Atun
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8835b5dec46bab4cb8d379de34998d0
+    m_Address: Jalea Mixta
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce8ee13a4006c814f911462b887dc9a1
+    m_Address: Butiffarra
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2e49e32b01a22344896c38df464e484
+    m_Address: Papa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6f714b6e5aac7345bafc53bccf2b204
+    m_Address: Limon
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbee2f5a51d523540b6507955901d811
+    m_Address: Cebolla
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3f2becbfffa9fe49ad67812d974efaa
+    m_Address: Aji de Gallina
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: b0192bd24d0998446a1b68e9810eae7a, type: 2}
   m_SchemaSet:

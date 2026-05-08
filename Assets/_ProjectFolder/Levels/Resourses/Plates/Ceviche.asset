@@ -13,7 +13,14 @@ MonoBehaviour:
   m_Name: Ceviche
   m_EditorClassIdentifier: Assembly-CSharp::SO_Combination
   _name: Ceviche
-  _image: {fileID: 21300000, guid: 87cdb975c932e9d4785837da49b288ac, type: 3}
+  _sprite:
+    m_TableReference:
+      m_TableCollectionName: GUID:90087f9c3db1c5641bd2d06a7b0e685d
+    m_TableEntryReference:
+      m_KeyId: 20887993937920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
   _ingredients:
   - ingredient: {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
     amount: 1

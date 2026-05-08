@@ -1,7 +1,8 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [Serializable]
 public class IngredientRequirement
@@ -14,11 +15,11 @@ public class IngredientRequirement
 public class SO_Recipe : ScriptableObject
 {
     [SerializeField] private string _name;
-    [SerializeField] private Sprite _image;
+    [SerializeField] private LocalizedSprite _sprite;
     [SerializeField] private List<IngredientRequirement> _ingredients;
 
     public string Name => _name;
-    public Sprite Image => _image;
+    public LocalizedSprite Image => _sprite;
     public List<IngredientRequirement> Ingredients => _ingredients;
 
     /// <summary>
