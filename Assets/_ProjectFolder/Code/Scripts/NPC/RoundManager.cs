@@ -20,7 +20,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     private SO_ClientProfile _currentClientProfile;
     private DishEvaluationResult _lastEvaluationResult;
 
-    private void Start() => NextRound();
+    private void Start() => StartComponents();
     public SO_ClientProfile GetCurrentClient() => _currentClientProfile;
     public void SendedIngredients(int score) => _score.AddScore(score);
     public void CompleteRound() => StartCoroutine(LeaveAnimation());
@@ -38,9 +38,15 @@ public class RoundManager : SingletonBasic<RoundManager>
         _suspicious.AddAmount(finalSuspicionChange);*/
     }
 
-    public void NextRound()
+    public void StartComponents()
     {
-        _timer.gameObject.SetActive(false);
+        _timer.gameObject.SetActive(true);
+        _timer.Play(10);
+        NextClient();
+    }
+
+    public void NextClient()
+    {
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);
