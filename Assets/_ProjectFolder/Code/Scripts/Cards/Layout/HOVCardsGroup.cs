@@ -11,6 +11,7 @@ namespace UnityEngine.EventSystems
 
         [SerializeField] private LayoutHandler _position, _rotation;
         [SerializeField] private UnityEvent<bool> _isNotEmpty;
+        [SerializeField] private UnityEvent<bool> _isFull;
 
         protected GameplayManager _gameplay;
         protected CardTransform[] _cards;
@@ -38,6 +39,7 @@ namespace UnityEngine.EventSystems
         {
             _cards = GetComponentsInChildren<CardTransform>();
             _isNotEmpty.Invoke(_cards.Length != 0);
+            _isFull.Invoke(_cards.Length == _maxAmount);
             _inverseLength = 1f / _cards.Length;
             _inverseLength += _inverseLength * 0.5f;
         }

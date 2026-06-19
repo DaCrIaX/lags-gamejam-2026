@@ -11,6 +11,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     [SerializeField] private Score _score;
     [SerializeField] private SuspiciousBar _suspicious;
     [SerializeField] private GameObject _choiceCamera, _choiceArea, _recipeBuildArea;
+    [SerializeField] private TimerUIBar _timer;
 
     public event Action<SO_ClientProfile> onSpecialClientAppears;
     public event Action<SO_Recipe> onRecipeDiscovered;
@@ -27,18 +28,19 @@ public class RoundManager : SingletonBasic<RoundManager>
     public void SetLastEvaluationResult(DishEvaluationResult result) => _lastEvaluationResult = result;
     public void UpdateSuspicion(int suspicionChange)
     {
-        if (_currentClientProfile == null)
+        /*if (_currentClientProfile == null)
         {
             _suspicious.AddAmount(suspicionChange);
             return;
         }
 
         int finalSuspicionChange = ApplyClientModifiers(suspicionChange);
-        _suspicious.AddAmount(finalSuspicionChange);
+        _suspicious.AddAmount(finalSuspicionChange);*/
     }
 
     public void NextRound()
     {
+        _timer.gameObject.SetActive(false);
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);
@@ -79,6 +81,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     }
     private IEnumerator ShowAnimation()
     {
+        //Debug.Log("anim");
         float time = 0f;
         _character.SetClientProfile(_currentClientProfile);
 
@@ -88,6 +91,9 @@ public class RoundManager : SingletonBasic<RoundManager>
             time += Time.deltaTime * _character.Speed;
             _character.SetOnSpline(time);
         }
+
+        //_timer.gameObject.SetActive(true);
+        //_timer.Play(60);
 
         _character.SetOnSpline(0.5f);
         onRoundBegin?.Invoke();

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SO_ScoringConfig
   _perfectMatchBaseScore: 500
   _commonDishBaseScore: 100
-  _minCardsForValidDish: 1
+  _minCardsForValidDish: 3
   _minTypeForCommon: 2
   _scoreMultiplierPerCard: 50
   _perfectMatchSuspicion: -10
