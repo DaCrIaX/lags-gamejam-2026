@@ -128,6 +128,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
         // Retornar al round sin completarlo
         _roundManager?.CompleteRound();
+        _groupAnimation.EnableGroup();
     }
 
     private void HandleInsufficientCards(DishEvaluationResult result)
@@ -146,5 +147,6 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     {
         yield return new WaitForSeconds(_manager.PreviewNewRecipeDuration + 0.5f);
         _roundManager?.CompleteRound();
+        _groupAnimation.EnableGroup();
     }
 }

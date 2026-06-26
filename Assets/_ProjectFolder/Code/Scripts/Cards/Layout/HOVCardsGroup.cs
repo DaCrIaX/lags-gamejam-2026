@@ -68,6 +68,7 @@ namespace UnityEngine.EventSystems
         public void AllCardsBackToHand()
         {
             _cards = GetComponentsInChildren<CardTransform>();
+            if (_cards == null) return;
             foreach (var card in _cards) {
                 card.GetComponentInChildren<CardSelectable>().BackToHand();
             }
