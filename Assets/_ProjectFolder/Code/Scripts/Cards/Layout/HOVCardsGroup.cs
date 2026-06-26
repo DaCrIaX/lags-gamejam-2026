@@ -64,5 +64,13 @@ namespace UnityEngine.EventSystems
             card.SetParent(Container);
             return true;
         }
+
+        public void AllCardsBackToHand()
+        {
+            _cards = GetComponentsInChildren<CardTransform>();
+            foreach (var card in _cards) {
+                card.GetComponentInChildren<CardSelectable>().BackToHand();
+            }
+        }
     }
 }

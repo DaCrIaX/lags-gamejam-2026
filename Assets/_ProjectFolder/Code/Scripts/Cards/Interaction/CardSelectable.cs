@@ -15,5 +15,13 @@ namespace UnityEngine.EventSystems
 
             navigation.SetCardDirection(_cardTransform, _card.Ingredient.CardType);
         }
+
+        public void BackToHand()
+        {
+            var navigation = GetComponentInParent<CardsGroupNavigation>();
+            if (!navigation) return;
+
+            navigation.SetCardDirection(_cardTransform, _card.Ingredient.CardType);
+        }
     }
 }
