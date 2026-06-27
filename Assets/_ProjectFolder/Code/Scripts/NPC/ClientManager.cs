@@ -33,6 +33,8 @@ public class ClientManager : MonoBehaviour
     /// </summary>
     public SO_ClientProfile SelectNextClient()
     {
+        //Comentado clientes diferentes
+        /*
         // Si han pasado suficientes rounds, fuerza un cliente especial
         if (_roundsSinceLastSpecial >= _roundsBetweenSpecialClients)
         {
@@ -60,11 +62,12 @@ public class ClientManager : MonoBehaviour
             _consecutiveRegular = 0;
             return _currentClient;
         }
+        */
 
         // Default: cliente regular
         _currentClient = _defaultClientProfile;
-        _roundsSinceLastSpecial++;
-        _consecutiveRegular++;
+        //CambioTest: _roundsSinceLastSpecial++;
+        //CambioTest: _consecutiveRegular++;
 
         return _currentClient;
     }

@@ -37,5 +37,6 @@ namespace UnityEngine.SceneManagement
             Instantiate(_fadePrefab, transform).ScenePath = scenePath;
             IsLoadingScene = true;
         }
+		
     }
 }

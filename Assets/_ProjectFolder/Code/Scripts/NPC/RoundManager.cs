@@ -28,6 +28,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     public void SetLastEvaluationResult(DishEvaluationResult result) => _lastEvaluationResult = result;
     public void UpdateSuspicion(int suspicionChange)
     {
+        //Comentado sistema de sospecha
         /*if (_currentClientProfile == null)
         {
             _suspicious.AddAmount(suspicionChange);
@@ -47,6 +48,7 @@ public class RoundManager : SingletonBasic<RoundManager>
 
     public void NextClient()
     {
+        _timer.Play(10);
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);
@@ -98,9 +100,6 @@ public class RoundManager : SingletonBasic<RoundManager>
             _character.SetOnSpline(time);
         }
 
-        //_timer.gameObject.SetActive(true);
-        //_timer.Play(60);
-
         _character.SetOnSpline(0.5f);
         onRoundBegin?.Invoke();
     }
@@ -115,12 +114,13 @@ public class RoundManager : SingletonBasic<RoundManager>
             _character.SetOnSpline(time);
         }
 
-        _choiceCamera.SetActive(true);
-        _recipeBuildArea.SetActive(false);
+        //_choiceCamera.SetActive(true);
+        //_recipeBuildArea.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
 
-        _choiceArea.SetActive(true);
+        //_choiceArea.SetActive(true);
         onChoiceEvent?.Invoke();
+        NextClient();
     }
 }

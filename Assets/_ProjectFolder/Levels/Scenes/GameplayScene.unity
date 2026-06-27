@@ -1628,6 +1628,8 @@ GameObject:
   - component: {fileID: 154605561}
   - component: {fileID: 154605555}
   - component: {fileID: 154605563}
+  - component: {fileID: 154605565}
+  - component: {fileID: 154605564}
   m_Layer: 5
   m_Name: hand manager
   m_TagString: Untagged
@@ -1793,6 +1795,42 @@ MonoBehaviour:
   _preloadAsset: 0
   _playOnAwake: 0
   _saveClipOnAwake: 0
+--- !u!114 &154605564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3f2b53a4b8db48a0d13aef78e9233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
+  _channel: 1
+  _audioReference:
+    m_AssetGUID: 12d4583a80aecb54890d63fbf522309c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  _preloadAsset: 0
+  _playOnAwake: 0
+  _saveClipOnAwake: 0
+--- !u!114 &154605565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154605551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e334852184921324286e1f9377ef43db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardsSpawnHandler
+  _audioSpawn: {fileID: 154605564}
+  _prefab: {fileID: 4206602725805252688, guid: 8591b77058125254a97d3c62aa462725, type: 3}
 --- !u!1001 &163844577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2112,6 +2150,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1879722159}
         m_TargetAssemblyTypeName: RecipeCheckerHandler, Assembly-CSharp
         m_MethodName: EvaluatePlate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1970031113}
+        m_TargetAssemblyTypeName: TimerUIBar, Assembly-CSharp
+        m_MethodName: PauseTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10702,7 +10752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalCardHolder
   _container: {fileID: 1416212099}
   _audioSwipe: {fileID: 1416212101}
-  _maxAmount: 3
+  _maxAmount: 5
   _position:
     curve:
       serializedVersion: 2
@@ -14503,7 +14553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1970031112
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14585,6 +14635,31 @@ MonoBehaviour:
       - m_Target: {fileID: 16384518}
         m_TargetAssemblyTypeName: WeekManager, Assembly-CSharp
         m_MethodName: IncrementDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 914045195}
+        m_TargetAssemblyTypeName: UnityEngine.EventSystems.HorizontalCardsGroup,
+          Assembly-CSharp
+        m_MethodName: AllCardsBackToHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1879722159}
+        m_TargetAssemblyTypeName: RecipeCheckerHandler, Assembly-CSharp
+        m_MethodName: EvaluatePlate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15077,6 +15152,9 @@ PrefabInstance:
       addedObject: {fileID: 1714584017}
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 16384517}
+    - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 908754742}
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
@@ -15084,9 +15162,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1215668927}
-    - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 16384517}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7301890332622133844, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
