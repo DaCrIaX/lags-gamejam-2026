@@ -48,6 +48,7 @@ public class RoundManager : SingletonBasic<RoundManager>
 
     public void NextClient()
     {
+        _timer.Play(10);
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);

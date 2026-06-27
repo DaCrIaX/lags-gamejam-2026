@@ -141,6 +141,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
         // Retornar al round sin completarlo
         _roundManager?.CompleteRound();
+        _groupAnimation.EnableGroup();
     }
 
     private IEnumerator NextRoundRoutine()
