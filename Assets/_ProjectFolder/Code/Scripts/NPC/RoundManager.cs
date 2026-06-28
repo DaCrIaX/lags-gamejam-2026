@@ -206,8 +206,8 @@ public class RoundManager : SingletonBasic<RoundManager>
 
     private float GetCurrentClientTimeLimit()
     {
-        if (_currentRoundData != null)
-            return _currentRoundData.ClientTimeLimit;
+        if (_difficultyManager)
+            return _difficultyManager.GetClientTimeLimit(_currentRoundData);
 
         return _fallbackClientTimeLimit;
     }

@@ -93,7 +93,11 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     [SerializeField] private ClientAmountRange _highClientRange = new(11, 15);
     [SerializeField] private ClientAmountRange _rushClientRange = new(16, 25);
 
-    [Header("Client Time Per Complexity")]
+    [Header("Client Time")]
+    [SerializeField] private bool _useVariableClientTime = true;
+    [SerializeField, Min(0.1f)] private float _fixedClientTimeLimit = 10f;
+
+    [Header("Variable Client Time Per Complexity")]
     [SerializeField] private ClientTimeRange _lowClientTimeRange = new(17f, 20f);
     [SerializeField] private ClientTimeRange _mediumClientTimeRange = new(12f, 15f);
     [SerializeField] private ClientTimeRange _highClientTimeRange = new(8f, 11f);
@@ -111,7 +115,9 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     public int CurrentCycle => _currentCycle;
     public int StartingCycle => _startingCycle;
     public int RoundsPerCycle => _roundsPerCycle;
-    public float CurrentClientTimeLimit => CurrentRound != null ? CurrentRound.ClientTimeLimit : 0f;
+    public bool UseVariableClientTime => _useVariableClientTime;
+    public float FixedClientTimeLimit => _fixedClientTimeLimit;
+    public float CurrentClientTimeLimit => GetClientTimeLimit(CurrentRound);
     public float CurrentCyclePhaseShift => _currentCyclePhaseShift;
     public DifficultyRoundData CurrentRound { get; private set; }
     public IReadOnlyList<DifficultyRoundData> Rounds => _rounds;
@@ -144,6 +150,14 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
             ComplexityLevel.Rush => _rushClientTimeRange,
             _ => _lowClientTimeRange
         };
+    }
+
+    public float GetClientTimeLimit(DifficultyRoundData round)
+    {
+        if (!_useVariableClientTime || round == null)
+            return _fixedClientTimeLimit;
+
+        return round.ClientTimeLimit;
     }
 
     public void StartCurrentCycle()
@@ -218,7 +232,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
             var clientRange = GetClientRange(round.Complexity);
             var timeRange = GetClientTimeRange(round.Complexity);
             int clientAmount = randomizeClientAmount ? clientRange.GetRandomAmount() : Mathf.RoundToInt((clientRange.Min + clientRange.Max) * 0.5f);
-            float clientTimeLimit = randomizeClientAmount ? timeRange.GetRandomTime() : (timeRange.Min + timeRange.Max) * 0.5f;
+            float clientTimeLimit = GetRoundClientTimeLimit(timeRange, randomizeClientAmount);
             round.SetClientAmount(clientAmount);
             round.SetClientTimeLimit(clientTimeLimit);
         }
@@ -289,4 +303,11 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
             orderedRounds[index].SetComplexity(complexity);
     }
 
+    private float GetRoundClientTimeLimit(ClientTimeRange timeRange, bool randomizeClientTime)
+    {
+        if (!_useVariableClientTime)
+            return _fixedClientTimeLimit;
+
+        return randomizeClientTime ? timeRange.GetRandomTime() : (timeRange.Min + timeRange.Max) * 0.5f;
+    }
 }

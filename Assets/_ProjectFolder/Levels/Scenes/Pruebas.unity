@@ -2097,8 +2097,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoundManager
   _character: {fileID: 1073890992}
   _clientManager: {fileID: 267093570}
-  _difficultyManager: {fileID: 1004969166}
-  _cycleQuotaManager: {fileID: 1107068017}
+  _difficultyManager: {fileID: 0}
+  _cycleQuotaManager: {fileID: 0}
   _score: {fileID: 833763789}
   _suspicious: {fileID: 563398430}
   _choiceCamera: {fileID: 338667852}
@@ -8177,7 +8177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
   _startingCycle: 1
   _roundsPerCycle: 6
-  _maxCyclePhaseShift: 0.81
+  _maxCyclePhaseShift: 0.8
   _intensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -8211,7 +8211,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _clientTimeLimit: 10
   _lowClientRange:
     _min: 3
     _max: 5
@@ -8224,6 +8223,20 @@ MonoBehaviour:
   _rushClientRange:
     _min: 16
     _max: 25
+  _useVariableClientTime: 0
+  _fixedClientTimeLimit: 10
+  _lowClientTimeRange:
+    _min: 17
+    _max: 20
+  _mediumClientTimeRange:
+    _min: 12
+    _max: 15
+  _highClientTimeRange:
+    _min: 8
+    _max: 11
+  _rushClientTimeRange:
+    _min: 5
+    _max: 7
 --- !u!1 &1038579218
 GameObject:
   m_ObjectHideFlags: 0
@@ -8594,7 +8607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CycleQuotaManager
   _difficultyManager: {fileID: 1004969166}
   _score: {fileID: 833763789}
-  _minimumQuota: 1000
+  _baseMinimumQuota: 1000
+  _quotaGrowthPercentPerCycle: 10
   _startingFunds: 0
   _onCycleSurvived:
     m_PersistentCalls:

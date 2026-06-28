@@ -17,6 +17,8 @@ public class DifficultyManagerEditor : Editor
     private SerializedProperty _mediumClientRange;
     private SerializedProperty _highClientRange;
     private SerializedProperty _rushClientRange;
+    private SerializedProperty _useVariableClientTime;
+    private SerializedProperty _fixedClientTimeLimit;
     private SerializedProperty _lowClientTimeRange;
     private SerializedProperty _mediumClientTimeRange;
     private SerializedProperty _highClientTimeRange;
@@ -34,6 +36,8 @@ public class DifficultyManagerEditor : Editor
         _mediumClientRange = serializedObject.FindProperty("_mediumClientRange");
         _highClientRange = serializedObject.FindProperty("_highClientRange");
         _rushClientRange = serializedObject.FindProperty("_rushClientRange");
+        _useVariableClientTime = serializedObject.FindProperty("_useVariableClientTime");
+        _fixedClientTimeLimit = serializedObject.FindProperty("_fixedClientTimeLimit");
         _lowClientTimeRange = serializedObject.FindProperty("_lowClientTimeRange");
         _mediumClientTimeRange = serializedObject.FindProperty("_mediumClientTimeRange");
         _highClientTimeRange = serializedObject.FindProperty("_highClientTimeRange");
@@ -71,10 +75,16 @@ public class DifficultyManagerEditor : Editor
         EditorGUILayout.PropertyField(_rushClientRange);
 
         EditorGUILayout.Space();
-        EditorGUILayout.PropertyField(_lowClientTimeRange);
-        EditorGUILayout.PropertyField(_mediumClientTimeRange);
-        EditorGUILayout.PropertyField(_highClientTimeRange);
-        EditorGUILayout.PropertyField(_rushClientTimeRange);
+        EditorGUILayout.PropertyField(_useVariableClientTime);
+        EditorGUILayout.PropertyField(_fixedClientTimeLimit);
+
+        using (new EditorGUI.DisabledScope(!_useVariableClientTime.boolValue))
+        {
+            EditorGUILayout.PropertyField(_lowClientTimeRange);
+            EditorGUILayout.PropertyField(_mediumClientTimeRange);
+            EditorGUILayout.PropertyField(_highClientTimeRange);
+            EditorGUILayout.PropertyField(_rushClientTimeRange);
+        }
     }
 
     private void DrawRuntimeDebug()
@@ -87,6 +97,7 @@ public class DifficultyManagerEditor : Editor
         {
             EditorGUILayout.IntField("Current Cycle", Application.isPlaying ? manager.CurrentCycle : manager.StartingCycle);
             EditorGUILayout.FloatField("Cycle Phase Shift", Application.isPlaying ? manager.CurrentCyclePhaseShift : _previewPhaseShift);
+            EditorGUILayout.Toggle("Using Variable Client Time", manager.UseVariableClientTime);
             EditorGUILayout.FloatField("Current Client Time Limit", manager.CurrentClientTimeLimit);
 
             var currentRound = manager.CurrentRound;
@@ -152,6 +163,7 @@ public class DifficultyManagerEditor : Editor
         {
             var clientRange = manager.GetClientRange(round.Complexity);
             var timeRange = manager.GetClientTimeRange(round.Complexity);
+            string previewTime = manager.UseVariableClientTime ? $"{timeRange.Min:0.#}-{timeRange.Max:0.#}s" : $"{manager.FixedClientTimeLimit:0.#}s";
 
             using (new EditorGUILayout.HorizontalScope())
             {
@@ -159,7 +171,7 @@ public class DifficultyManagerEditor : Editor
                 GUILayout.Label(round.Intensity.ToString("0.00"), GUILayout.Width(70f));
                 GUILayout.Label(round.Complexity.ToString(), GUILayout.Width(80f));
                 GUILayout.Label(Application.isPlaying ? round.ClientAmount.ToString() : $"{clientRange.Min}-{clientRange.Max}", GUILayout.Width(110f));
-                GUILayout.Label(Application.isPlaying ? $"{round.ClientTimeLimit:0.0}s" : $"{timeRange.Min:0.#}-{timeRange.Max:0.#}s", GUILayout.Width(110f));
+                GUILayout.Label(Application.isPlaying ? $"{manager.GetClientTimeLimit(round):0.0}s" : previewTime, GUILayout.Width(110f));
             }
         }
     }
