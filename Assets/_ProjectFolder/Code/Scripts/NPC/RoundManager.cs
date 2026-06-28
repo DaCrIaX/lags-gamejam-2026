@@ -6,12 +6,15 @@ public class RoundManager : SingletonBasic<RoundManager>
 {
     [SerializeField] private NPC _character;
     [SerializeField] private ClientManager _clientManager;
+    [SerializeField] private DifficultyManager _difficultyManager;
+    [SerializeField] private CycleQuotaManager _cycleQuotaManager;
 
     [Header("Controller")]
     [SerializeField] private Score _score;
     [SerializeField] private SuspiciousBar _suspicious;
     [SerializeField] private GameObject _choiceCamera, _choiceArea, _recipeBuildArea;
     [SerializeField] private TimerUIBar _timer;
+    [SerializeField, Min(0.1f)] private float _fallbackClientTimeLimit = 10f;
 
     public event Action<SO_ClientProfile> onSpecialClientAppears;
     public event Action<SO_Recipe> onRecipeDiscovered;
@@ -19,11 +22,40 @@ public class RoundManager : SingletonBasic<RoundManager>
 
     private SO_ClientProfile _currentClientProfile;
     private DishEvaluationResult _lastEvaluationResult;
+    private DifficultyRoundData _currentRoundData;
+    private int _remainingClientsInRound = int.MaxValue;
+    private bool _isCompletingClient;
+    private bool _isGameOver;
+
+    private void OnEnable()
+    {
+        if (_cycleQuotaManager)
+        {
+            _cycleQuotaManager.onCycleSurvived += OnCycleSurvived;
+            _cycleQuotaManager.onGameOver += OnGameOver;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_cycleQuotaManager)
+        {
+            _cycleQuotaManager.onCycleSurvived -= OnCycleSurvived;
+            _cycleQuotaManager.onGameOver -= OnGameOver;
+        }
+    }
 
     private void Start() => StartComponents();
     public SO_ClientProfile GetCurrentClient() => _currentClientProfile;
     public void SendedIngredients(int score) => _score.AddScore(score);
-    public void CompleteRound() => StartCoroutine(LeaveAnimation());
+    public void CompleteRound()
+    {
+        if (_isCompletingClient || _isGameOver) return;
+
+        _isCompletingClient = true;
+        _timer.Stop();
+        StartCoroutine(LeaveAnimation());
+    }
     public void DiscoverRecipe(SO_Recipe recipe) => onRecipeDiscovered?.Invoke(recipe);
     public void SetLastEvaluationResult(DishEvaluationResult result) => _lastEvaluationResult = result;
     public void UpdateSuspicion(int suspicionChange)
@@ -42,13 +74,24 @@ public class RoundManager : SingletonBasic<RoundManager>
     public void StartComponents()
     {
         _timer.gameObject.SetActive(true);
-        _timer.Play(10);
+
+        if (_difficultyManager)
+        {
+            _difficultyManager.StartCurrentCycle();
+
+            if (!TryStartNextRound())
+                return;
+        }
+
         NextClient();
     }
 
     public void NextClient()
     {
-        _timer.Play(10);
+        if (_isGameOver) return;
+
+        _isCompletingClient = false;
+        _timer.Play(GetCurrentClientTimeLimit());
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);
@@ -60,6 +103,8 @@ public class RoundManager : SingletonBasic<RoundManager>
 
         StartCoroutine(ShowAnimation());
     }
+
+    public void TimeoutCurrentClient() => CompleteRound();
 
     private int ApplyClientModifiers(int suspicionChange)
     {
@@ -119,8 +164,67 @@ public class RoundManager : SingletonBasic<RoundManager>
 
         yield return new WaitForSeconds(0.5f);
 
-        //_choiceArea.SetActive(true);
+        OnClientCompleted();
+    }
+
+    private void OnClientCompleted()
+    {
+        if (_remainingClientsInRound != int.MaxValue)
+            _remainingClientsInRound--;
+
+        if (_remainingClientsInRound > 0)
+        {
+            onChoiceEvent?.Invoke();
+            NextClient();
+            return;
+        }
+
+        if (TryStartNextRound())
+        {
+            onChoiceEvent?.Invoke();
+            NextClient();
+        }
+    }
+
+    private bool TryStartNextRound()
+    {
+        if (!_difficultyManager)
+        {
+            _remainingClientsInRound = int.MaxValue;
+            return true;
+        }
+
+        if (!_difficultyManager.TryAdvanceRound(out _currentRoundData))
+        {
+            _remainingClientsInRound = 0;
+            return false;
+        }
+
+        _remainingClientsInRound = _currentRoundData.ClientAmount;
+        return _remainingClientsInRound > 0;
+    }
+
+    private float GetCurrentClientTimeLimit()
+    {
+        if (_currentRoundData != null)
+            return _currentRoundData.ClientTimeLimit;
+
+        return _fallbackClientTimeLimit;
+    }
+
+    private void OnCycleSurvived(CycleEvaluationResult result)
+    {
+        if (_isGameOver) return;
+        if (!TryStartNextRound()) return;
+
         onChoiceEvent?.Invoke();
         NextClient();
+    }
+
+    private void OnGameOver(CycleEvaluationResult result)
+    {
+        _isGameOver = true;
+        _timer.Stop();
+        _recipeBuildArea.SetActive(false);
     }
 }
