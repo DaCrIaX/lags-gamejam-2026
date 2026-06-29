@@ -883,6 +883,70 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7181a87fb2d21ba46bb7885fa68ce279, type: 3}
   m_PrefabInstance: {fileID: 75519848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &94087162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 94087163}
+  - component: {fileID: 94087164}
+  m_Layer: 0
+  m_Name: RequestCustomer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &94087163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94087162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1084299294}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &94087164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94087162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14dde55a734dec341a99498cca43d16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RequestCustomer
+  ingredientsRequest:
+  - textRequest: Quiero carne.
+    requestIngredient: {fileID: 11400000, guid: 9bb0d1053bf257c4186f63716b105231, type: 2}
+  - textRequest: Quiero pescado. Me gustah.
+    requestIngredient: {fileID: 11400000, guid: 7a794c06cc7f5c449b0d5c380e7583bf, type: 2}
+  - textRequest: Quiero pollo.
+    requestIngredient: {fileID: 11400000, guid: 30d1a12a312b732449ee01bdb1aab342, type: 2}
+  - textRequest: Quiero arroz.
+    requestIngredient: {fileID: 11400000, guid: 489bd283fbfd77e44999b665ae7f6924, type: 2}
+  - textRequest: Quiero papa.
+    requestIngredient: {fileID: 11400000, guid: 1c5b1e7009c51ae438a3680471aceb3d, type: 2}
+  - textRequest: Quiero pan. El de forma de potito.
+    requestIngredient: {fileID: 11400000, guid: 900a321e945ab6e44a61dbb57f882e6c, type: 2}
+  - textRequest: "Quiero lim\xF3n."
+    requestIngredient: {fileID: 11400000, guid: b1046d953832137428803f73fad0e9a1, type: 2}
+  - textRequest: "Quiero aj\xED. Pa que me queme el poto."
+    requestIngredient: {fileID: 11400000, guid: 7adc3abd46733ad44ba678b518cc0415, type: 2}
+  - textRequest: Quiero cebolla.
+    requestIngredient: {fileID: 11400000, guid: 74100fc98bda9214cb6c020b7dbfaab4, type: 2}
+  recipeContainer: {fileID: 914045190}
 --- !u!1 &102445475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2211,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 94087164}
+        m_TargetAssemblyTypeName: RequestCustomer, Assembly-CSharp
+        m_MethodName: CheckRequest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1879722159}
         m_TargetAssemblyTypeName: RecipeCheckerHandler, Assembly-CSharp
         m_MethodName: EvaluatePlate
@@ -6933,12 +7009,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoundManager
   _character: {fileID: 353546687}
   _clientManager: {fileID: 960669136}
+  _difficultyManager: {fileID: 0}
+  _cycleQuotaManager: {fileID: 0}
   _score: {fileID: 1865949795}
   _suspicious: {fileID: 1714584021}
   _choiceCamera: {fileID: 1907509404}
   _choiceArea: {fileID: 1201578393}
   _recipeBuildArea: {fileID: 914045190}
   _timer: {fileID: 1970031113}
+  _fallbackClientTimeLimit: 10
 --- !u!114 &960669134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,6 +7805,7 @@ Transform:
   - {fileID: 1778160705}
   - {fileID: 2097946017}
   - {fileID: 960669129}
+  - {fileID: 94087163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093866628
