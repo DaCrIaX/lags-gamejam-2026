@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogNode
   graph: {fileID: 11400000}
-  position: {x: -24, y: -40}
+  position: {x: -168, y: 168}
   ports:
     keys:
     - output
@@ -43,13 +43,13 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 2
       _dynamic: 0
-  displaySpeed: 30
+  displaySpeed: 15
   entryEvent:
     m_PersistentCalls:
       m_Calls: []
   entryEventWait: 0
   displayMessageWhileEntryEventRuns: 0
-  message: 
+  message: Estoy viendo un video de polemica de streamers
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogNode
   graph: {fileID: 11400000}
-  position: {x: 600, y: -24}
+  position: {x: 344, y: 232}
   ports:
     keys:
     - output
@@ -94,13 +94,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 2
       _dynamic: 0
-  displaySpeed: 30
+  displaySpeed: 5
   entryEvent:
     m_PersistentCalls:
       m_Calls: []
   entryEventWait: 0
   displayMessageWhileEntryEventRuns: 0
-  message: 
+  message: 'Hoy en la noche he comido makis, estuvieron muy ricos
+
+
+    Muchas gracias
+    a todos
+
+
+    uwu'
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -134,7 +141,7 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogNode
   graph: {fileID: 11400000}
-  position: {x: -632, y: -56}
+  position: {x: -632, y: -24}
   ports:
     keys:
     - output
@@ -167,7 +174,7 @@ MonoBehaviour:
       m_Calls: []
   entryEventWait: 0
   displayMessageWhileEntryEventRuns: 0
-  message: 
+  message: hola mundo soy Jesus Pisconte
   exitEvent:
     m_PersistentCalls:
       m_Calls: []

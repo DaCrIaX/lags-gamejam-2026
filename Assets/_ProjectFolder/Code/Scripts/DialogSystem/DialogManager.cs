@@ -1,39 +1,36 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class DialogManager : SingletonBasic<DialogManager>
 {
+    [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private bool _playOnStart;
-    [SerializeField] private List<DialogEntry> _dialogs = new List<DialogEntry>();
+    [SerializeField] private bool _waitForContinueInput = true;
+    [SerializeField] private Key _continueKey = Key.Space;
+    [SerializeField] private List<Dialog> _dialogs = new List<Dialog>();
     [SerializeField] private UnityEvent _onDialogStarted;
     [SerializeField] private UnityEvent _onDialogFinished;
 
-    private DialogTextDisplay _textDisplay;
     private Dialog _currentDialog;
     private Coroutine _playRoutine;
     private readonly List<Coroutine> _runningEventCoroutines = new List<Coroutine>();
 
     public bool IsPlaying => _playRoutine != null;
 
-    [Serializable]
-    private sealed class DialogEntry
-    {
-        public string id;
-        public Dialog dialog;
-        public DialogSceneGraph sceneGraph;
-    }
-
     protected override void Awake()
     {
         base.Awake();
 
-        if (_textDisplay == null)
+        if (_text == null)
         {
-            _textDisplay = GetComponentInChildren<DialogTextDisplay>();
+            _text = GetComponentInChildren<TextMeshProUGUI>();
         }
+
+        ClearText();
     }
 
     private void Start()
@@ -51,26 +48,14 @@ public class DialogManager : SingletonBasic<DialogManager>
 
     public void PlayFirst()
     {
-        DialogEntry entry = GetFirstDialog();
-        if (entry == null)
+        Dialog dialog = GetFirstDialog();
+        if (dialog == null)
         {
             Debug.LogWarning($"DialogManager '{name}' has no dialogs assigned.", this);
             return;
         }
 
-        Play(entry);
-    }
-
-    public void Play(string dialogId)
-    {
-        DialogEntry entry = FindDialog(dialogId);
-        if (entry == null)
-        {
-            Debug.LogWarning($"Dialog '{dialogId}' was not found in {name}.", this);
-            return;
-        }
-
-        Play(entry);
+        Play(dialog);
     }
 
     public void Play(Dialog dialog)
@@ -85,16 +70,6 @@ public class DialogManager : SingletonBasic<DialogManager>
         _playRoutine = StartCoroutine(PlayRoutine());
     }
 
-    public void Play(DialogSceneGraph sceneGraph)
-    {
-        if (sceneGraph == null || sceneGraph.graph == null)
-        {
-            return;
-        }
-
-        Play(sceneGraph.graph);
-    }
-
     public void Stop()
     {
         if (_playRoutine != null)
@@ -104,7 +79,7 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
 
         StopRunningEvents();
-        _textDisplay?.Clear();
+        ClearText();
     }
 
     private IEnumerator PlayRoutine()
@@ -118,7 +93,7 @@ public class DialogManager : SingletonBasic<DialogManager>
             currentNode = currentNode.GetNextNode();
         }
 
-        _textDisplay?.Clear();
+        ClearText();
         _onDialogFinished?.Invoke();
         _playRoutine = null;
         _runningEventCoroutines.Clear();
@@ -133,10 +108,11 @@ public class DialogManager : SingletonBasic<DialogManager>
             yield return entryCoroutine;
         }
 
-        if (_textDisplay != null)
+        if (_text != null)
         {
-            yield return _textDisplay.Display(node.message, node.displaySpeed);
-            _textDisplay.Clear();
+            yield return DisplayText(node.message, node.displaySpeed);
+            yield return WaitForContinueInput(node);
+            ClearText();
         }
 
         if (node.displayMessageWhileEntryEventRuns && entryCoroutine != null)
@@ -173,39 +149,105 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
     }
 
-    private void Play(DialogEntry entry)
+    private IEnumerator WaitForContinueInput(DialogNode node)
     {
-        if (entry.sceneGraph != null)
+        if (!_waitForContinueInput || string.IsNullOrEmpty(node.message))
         {
-            Play(entry.sceneGraph);
+            yield break;
+        }
+
+        yield return new WaitUntil(ContinueKeyWasPressed);
+    }
+
+    private bool ContinueKeyWasPressed()
+    {
+        Keyboard keyboard = Keyboard.current;
+        return keyboard != null && keyboard[_continueKey].wasPressedThisFrame;
+    }
+
+    private IEnumerator DisplayText(string message, float charactersPerSecond)
+    {
+        if (_text == null)
+        {
+            yield break;
+        }
+
+        _text.SetText(message ?? string.Empty);
+        _text.ForceMeshUpdate();
+
+        SetAllCharactersAlpha(0);
+
+        int characterCount = _text.textInfo.characterCount;
+        if (characterCount == 0)
+        {
+            yield break;
+        }
+
+        float delay = charactersPerSecond <= 0f ? 0f : 1f / charactersPerSecond;
+
+        for (int i = 0; i < characterCount; i++)
+        {
+            SetCharacterAlpha(i, 255);
+
+            if (delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    private void ClearText()
+    {
+        if (_text != null)
+        {
+            _text.SetText(string.Empty);
+        }
+    }
+
+    private void SetAllCharactersAlpha(byte alpha)
+    {
+        TMP_TextInfo textInfo = _text.textInfo;
+
+        for (int i = 0; i < textInfo.characterCount; i++)
+        {
+            SetCharacterAlpha(i, alpha);
+        }
+    }
+
+    private void SetCharacterAlpha(int characterIndex, byte alpha)
+    {
+        TMP_TextInfo textInfo = _text.textInfo;
+        TMP_CharacterInfo characterInfo = textInfo.characterInfo[characterIndex];
+
+        if (!characterInfo.isVisible)
+        {
             return;
         }
 
-        Play(entry.dialog);
+        int meshIndex = characterInfo.materialReferenceIndex;
+        int vertexIndex = characterInfo.vertexIndex;
+        Color32[] vertexColors = textInfo.meshInfo[meshIndex].colors32;
+
+        vertexColors[vertexIndex].a = alpha;
+        vertexColors[vertexIndex + 1].a = alpha;
+        vertexColors[vertexIndex + 2].a = alpha;
+        vertexColors[vertexIndex + 3].a = alpha;
+
+        _text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
     }
 
-    private DialogEntry FindDialog(string dialogId)
+    private Dialog GetFirstDialog()
     {
         for (int i = 0; i < _dialogs.Count; i++)
         {
-            DialogEntry entry = _dialogs[i];
-            if (entry != null && entry.id == dialogId)
+            Dialog dialog = _dialogs[i];
+            if (dialog != null)
             {
-                return entry;
-            }
-        }
-
-        return null;
-    }
-
-    private DialogEntry GetFirstDialog()
-    {
-        for (int i = 0; i < _dialogs.Count; i++)
-        {
-            DialogEntry entry = _dialogs[i];
-            if (entry != null && (entry.dialog != null || entry.sceneGraph != null))
-            {
-                return entry;
+                return dialog;
             }
         }
 
