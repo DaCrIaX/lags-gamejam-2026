@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9104329469327203731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0bab76f270768488ef6a30e96fd481, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogNode
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 168}
+  ports:
+    keys:
+    - output
+    - input
+    values:
+    - _fieldName: output
+      _node: {fileID: -9104329469327203731}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -3439211938455051357}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: -9104329469327203731}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 5726145709024289430}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+  displaySpeed: 15
+  entryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  entryEventWait: 0
+  displayMessageWhileEntryEventRuns: 0
+  message: Estoy viendo un video de polemica de streamers
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEventWait: 0
+--- !u!114 &-3439211938455051357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0bab76f270768488ef6a30e96fd481, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogNode
+  graph: {fileID: 11400000}
+  position: {x: 344, y: 232}
+  ports:
+    keys:
+    - output
+    - input
+    values:
+    - _fieldName: output
+      _node: {fileID: -3439211938455051357}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: -3439211938455051357}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -9104329469327203731}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+  displaySpeed: 5
+  entryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  entryEventWait: 0
+  displayMessageWhileEntryEventRuns: 0
+  message: 'Hoy en la noche he comido makis, estuvieron muy ricos
+
+
+    Muchas gracias
+    a todos
+
+
+    uwu'
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEventWait: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688c547937c2da04abe69615a8b5489f, type: 3}
+  m_Name: Test dialog
+  m_EditorClassIdentifier: Assembly-CSharp::Dialog
+  nodes:
+  - {fileID: 5726145709024289430}
+  - {fileID: -9104329469327203731}
+  - {fileID: -3439211938455051357}
+--- !u!114 &5726145709024289430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0bab76f270768488ef6a30e96fd481, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogNode
+  graph: {fileID: 11400000}
+  position: {x: -632, y: -24}
+  ports:
+    keys:
+    - output
+    - input
+    values:
+    - _fieldName: output
+      _node: {fileID: 5726145709024289430}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -9104329469327203731}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: input
+      _node: {fileID: 5726145709024289430}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+  displaySpeed: 30
+  entryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  entryEventWait: 0
+  displayMessageWhileEntryEventRuns: 0
+  message: hola mundo soy Jesus Pisconte
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEventWait: 0
