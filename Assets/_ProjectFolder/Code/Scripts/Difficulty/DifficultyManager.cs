@@ -103,6 +103,9 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     [SerializeField] private ClientTimeRange _highClientTimeRange = new(8f, 11f);
     [SerializeField] private ClientTimeRange _rushClientTimeRange = new(5f, 7f);
 
+    [Header("Visual Feedback")]
+    [SerializeField] private DifficultyVignetteVolume _vignetteVolume;
+
     public event Action<int> onCycleStarted;
     public event Action<DifficultyRoundData> onRoundStarted;
     public event Action onCycleCompleted;
@@ -160,6 +163,66 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
         return round.ClientTimeLimit;
     }
 
+    public void SetVignetteVolumeLevel(DifficultyVignetteVolume vignetteVolume, int level)
+    {
+        if (vignetteVolume == null)
+        {
+            return;
+        }
+
+        switch (level)
+        {
+            case 0:
+                vignetteVolume.SetDifficultyLevel(0);
+                break;
+
+            case 1:
+                vignetteVolume.SetDifficultyLevel(1);
+                break;
+
+            case 2:
+                vignetteVolume.SetDifficultyLevel(2);
+                break;
+
+            case 3:
+                vignetteVolume.SetDifficultyLevel(3);
+                break;
+
+            default:
+                vignetteVolume.SetDifficultyLevel(0);
+                break;
+        }
+    }
+
+    public void SetVignetteVolumeLevel(int level)
+    {
+        SetVignetteVolumeLevel(_vignetteVolume, level);
+    }
+
+    public void ApplyCurrentRoundVignetteVolume(DifficultyVignetteVolume vignetteVolume)
+    {
+        if (CurrentRound == null)
+        {
+            return;
+        }
+
+        int level = CurrentRound.Complexity switch
+        {
+            ComplexityLevel.Bajo => 0,
+            ComplexityLevel.Medio => 1,
+            ComplexityLevel.Alto => 2,
+            ComplexityLevel.Rush => 3,
+            _ => 0
+        };
+
+        SetVignetteVolumeLevel(vignetteVolume, level);
+    }
+
+    public void ApplyCurrentRoundVignetteVolume()
+    {
+        ApplyCurrentRoundVignetteVolume(_vignetteVolume);
+    }
+
     public void StartCurrentCycle()
     {
         _currentCycle = Mathf.Max(1, _startingCycle);
@@ -191,6 +254,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
 
         CurrentRound = _rounds[_currentRoundIndex];
         round = CurrentRound;
+        ApplyCurrentRoundVignetteVolume();
         onRoundStarted?.Invoke(CurrentRound);
         return true;
     }

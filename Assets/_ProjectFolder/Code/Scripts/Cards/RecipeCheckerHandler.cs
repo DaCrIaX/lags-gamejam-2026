@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Animations;
@@ -12,6 +13,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     [SerializeField] private AudioEmitterID _audio;
 
     private DishEvaluator _dishEvaluator;
+    public event Action<DishEvaluationResult> onPlateEvaluated;
 
     private void OnEnable()
     {
@@ -49,6 +51,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
         FindIngredients(out var ingredients);
         var evaluationResult = _dishEvaluator.EvaluateDish(ingredients);
 
+        onPlateEvaluated?.Invoke(evaluationResult);
         ProcessEvaluationResult(evaluationResult, ingredients);
     }
 

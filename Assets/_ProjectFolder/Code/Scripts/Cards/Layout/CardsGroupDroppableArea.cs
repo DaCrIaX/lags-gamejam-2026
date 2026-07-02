@@ -1,4 +1,5 @@
 using UnityEngine.Audio;
+using System;
 
 namespace UnityEngine.EventSystems
 {
@@ -6,6 +7,8 @@ namespace UnityEngine.EventSystems
     {
         [SerializeField] private AudioEmitter _dropAudio;
         private HOVCardsGroup _connected;
+
+        public event Action<CardTransform> onCardDropped;
 
         private void Awake() => _connected = GetComponentInChildren<HOVCardsGroup>();
 
@@ -16,6 +19,7 @@ namespace UnityEngine.EventSystems
             
             card.CardTransform.SetParent(_connected.Container);
             _dropAudio.PlayOneShot();
+            onCardDropped?.Invoke(card.CardTransform);
         }
     }
 }

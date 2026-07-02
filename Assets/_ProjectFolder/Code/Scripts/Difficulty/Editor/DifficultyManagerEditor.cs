@@ -23,6 +23,7 @@ public class DifficultyManagerEditor : Editor
     private SerializedProperty _mediumClientTimeRange;
     private SerializedProperty _highClientTimeRange;
     private SerializedProperty _rushClientTimeRange;
+    private SerializedProperty _vignetteVolume;
 
     private float _previewPhaseShift;
 
@@ -42,6 +43,7 @@ public class DifficultyManagerEditor : Editor
         _mediumClientTimeRange = serializedObject.FindProperty("_mediumClientTimeRange");
         _highClientTimeRange = serializedObject.FindProperty("_highClientTimeRange");
         _rushClientTimeRange = serializedObject.FindProperty("_rushClientTimeRange");
+        _vignetteVolume = serializedObject.FindProperty("_vignetteVolume");
     }
 
     public override void OnInspectorGUI()
@@ -85,6 +87,9 @@ public class DifficultyManagerEditor : Editor
             EditorGUILayout.PropertyField(_highClientTimeRange);
             EditorGUILayout.PropertyField(_rushClientTimeRange);
         }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(_vignetteVolume);
     }
 
     private void DrawRuntimeDebug()

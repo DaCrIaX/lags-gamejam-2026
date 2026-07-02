@@ -8,6 +8,7 @@ public class RoundManager : SingletonBasic<RoundManager>
     [SerializeField] private ClientManager _clientManager;
     [SerializeField] private DifficultyManager _difficultyManager;
     [SerializeField] private CycleQuotaManager _cycleQuotaManager;
+    [SerializeField] private bool _startOnStart = true;
 
     [Header("Controller")]
     [SerializeField] private Score _score;
@@ -45,7 +46,14 @@ public class RoundManager : SingletonBasic<RoundManager>
         }
     }
 
-    private void Start() => StartComponents();
+    private void Start()
+    {
+        if (_startOnStart)
+        {
+            StartComponents();
+        }
+    }
+
     public SO_ClientProfile GetCurrentClient() => _currentClientProfile;
     public void SendedIngredients(int score) => _score.AddScore(score);
     public void CompleteRound()
@@ -88,10 +96,36 @@ public class RoundManager : SingletonBasic<RoundManager>
 
     public void NextClient()
     {
+        StartNextClient(true);
+    }
+
+    public void ShowTutorialClientWithoutTimer()
+    {
+        StartNextClient(false);
+    }
+
+    public void StopClientTimer()
+    {
+        _timer.Stop();
+    }
+
+    private void StartNextClient(bool startTimer)
+    {
         if (_isGameOver) return;
 
         _isCompletingClient = false;
-        _timer.Play(GetCurrentClientTimeLimit());
+        if (startTimer)
+        {
+            if (_timer.gameObject.activeInHierarchy)
+            {
+                _timer.Play(GetCurrentClientTimeLimit());
+            }
+        }
+        else
+        {
+            _timer.Stop();
+        }
+
         _choiceArea.SetActive(false);
         _choiceCamera.SetActive(false);
         _recipeBuildArea.SetActive(true);

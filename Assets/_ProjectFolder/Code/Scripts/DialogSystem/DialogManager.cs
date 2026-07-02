@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,17 +10,34 @@ public class DialogManager : SingletonBasic<DialogManager>
 {
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private bool _playOnStart;
-    [SerializeField] private bool _waitForContinueInput = true;
-    [SerializeField] private Key _continueKey = Key.Space;
-    [SerializeField] private List<Dialog> _dialogs = new List<Dialog>();
+    [SerializeField] private List<DialogEntry> _dialogs = new List<DialogEntry>();
     [SerializeField] private UnityEvent _onDialogStarted;
     [SerializeField] private UnityEvent _onDialogFinished;
 
     private Dialog _currentDialog;
+    private List<DialogBubbleEvents> _currentBubbleEvents;
     private Coroutine _playRoutine;
     private readonly List<Coroutine> _runningEventCoroutines = new List<Coroutine>();
 
     public bool IsPlaying => _playRoutine != null;
+    public int DialogCount => _dialogs.Count;
+
+    [Serializable]
+    private sealed class DialogEntry
+    {
+        public Dialog dialog;
+        public List<DialogBubbleEvents> bubbleEvents = new List<DialogBubbleEvents>();
+    }
+
+    [Serializable]
+    private sealed class DialogBubbleEvents
+    {
+        public UnityEvent entryEvent = new UnityEvent();
+        [Min(0f)] public float entryEventWait;
+        public bool displayMessageWhileEntryEventRuns;
+        public UnityEvent exitEvent = new UnityEvent();
+        [Min(0f)] public float exitEventWait;
+    }
 
     protected override void Awake()
     {
@@ -27,7 +45,7 @@ public class DialogManager : SingletonBasic<DialogManager>
 
         if (_text == null)
         {
-            _text = GetComponentInChildren<TextMeshProUGUI>();
+            _text = GetComponentInChildren<TextMeshProUGUI>(true);
         }
 
         ClearText();
@@ -48,14 +66,57 @@ public class DialogManager : SingletonBasic<DialogManager>
 
     public void PlayFirst()
     {
-        Dialog dialog = GetFirstDialog();
-        if (dialog == null)
+        DialogEntry entry = GetFirstDialogEntry();
+        if (entry == null)
         {
             Debug.LogWarning($"DialogManager '{name}' has no dialogs assigned.", this);
             return;
         }
 
-        Play(dialog);
+        Play(entry);
+    }
+
+    public void PlayAtIndex(int dialogIndex)
+    {
+        TryPlayAtIndex(dialogIndex);
+    }
+
+    public bool TryPlayAtIndex(int dialogIndex)
+    {
+        DialogEntry entry = GetDialogEntryAt(dialogIndex);
+        if (entry == null)
+        {
+            Debug.LogWarning($"DialogManager '{name}' has no valid dialog at index {dialogIndex}.", this);
+            return false;
+        }
+
+        Play(entry);
+        return true;
+    }
+
+    public int GetDialogIndex(Dialog dialog)
+    {
+        if (dialog == null)
+        {
+            return -1;
+        }
+
+        for (int i = 0; i < _dialogs.Count; i++)
+        {
+            DialogEntry entry = _dialogs[i];
+            if (entry != null && entry.dialog == dialog)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public Dialog GetDialogAtIndex(int dialogIndex)
+    {
+        DialogEntry entry = GetDialogEntryAt(dialogIndex);
+        return entry?.dialog;
     }
 
     public void Play(Dialog dialog)
@@ -65,9 +126,14 @@ public class DialogManager : SingletonBasic<DialogManager>
             return;
         }
 
-        Stop();
-        _currentDialog = dialog;
-        _playRoutine = StartCoroutine(PlayRoutine());
+        DialogEntry entry = FindDialogEntry(dialog);
+        if (entry != null)
+        {
+            Play(entry);
+            return;
+        }
+
+        Play(dialog, null);
     }
 
     public void Stop()
@@ -80,30 +146,48 @@ public class DialogManager : SingletonBasic<DialogManager>
 
         StopRunningEvents();
         ClearText();
+        SetTextParentActive(false);
+    }
+
+    private void Play(DialogEntry entry)
+    {
+        Play(entry.dialog, entry.bubbleEvents);
+    }
+
+    private void Play(Dialog dialog, List<DialogBubbleEvents> bubbleEvents)
+    {
+        Stop();
+        _currentDialog = dialog;
+        _currentBubbleEvents = bubbleEvents;
+        _playRoutine = StartCoroutine(PlayRoutine());
     }
 
     private IEnumerator PlayRoutine()
     {
+        SetTextParentActive(true);
         _onDialogStarted?.Invoke();
 
+        int bubbleIndex = 0;
         DialogNode currentNode = _currentDialog.GetFirstNode();
         while (currentNode != null)
         {
-            yield return RunNode(currentNode);
+            yield return RunNode(currentNode, GetBubbleEvents(bubbleIndex));
             currentNode = currentNode.GetNextNode();
+            bubbleIndex++;
         }
 
         ClearText();
         _onDialogFinished?.Invoke();
+        SetTextParentActive(false);
         _playRoutine = null;
         _runningEventCoroutines.Clear();
     }
 
-    private IEnumerator RunNode(DialogNode node)
+    private IEnumerator RunNode(DialogNode node, DialogBubbleEvents bubbleEvents)
     {
-        Coroutine entryCoroutine = StartNodeEvent(node.entryEvent, node.entryEventWait);
+        Coroutine entryCoroutine = StartNodeEvent(bubbleEvents?.entryEvent, bubbleEvents?.entryEventWait ?? 0f);
 
-        if (!node.displayMessageWhileEntryEventRuns && entryCoroutine != null)
+        if (!(bubbleEvents?.displayMessageWhileEntryEventRuns ?? false) && entryCoroutine != null)
         {
             yield return entryCoroutine;
         }
@@ -111,16 +195,16 @@ public class DialogManager : SingletonBasic<DialogManager>
         if (_text != null)
         {
             yield return DisplayText(node.message, node.displaySpeed);
-            yield return WaitForContinueInput(node);
+            yield return WaitForClick(node);
             ClearText();
         }
 
-        if (node.displayMessageWhileEntryEventRuns && entryCoroutine != null)
+        if ((bubbleEvents?.displayMessageWhileEntryEventRuns ?? false) && entryCoroutine != null)
         {
             yield return entryCoroutine;
         }
 
-        Coroutine exitCoroutine = StartNodeEvent(node.exitEvent, node.exitEventWait);
+        Coroutine exitCoroutine = StartNodeEvent(bubbleEvents?.exitEvent, bubbleEvents?.exitEventWait ?? 0f);
         if (exitCoroutine != null)
         {
             yield return exitCoroutine;
@@ -149,20 +233,20 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
     }
 
-    private IEnumerator WaitForContinueInput(DialogNode node)
+    private IEnumerator WaitForClick(DialogNode node)
     {
-        if (!_waitForContinueInput || string.IsNullOrEmpty(node.message))
+        if (string.IsNullOrEmpty(node.message))
         {
             yield break;
         }
 
-        yield return new WaitUntil(ContinueKeyWasPressed);
+        yield return new WaitUntil(ContinueClickWasPressed);
     }
 
-    private bool ContinueKeyWasPressed()
+    private bool ContinueClickWasPressed()
     {
-        Keyboard keyboard = Keyboard.current;
-        return keyboard != null && keyboard[_continueKey].wasPressedThisFrame;
+        Mouse mouse = Mouse.current;
+        return mouse != null && mouse.leftButton.wasPressedThisFrame;
     }
 
     private IEnumerator DisplayText(string message, float charactersPerSecond)
@@ -208,6 +292,16 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
     }
 
+    private void SetTextParentActive(bool active)
+    {
+        if (_text == null || _text.transform.parent == null)
+        {
+            return;
+        }
+
+        _text.transform.parent.gameObject.SetActive(active);
+    }
+
     private void SetAllCharactersAlpha(byte alpha)
     {
         TMP_TextInfo textInfo = _text.textInfo;
@@ -240,14 +334,56 @@ public class DialogManager : SingletonBasic<DialogManager>
         _text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
     }
 
-    private Dialog GetFirstDialog()
+    private DialogBubbleEvents GetBubbleEvents(int bubbleIndex)
+    {
+        if (_currentBubbleEvents == null ||
+            bubbleIndex < 0 ||
+            bubbleIndex >= _currentBubbleEvents.Count)
+        {
+            return null;
+        }
+
+        return _currentBubbleEvents[bubbleIndex];
+    }
+
+    private DialogEntry GetFirstDialogEntry()
     {
         for (int i = 0; i < _dialogs.Count; i++)
         {
-            Dialog dialog = _dialogs[i];
-            if (dialog != null)
+            DialogEntry entry = _dialogs[i];
+            if (entry != null && entry.dialog != null)
             {
-                return dialog;
+                return entry;
+            }
+        }
+
+        return null;
+    }
+
+    private DialogEntry GetDialogEntryAt(int dialogIndex)
+    {
+        if (dialogIndex < 0 || dialogIndex >= _dialogs.Count)
+        {
+            return null;
+        }
+
+        DialogEntry entry = _dialogs[dialogIndex];
+        if (entry == null || entry.dialog == null)
+        {
+            return null;
+        }
+
+        return entry;
+    }
+
+    private DialogEntry FindDialogEntry(Dialog dialog)
+    {
+        for (int i = 0; i < _dialogs.Count; i++)
+        {
+            DialogEntry entry = _dialogs[i];
+            if (entry != null && entry.dialog == dialog)
+            {
+                return entry;
             }
         }
 

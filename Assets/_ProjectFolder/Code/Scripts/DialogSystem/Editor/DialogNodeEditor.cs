@@ -10,7 +10,6 @@ public class DialogNodeEditor : NodeEditor
     private const float MinMessageHeight = 48f;
     private const float MessageHorizontalPadding = 32f;
     private const float BlockSpacing = 20f;
-    private const float FieldSpacing = 3f;
     private const float SeparatorHeight = 1f;
 
     private static GUIStyle _messageStyle;
@@ -30,7 +29,7 @@ public class DialogNodeEditor : NodeEditor
 
         NodeEditorGUILayout.PropertyField(
             serializedObject.FindProperty(nameof(DialogNode.input)),
-            new GUIContent("Entrada"),
+            new GUIContent("Input"),
             true
         );
 
@@ -38,29 +37,7 @@ public class DialogNodeEditor : NodeEditor
 
         EditorGUILayout.PropertyField(
             serializedObject.FindProperty(nameof(DialogNode.displaySpeed)),
-            new GUIContent("Velocidad de display")
-        );
-
-        DrawSeparator();
-
-        EditorGUILayout.PropertyField(
-            serializedObject.FindProperty(nameof(DialogNode.entryEvent)),
-            new GUIContent("Evento de entrada"),
-            true
-        );
-
-        SpaceField();
-
-        EditorGUILayout.PropertyField(
-            serializedObject.FindProperty(nameof(DialogNode.entryEventWait)),
-            new GUIContent("Espera evento de entrada")
-        );
-
-        SpaceField();
-
-        EditorGUILayout.PropertyField(
-            serializedObject.FindProperty(nameof(DialogNode.displayMessageWhileEntryEventRuns)),
-            new GUIContent("Mostrar mensaje durante evento")
+            new GUIContent("Display Speed")
         );
 
         DrawSeparator();
@@ -69,24 +46,9 @@ public class DialogNodeEditor : NodeEditor
 
         DrawSeparator();
 
-        EditorGUILayout.PropertyField(
-            serializedObject.FindProperty(nameof(DialogNode.exitEvent)),
-            new GUIContent("Evento de salida"),
-            true
-        );
-
-        SpaceField();
-
-        EditorGUILayout.PropertyField(
-            serializedObject.FindProperty(nameof(DialogNode.exitEventWait)),
-            new GUIContent("Espera evento de salida")
-        );
-
-        DrawSeparator();
-
         NodeEditorGUILayout.PropertyField(
             serializedObject.FindProperty(nameof(DialogNode.output)),
-            new GUIContent("Salida"),
+            new GUIContent("Output"),
             true
         );
 
@@ -98,7 +60,7 @@ public class DialogNodeEditor : NodeEditor
     {
         SerializedProperty messageProperty = serializedObject.FindProperty(nameof(DialogNode.message));
 
-        EditorGUILayout.LabelField("Mensaje");
+        EditorGUILayout.LabelField("Message");
 
         if (_messageStyle == null)
         {
@@ -120,16 +82,6 @@ public class DialogNodeEditor : NodeEditor
             _messageStyle,
             GUILayout.MinHeight(messageHeight)
         );
-    }
-
-    private static void SpaceBlock()
-    {
-        GUILayout.Space(BlockSpacing);
-    }
-
-    private static void SpaceField()
-    {
-        GUILayout.Space(FieldSpacing);
     }
 
     private static void DrawSeparator()

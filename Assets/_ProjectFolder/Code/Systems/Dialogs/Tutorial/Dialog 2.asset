@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9104329469327203731
+--- !u!114 &-3958750370279971981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,48 +13,46 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogNode
   graph: {fileID: 11400000}
-  position: {x: -168, y: 168}
+  position: {x: -376, y: -152}
   ports:
     keys:
-    - output
     - input
+    - output
     values:
+    - _fieldName: input
+      _node: {fileID: -3958750370279971981}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -9104329469327203731}
+      _node: {fileID: -3958750370279971981}
       _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -3439211938455051357}
+        node: {fileID: -1322931401877702936}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: input
-      _node: {fileID: -9104329469327203731}
-      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: 5726145709024289430}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-  displaySpeed: 15
+  displaySpeed: 30
   entryEvent:
     m_PersistentCalls:
       m_Calls: []
   entryEventWait: 0
   displayMessageWhileEntryEventRuns: 0
-  message: Estoy viendo un video de polemica de streamers
+  message: "Muy bien, escucha con atenci\xF3n: ac\xE1 nosotros llevamos la cocina
+    de una forma algo diferente a los dem\xE1s lugares de la ciudad."
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
   exitEventWait: 0
---- !u!114 &-3439211938455051357
+--- !u!114 &-3114405770109243185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,14 +65,26 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: Assembly-CSharp::DialogNode
   graph: {fileID: 11400000}
-  position: {x: 344, y: 232}
+  position: {x: 696, y: -152}
   ports:
     keys:
-    - output
     - input
+    - output
     values:
+    - _fieldName: input
+      _node: {fileID: -3114405770109243185}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -1322931401877702936}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -3439211938455051357}
+      _node: {fileID: -3114405770109243185}
       _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
@@ -82,32 +92,69 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: input
-      _node: {fileID: -3439211938455051357}
-      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: -9104329469327203731}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-  displaySpeed: 5
+  displaySpeed: 30
   entryEvent:
     m_PersistentCalls:
       m_Calls: []
   entryEventWait: 0
   displayMessageWhileEntryEventRuns: 0
-  message: 'Hoy en la noche he comido makis, estuvieron muy ricos
-
-
-    Muchas gracias
-    a todos
-
-
-    uwu'
+  message: "Vamos a ver qu\xE9 tienes; combina ese pescado, aj\xED y lim\xF3n y prep\xE1rate
+    un ceviche."
+  exitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  exitEventWait: 0
+--- !u!114 &-1322931401877702936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0bab76f270768488ef6a30e96fd481, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogNode
+  graph: {fileID: 11400000}
+  position: {x: 168, y: -152}
+  ports:
+    keys:
+    - input
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -1322931401877702936}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -3958750370279971981}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -1322931401877702936}
+      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: -3114405770109243185}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  displaySpeed: 30
+  entryEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  entryEventWait: 0
+  displayMessageWhileEntryEventRuns: 0
+  message: "Estos son tus ingredientes, como puedes ver, no hay mucha variedad as\xED
+    que hay que ser bastante creativos con lo que servimos."
   exitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -122,60 +169,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 688c547937c2da04abe69615a8b5489f, type: 3}
-  m_Name: Test dialog
+  m_Name: Dialog 2
   m_EditorClassIdentifier: Assembly-CSharp::Dialog
   nodes:
-  - {fileID: 5726145709024289430}
-  - {fileID: -9104329469327203731}
-  - {fileID: -3439211938455051357}
---- !u!114 &5726145709024289430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f0bab76f270768488ef6a30e96fd481, type: 3}
-  m_Name: Dialog
-  m_EditorClassIdentifier: Assembly-CSharp::DialogNode
-  graph: {fileID: 11400000}
-  position: {x: -632, y: -24}
-  ports:
-    keys:
-    - output
-    - input
-    values:
-    - _fieldName: output
-      _node: {fileID: 5726145709024289430}
-      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: input
-        node: {fileID: -9104329469327203731}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: input
-      _node: {fileID: 5726145709024289430}
-      _typeQualifiedName: DialogNode+Connection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-  displaySpeed: 30
-  entryEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  entryEventWait: 0
-  displayMessageWhileEntryEventRuns: 0
-  message: hola mundo soy Jesus Pisconte
-  exitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  exitEventWait: 0
+  - {fileID: -3958750370279971981}
+  - {fileID: -1322931401877702936}
+  - {fileID: -3114405770109243185}
