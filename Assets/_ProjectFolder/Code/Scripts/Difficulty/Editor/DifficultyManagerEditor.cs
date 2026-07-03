@@ -24,6 +24,7 @@ public class DifficultyManagerEditor : Editor
     private SerializedProperty _highClientTimeRange;
     private SerializedProperty _rushClientTimeRange;
     private SerializedProperty _vignetteVolume;
+    private SerializedProperty _roundText;
 
     private float _previewPhaseShift;
 
@@ -44,6 +45,7 @@ public class DifficultyManagerEditor : Editor
         _highClientTimeRange = serializedObject.FindProperty("_highClientTimeRange");
         _rushClientTimeRange = serializedObject.FindProperty("_rushClientTimeRange");
         _vignetteVolume = serializedObject.FindProperty("_vignetteVolume");
+        _roundText = serializedObject.FindProperty("_roundText");
     }
 
     public override void OnInspectorGUI()
@@ -90,6 +92,9 @@ public class DifficultyManagerEditor : Editor
 
         EditorGUILayout.Space();
         EditorGUILayout.PropertyField(_vignetteVolume);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(_roundText);
     }
 
     private void DrawRuntimeDebug()
@@ -106,7 +111,8 @@ public class DifficultyManagerEditor : Editor
             EditorGUILayout.FloatField("Current Client Time Limit", manager.CurrentClientTimeLimit);
 
             var currentRound = manager.CurrentRound;
-            EditorGUILayout.IntField("Current Round", currentRound != null ? currentRound.RoundNumber : 0);
+            EditorGUILayout.IntField("Current Global Round", manager.CurrentGlobalRound);
+            EditorGUILayout.IntField("Current Cycle Round", currentRound != null ? currentRound.RoundNumber : 1);
             EditorGUILayout.EnumPopup("Current Complexity", currentRound != null ? currentRound.Complexity : ComplexityLevel.Bajo);
             EditorGUILayout.IntField("Current Round Clients", currentRound != null ? currentRound.ClientAmount : 0);
             EditorGUILayout.FloatField("Current Round Client Time", currentRound != null ? currentRound.ClientTimeLimit : 0f);

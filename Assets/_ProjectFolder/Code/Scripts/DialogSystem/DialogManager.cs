@@ -10,6 +10,8 @@ public class DialogManager : SingletonBasic<DialogManager>
 {
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private bool _playOnStart;
+    [SerializeField] private bool _clickToNext = true;
+    [SerializeField, Min(0f)] private float _autoNextDelay = 2f;
     [SerializeField] private List<DialogEntry> _dialogs = new List<DialogEntry>();
     [SerializeField] private UnityEvent _onDialogStarted;
     [SerializeField] private UnityEvent _onDialogFinished;
@@ -195,7 +197,7 @@ public class DialogManager : SingletonBasic<DialogManager>
         if (_text != null)
         {
             yield return DisplayText(node.message, node.displaySpeed);
-            yield return WaitForClick(node);
+            yield return WaitForNext(node);
             ClearText();
         }
 
@@ -233,14 +235,23 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
     }
 
-    private IEnumerator WaitForClick(DialogNode node)
+    private IEnumerator WaitForNext(DialogNode node)
     {
         if (string.IsNullOrEmpty(node.message))
         {
             yield break;
         }
 
-        yield return new WaitUntil(ContinueClickWasPressed);
+        if (_clickToNext)
+        {
+            yield return new WaitUntil(ContinueClickWasPressed);
+            yield break;
+        }
+
+        if (_autoNextDelay > 0f)
+        {
+            yield return new WaitForSeconds(_autoNextDelay);
+        }
     }
 
     private bool ContinueClickWasPressed()

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class RequestCustomer : MonoBehaviour
 {
@@ -16,7 +14,11 @@ public class RequestCustomer : MonoBehaviour
     private bool firstRequest = true;
     private List<int> firstIngredients = new List<int> { 1, 6, 7 };
     private int currentValueRequest;
+    private int currentRequestIndex = -1;
     private bool match;
+
+    public Request CurrentRequest => GetCurrentRequest();
+    public bool LastRequestMatched { get; private set; } = true;
 
     public UnityEvent onMatch;
     public UnityEvent onMatchLose;
@@ -35,38 +37,33 @@ public class RequestCustomer : MonoBehaviour
         {
             int randomIndex = Random.Range(0, firstIngredients.Count);
             currentValueRequest = randomIndex;
-            dialogManager.PlayAtIndex(firstIngredients[currentValueRequest]);
-            Debug.Log(ingredientsRequest[firstIngredients[currentValueRequest]].textRequest);
+            currentRequestIndex = firstIngredients[currentValueRequest];
+            dialogManager.PlayAtIndex(currentRequestIndex);
+            Debug.Log(ingredientsRequest[currentRequestIndex].textRequest);
             return;
         }
 
         int valueRandom = Random.Range(0, ingredientsRequest.Length - 1);
         currentValueRequest = valueRandom;
-        dialogManager.PlayAtIndex(currentValueRequest);
-        Debug.Log(ingredientsRequest[currentValueRequest].textRequest);
+        currentRequestIndex = currentValueRequest;
+        dialogManager.PlayAtIndex(currentRequestIndex);
+        Debug.Log(ingredientsRequest[currentRequestIndex].textRequest);
     }
 
     public void CheckRequest()
     {
         _cards = recipeContainer.GetComponentsInChildren<Card>();
-        if (_cards.Length == 0) return;
+        LastRequestMatched = false;
+
         foreach (var card in _cards)
         {
-            if (firstRequest)
+            if (card.Ingredient == CurrentRequest?.requestIngredient)
             {
-                if (card.Ingredient == ingredientsRequest[firstIngredients[currentValueRequest]].requestIngredient)
-                {
-                    match = true;
-                }
-            }
-            else
-            {
-                if (card.Ingredient == ingredientsRequest[currentValueRequest].requestIngredient)
-                {
-                    match = true;
-                }
+                match = true;
             }
         }
+
+        LastRequestMatched = match;
 
         if (match)
         {
@@ -83,6 +80,32 @@ public class RequestCustomer : MonoBehaviour
 
         match = false;
         firstRequest = false;
+    }
+
+    public bool DoesPlateMatchCurrentRequest(Dictionary<SO_IngredientBase, int> plateIngredients)
+    {
+        Request request = CurrentRequest;
+        if (request == null || request.requestIngredient == null)
+        {
+            return true;
+        }
+
+        return plateIngredients.TryGetValue(request.requestIngredient, out int amount) && amount > 0;
+    }
+
+    private Request GetCurrentRequest()
+    {
+        if (ingredientsRequest == null || ingredientsRequest.Length == 0)
+        {
+            return null;
+        }
+
+        if (currentRequestIndex < 0 || currentRequestIndex >= ingredientsRequest.Length)
+        {
+            return null;
+        }
+
+        return ingredientsRequest[currentRequestIndex];
     }
 }
 

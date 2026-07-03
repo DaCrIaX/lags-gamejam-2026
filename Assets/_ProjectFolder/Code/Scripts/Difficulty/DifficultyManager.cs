@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public enum ComplexityLevel
@@ -106,6 +107,9 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     [Header("Visual Feedback")]
     [SerializeField] private DifficultyVignetteVolume _vignetteVolume;
 
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _roundText;
+
     public event Action<int> onCycleStarted;
     public event Action<DifficultyRoundData> onRoundStarted;
     public event Action onCycleCompleted;
@@ -122,8 +126,19 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     public float FixedClientTimeLimit => _fixedClientTimeLimit;
     public float CurrentClientTimeLimit => GetClientTimeLimit(CurrentRound);
     public float CurrentCyclePhaseShift => _currentCyclePhaseShift;
+    public int CurrentGlobalRound => GetGlobalRoundNumber(CurrentRound);
     public DifficultyRoundData CurrentRound { get; private set; }
     public IReadOnlyList<DifficultyRoundData> Rounds => _rounds;
+
+    private void Start()
+    {
+        RefreshRoundText();
+    }
+
+    private void OnValidate()
+    {
+        RefreshRoundText();
+    }
 
     public IReadOnlyList<DifficultyRoundData> BuildPreviewRounds(float phaseShift)
     {
@@ -227,6 +242,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     {
         _currentCycle = Mathf.Max(1, _startingCycle);
         GenerateCycle();
+        RefreshRoundText();
         onCycleStarted?.Invoke(_currentCycle);
     }
 
@@ -234,6 +250,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     {
         _currentCycle++;
         GenerateCycle();
+        RefreshRoundText();
         onCycleStarted?.Invoke(_currentCycle);
     }
 
@@ -248,15 +265,38 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
         {
             CurrentRound = null;
             round = null;
+            RefreshRoundText();
             onCycleCompleted?.Invoke();
             return false;
         }
 
         CurrentRound = _rounds[_currentRoundIndex];
         round = CurrentRound;
+        RefreshRoundText();
         ApplyCurrentRoundVignetteVolume();
         onRoundStarted?.Invoke(CurrentRound);
         return true;
+    }
+
+    private void RefreshRoundText()
+    {
+        if (_roundText == null)
+        {
+            return;
+        }
+
+        _roundText.SetText(GetGlobalRoundNumber(CurrentRound).ToString());
+    }
+
+    private int GetGlobalRoundNumber(DifficultyRoundData round)
+    {
+        if (round == null)
+        {
+            return 1;
+        }
+
+        int completedCycles = Mathf.Max(0, round.Cycle - 1);
+        return completedCycles * _roundsPerCycle + round.RoundNumber;
     }
 
     private void GenerateCycle()

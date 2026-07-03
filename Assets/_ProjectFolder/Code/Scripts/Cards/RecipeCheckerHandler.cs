@@ -11,6 +11,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     [SerializeField] private SO_ScoringConfig _scoringConfig;
     [SerializeField] private TweenGroup _groupAnimation;
     [SerializeField] private AudioEmitterID _audio;
+    [SerializeField] private RequestCustomer _requestCustomer;
 
     private DishEvaluator _dishEvaluator;
     public event Action<DishEvaluationResult> onPlateEvaluated;
@@ -50,11 +51,33 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     {
         FindIngredients(out var ingredients);
         var evaluationResult = _dishEvaluator.EvaluateDish(ingredients);
-
+        ApplyRequestScoreRule(evaluationResult, ingredients);
         onPlateEvaluated?.Invoke(evaluationResult);
         ProcessEvaluationResult(evaluationResult, ingredients);
     }
+    
+    private void ApplyRequestScoreRule(DishEvaluationResult result, Dictionary<SO_IngredientBase, int> ingredients)
+    {
+        RequestCustomer requestCustomer = GetRequestCustomer();
+        if (result == null || requestCustomer == null || requestCustomer.DoesPlateMatchCurrentRequest(ingredients))
+        {
+            return;
+        }
 
+        Debug.Log("No contiene el ingrediente pedido. Puntaje anulado.");
+        result.Score = 0;
+    }
+
+    private RequestCustomer GetRequestCustomer()
+    {
+        if (_requestCustomer == null)
+        {
+            _requestCustomer = FindObjectOfType<RequestCustomer>(true);
+        }
+
+        return _requestCustomer;
+    }
+    
     private void ProcessEvaluationResult(DishEvaluationResult result, Dictionary<SO_IngredientBase, int> ingredients)
     {
         _roundManager?.SetLastEvaluationResult(result);
