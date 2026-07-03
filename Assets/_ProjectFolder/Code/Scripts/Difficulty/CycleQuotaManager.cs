@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 [Serializable]
 public class CycleEvaluationResult
@@ -46,6 +47,9 @@ public class CycleQuotaManager : MonoBehaviour
     [SerializeField, Min(0f)] private float _quotaGrowthPercentPerCycle = 10f;
     [SerializeField, Min(0)] private int _startingFunds;
 
+    [Header("UI")]
+    [SerializeField] private Image _quotaProgressImage;
+
     [Header("Events")]
     [SerializeField] private UnityEvent _onCycleSurvived;
     [SerializeField] private UnityEvent _onGameOver;
@@ -60,6 +64,7 @@ public class CycleQuotaManager : MonoBehaviour
     public int BaseMinimumQuota => _baseMinimumQuota;
     public float QuotaGrowthPercentPerCycle => _quotaGrowthPercentPerCycle;
     public int CurrentMinimumQuota => GetMinimumQuotaForCycle(_difficultyManager ? _difficultyManager.CurrentCycle : 1);
+    public float CurrentQuotaProgress => GetQuotaProgress();
     public CycleEvaluationResult LastResult { get; private set; }
 
     private void Awake()
@@ -74,6 +79,11 @@ public class CycleQuotaManager : MonoBehaviour
             _difficultyManager.onCycleStarted += OnCycleStarted;
             _difficultyManager.onCycleCompleted += EvaluateCycle;
         }
+
+        if (_score)
+        {
+            _score.onScoreChanged += OnScoreChanged;
+        }
     }
 
     private void OnDisable()
@@ -83,11 +93,32 @@ public class CycleQuotaManager : MonoBehaviour
             _difficultyManager.onCycleStarted -= OnCycleStarted;
             _difficultyManager.onCycleCompleted -= EvaluateCycle;
         }
+
+        if (_score)
+        {
+            _score.onScoreChanged -= OnScoreChanged;
+        }
     }
 
     private void OnCycleStarted(int cycle)
     {
         _score?.ResetScore();
+        RefreshQuotaProgress();
+    }
+
+    private void Start()
+    {
+        RefreshQuotaProgress();
+    }
+
+    private void OnValidate()
+    {
+        RefreshQuotaProgress();
+    }
+
+    private void OnScoreChanged(int score)
+    {
+        RefreshQuotaProgress();
     }
 
     public void EvaluateCycle()
@@ -107,6 +138,8 @@ public class CycleQuotaManager : MonoBehaviour
                 _funds -= minimumQuota - cycleScore;
         }
 
+        RefreshQuotaProgress();
+
         LastResult = new CycleEvaluationResult(
             currentCycle,
             cycleScore,
@@ -120,6 +153,7 @@ public class CycleQuotaManager : MonoBehaviour
         if (survived)
         {
             _difficultyManager?.AdvanceCycle();
+            RefreshQuotaProgress();
             _onCycleSurvived?.Invoke();
             onCycleSurvived?.Invoke(LastResult);
             return;
@@ -134,5 +168,24 @@ public class CycleQuotaManager : MonoBehaviour
         int safeCycle = Mathf.Max(1, cycle);
         float growthFactor = 1f + _quotaGrowthPercentPerCycle * 0.01f;
         return Mathf.RoundToInt(_baseMinimumQuota * Mathf.Pow(growthFactor, safeCycle - 1));
+    }
+
+    private void RefreshQuotaProgress()
+    {
+        if (_quotaProgressImage == null)
+        {
+            return;
+        }
+
+        _quotaProgressImage.fillAmount = CurrentQuotaProgress;
+    }
+
+    private float GetQuotaProgress()
+    {
+        int minimumQuota = Mathf.Max(1, CurrentMinimumQuota);
+        int cycleScore = _score ? _score.CurrentScore : 0;
+        int availableScore = Mathf.Max(0, cycleScore + _funds);
+
+        return Mathf.Clamp01((float)availableScore / minimumQuota);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -8,6 +9,7 @@ public class Score : PoolSingleBehaviour<ScoreParticle>
 
     private int _score;
     public int CurrentScore => _score;
+    public event Action<int> onScoreChanged;
 
     public void AddScore(int value)
     {
@@ -16,12 +18,14 @@ public class Score : PoolSingleBehaviour<ScoreParticle>
 
         _score += value;
         RefreshText();
+        onScoreChanged?.Invoke(_score);
     }
 
     public void ResetScore()
     {
         _score = 0;
         RefreshText();
+        onScoreChanged?.Invoke(_score);
     }
 
     private void RefreshText() => _text.SetText($"score: {_score}");
