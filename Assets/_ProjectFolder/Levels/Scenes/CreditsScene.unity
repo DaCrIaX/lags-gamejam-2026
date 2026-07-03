@@ -642,7 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
   _channel: 0
   _audioReference:
-    m_AssetGUID: 366ef239fb506224493f30fe88460fdd
+    m_AssetGUID: ea04968972ffde8448600ce6e0363a03
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

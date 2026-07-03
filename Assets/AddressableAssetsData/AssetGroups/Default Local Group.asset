@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b978287379d6bb4c90aafc10358f1dc
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-MenuMusic/Huarique cumbia.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3459c02ef1db46d4ea82b873744d7106
     m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/RECETA.wav
     m_ReadOnly: 0
@@ -32,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3cf0140d8344cf9438d57db61e5ceb49
     m_Address: Assets/_ProjectFolder/Art/Audio/Boton Menu/Click-01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f1d5457c493c5640978e17d84109606
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-GameplayMusic/S.A.L-Stage02.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -60,6 +70,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99b7a96e597a54c4f9bd26f874c2b819
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-GameplayMusic/S.A.L-Stage03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b2fe3965c419aa45a1bdaa438d7558b
     m_Address: Assets/_ProjectFolder/Art/Audio/Boton Menu/Click-03.wav
     m_ReadOnly: 0
@@ -75,8 +90,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa923d90b068c0f4a87b0696d843bfbc
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-GameplayMusic/S.A.L-Stage04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bde4812ac14df3c4db5718cf52501801
     m_Address: Assets/_ProjectFolder/Art/Audio/Cartas/ROBAR CARTA.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3a3e614e498b424fb8aaa26ac7c54ac
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-GameplayMusic/S.A.L-Stage01.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -87,6 +112,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e7be23836c801cf43ab4b564e5d34182
     m_Address: Assets/_ProjectFolder/Art/Audio/Gameplay/S.A.L-Stage03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea04968972ffde8448600ce6e0363a03
+    m_Address: Assets/_ProjectFolder/Art/Audio/New Audio/h&j-Credits/CREDITOS.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

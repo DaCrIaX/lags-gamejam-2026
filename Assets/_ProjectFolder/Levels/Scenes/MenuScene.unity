@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6121191814689537433, guid: e33f7a3a92ee60043989ef6c9764cff9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3306,11 +3310,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Audio::UnityEngine.Audio.AudioEmitter
   _channel: 0
   _audioReference:
-    m_AssetGUID: 8e524b45402d49d4a9e2a5ef6673e95d
+    m_AssetGUID: 1b978287379d6bb4c90aafc10358f1dc
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
-    m_EditorAssetChanged: 1
+    m_EditorAssetChanged: 0
   _preloadAsset: 1
   _playOnAwake: 1
   _saveClipOnAwake: 0
