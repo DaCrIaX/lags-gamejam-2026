@@ -1681,6 +1681,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: H&J_Reloj
       objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9881861
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.11603129
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0141540915
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.099119045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.092
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658639797819673994, guid: b2c3f240acf6ecd4cbb438853293abdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 708.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
