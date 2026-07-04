@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class DialogManager : SingletonBasic<DialogManager>
 {
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private GameObject _bubbleBackground;
     [SerializeField] private bool _playOnStart;
     [SerializeField] private bool _clickToNext = true;
     [SerializeField, Min(0f)] private float _autoNextDelay = 2f;
@@ -51,6 +52,7 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
 
         ClearText();
+        SetBubbleBackgroundActive(false);
     }
 
     private void Start()
@@ -148,7 +150,7 @@ public class DialogManager : SingletonBasic<DialogManager>
 
         StopRunningEvents();
         ClearText();
-        SetTextParentActive(false);
+        SetDialogVisualsActive(false);
     }
 
     private void Play(DialogEntry entry)
@@ -166,7 +168,7 @@ public class DialogManager : SingletonBasic<DialogManager>
 
     private IEnumerator PlayRoutine()
     {
-        SetTextParentActive(true);
+        SetDialogVisualsActive(true);
         _onDialogStarted?.Invoke();
 
         int bubbleIndex = 0;
@@ -180,7 +182,7 @@ public class DialogManager : SingletonBasic<DialogManager>
 
         ClearText();
         _onDialogFinished?.Invoke();
-        SetTextParentActive(false);
+        SetDialogVisualsActive(false);
         _playRoutine = null;
         _runningEventCoroutines.Clear();
     }
@@ -311,6 +313,22 @@ public class DialogManager : SingletonBasic<DialogManager>
         }
 
         _text.transform.parent.gameObject.SetActive(active);
+    }
+
+    private void SetBubbleBackgroundActive(bool active)
+    {
+        if (_bubbleBackground == null)
+        {
+            return;
+        }
+
+        _bubbleBackground.SetActive(active);
+    }
+
+    private void SetDialogVisualsActive(bool active)
+    {
+        SetTextParentActive(active);
+        SetBubbleBackgroundActive(active);
     }
 
     private void SetAllCharactersAlpha(byte alpha)
