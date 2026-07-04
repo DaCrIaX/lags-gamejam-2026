@@ -161,7 +161,8 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     {
         Debug.Log($"{result.Description}");
 
-        // No se envían puntos ni cambia sospecha
+        _roundManager?.SendedIngredients(result.Score);
+
         _audio.PlayOneShot("Failure");
         _groupAnimation.DisableGroup();
 

@@ -47,7 +47,7 @@ public class DishEvaluator
         if (cardCount < _scoringConfig.MinCardsForValidDish)
         {
             result.Type = DishEvaluationResult.DishType.InsufficientCards;
-            result.Score = -10;
+            result.Score = 0;
             result.SuspicionChange = 5;
             result.Description = $"Insuficientes cartas. Mínimo: {_scoringConfig.MinCardsForValidDish}";
             return result;
@@ -79,7 +79,7 @@ public class DishEvaluator
 
         // Fallback: combinación aleatoria
         result.Type = DishEvaluationResult.DishType.InvalidDish;
-        result.Score = -10;
+        result.Score = 0;
         result.SuspicionChange = _scoringConfig.InvalidDishSuspicion;
         result.Description = "Combinación de ingredientes aleatoria";
         return result;

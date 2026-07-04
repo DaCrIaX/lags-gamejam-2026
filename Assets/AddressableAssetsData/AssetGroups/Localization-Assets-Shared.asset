@@ -15,10 +15,73 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 98e355c1e3f88a045bf3d12d8c7b2f63
   m_SerializeEntries:
+  - m_GUID: 04e8ccaec4a904f418b9846fe478dd72
+    m_Address: CI_Beef
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 063e8c0d3a281d941b3fdb7c6e942587
+    m_Address: CD_ChickenAndRice
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a3388730524b9e4eb244e53fa3e0cef
+    m_Address: CI_Potato
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c45b412c624eb14d99b58df1da27428
+    m_Address: CI_Onion
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 323b8c3a26fc22348bbadb0649699f52
+    m_Address: CD_BeefSkewers
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46758360d0942d14dac300544eb056a8
+    m_Address: CD_MixedSeafoodFry
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4d1e678ac9e0ce14f8b977e5c0c59ede
     m_Address: Assets/Localization/Tables/Ingredients - Common Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d84b4968a475654dba6ff3b2297d9b1
+    m_Address: CD_Ceviche
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52191f01ead36c847b33c068cdd4a6c6
+    m_Address: CD_PorkSandwich
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 546dc2d0505e9784d8ff5afe4a1c4045
+    m_Address: CI_Bread
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c935cc95bc46784192e42cbb9b01a36
     m_Address: Queso
@@ -32,15 +95,92 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69e9c93205de23b4da553749d46c5183
+    m_Address: CD_Butifarra
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73ff9e27218c1c54fb96befdb0b96924
+    m_Address: CD_TunaCausa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ad09c82623248041b8f9074ef1d353e
+    m_Address: CI_Chicken
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 875b760c9de2865438220b6f09c90654
+    m_Address: CD_StuffedPotato
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90087f9c3db1c5641bd2d06a7b0e685d
     m_Address: Assets/Localization/Tables/Cards Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 974ed82024da58947be2c049cc009de8
+    m_Address: CI_Lime
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5b03e271aabcaf4bab61125837062e6
+    m_Address: CD_LomoSaltado
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7cbf148c3738414592e2da72ed06a62
+    m_Address: CD_AjiDeGallina
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1cabe714c2d94c41923f3dbd2cf9fc1
+    m_Address: CI_Pork
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3026af053f21084ca36a1b332394e99
+    m_Address: CD_SilversideFishSandwich
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5eef0b8c7842fe40b828901aba66d26
+    m_Address: CI_ChiliPepper
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: efe8538adc0abfc4599b82871c1fa0f6
     m_Address: Assets/Localization/Tables/Gameplay Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2af24753c0293c4e813a17beca2847f
+    m_Address: CI_Fish
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-es
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: b0192bd24d0998446a1b68e9810eae7a, type: 2}

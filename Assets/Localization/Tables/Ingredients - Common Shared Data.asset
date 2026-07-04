@@ -59,6 +59,30 @@ MonoBehaviour:
     m_Key: Queso
     m_Metadata:
       m_Items: []
+  - m_Id: 21442440066019328
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21442473364598784
+    m_Key: New Entry 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21443929413038080
+    m_Key: New Entry 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21443937172500480
+    m_Key: New Entry 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21443960123731968
+    m_Key: New Entry 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21443964032823296
+    m_Key: Carne v2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 5806511147537662230
@@ -80,33 +104,11 @@ MonoBehaviour:
           m_TableCodes:
           - en
           - es
-        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    - rid: 5806511147537662236
-      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
-      data:
-        m_Entries:
-        - m_KeyId: 19238105739264
-          m_TableCodes:
-          - en
-          - es
-        - m_KeyId: 19251468791808
-          m_TableCodes:
-          - en
-          - es
-        - m_KeyId: 19267960795136
+        - m_KeyId: 21443964032823296
           m_TableCodes:
           - en
           - es
         - m_KeyId: 19288508690432
-          m_TableCodes:
-          - en
-          - es
-        - m_KeyId: 19301070630912
-          m_TableCodes:
-          - en
-          - es
-        - m_KeyId: 19312814682112
           m_TableCodes:
           - en
           - es
@@ -119,6 +121,32 @@ MonoBehaviour:
           - en
           - es
         - m_KeyId: 19353541373952
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19301070630912
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19267960795136
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19312814682112
+          m_TableCodes:
+          - en
+          - es
+        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - rid: 5806511147537662236
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 19238105739264
+          m_TableCodes:
+          - en
+          - es
+        - m_KeyId: 19251468791808
           m_TableCodes:
           - en
           - es

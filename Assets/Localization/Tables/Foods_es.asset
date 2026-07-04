@@ -19,47 +19,47 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 63601733632
-    m_Localized: '988b4f1fa9a28b446954bdcf2ec8ac3c[Aji de Gallina - es]'
+    m_Localized: 'a7cbf148c3738414592e2da72ed06a62[CD_AjiDeGallina]'
     m_Metadata:
       m_Items: []
   - m_Id: 20758180229120
-    m_Localized: 428e81d46283b9341b7beabd0c06c73b
+    m_Localized: '323b8c3a26fc22348bbadb0649699f52[CD_BeefSkewers]'
     m_Metadata:
       m_Items: []
   - m_Id: 20783757094912
-    m_Localized: 281de32dc7d110841a6babe8527a0879
+    m_Localized: '063e8c0d3a281d941b3fdb7c6e942587[CD_ChickenAndRice]'
     m_Metadata:
       m_Items: []
   - m_Id: 20817928089600
-    m_Localized: 3849059b02b20ef46a94cfc6b15a131d
+    m_Localized: '69e9c93205de23b4da553749d46c5183[CD_Butifarra]'
     m_Metadata:
       m_Items: []
   - m_Id: 20858793193472
-    m_Localized: bc7773198dec3c74f8254c6642f8b0be
+    m_Localized: '73ff9e27218c1c54fb96befdb0b96924[CD_TunaCausa]'
     m_Metadata:
       m_Items: []
   - m_Id: 20887993937920
-    m_Localized: e9fcffa05ee8ab244a8432501fdcbb72
+    m_Localized: '4d84b4968a475654dba6ff3b2297d9b1[CD_Ceviche]'
     m_Metadata:
       m_Items: []
   - m_Id: 20908424392704
-    m_Localized: 9cd04484415d9c64cab2ecc6fd2d61c0
+    m_Localized: '46758360d0942d14dac300544eb056a8[CD_MixedSeafoodFry]'
     m_Metadata:
       m_Items: []
   - m_Id: 20933988675584
-    m_Localized: 4ae7ecae275201f49a7a5e9f20226c4f
+    m_Localized: 'a5b03e271aabcaf4bab61125837062e6[CD_LomoSaltado]'
     m_Metadata:
       m_Items: []
   - m_Id: 20959779450880
-    m_Localized: 694ebd3220dbada4a881bef3a22d1f37
+    m_Localized: '52191f01ead36c847b33c068cdd4a6c6[CD_PorkSandwich]'
     m_Metadata:
       m_Items: []
   - m_Id: 20988875337728
-    m_Localized: 076fe44f56f9ed6418b6dfc825a6b7e6
+    m_Localized: 'd3026af053f21084ca36a1b332394e99[CD_SilversideFishSandwich]'
     m_Metadata:
       m_Items: []
   - m_Id: 21014443814912
-    m_Localized: bcfa603c323cb0343ab2dd5ef0aaa282
+    m_Localized: '875b760c9de2865438220b6f09c90654[CD_StuffedPotato]'
     m_Metadata:
       m_Items: []
   references:

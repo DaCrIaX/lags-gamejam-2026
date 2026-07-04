@@ -7,6 +7,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField, Min(0f)] private float _deltaDisplayDuration = 0.75f;
+    [SerializeField, Min(1)] private int _scoreDigits = 7;
 
     private int _score;
     private Coroutine _showTotalCoroutine;
@@ -22,6 +23,7 @@ public class Score : MonoBehaviour
 
     private void OnValidate()
     {
+        _scoreDigits = Mathf.Max(1, _scoreDigits);
         CacheTextReference();
         RefreshText();
     }
@@ -47,8 +49,20 @@ public class Score : MonoBehaviour
 
         if (_text != null)
         {
-            _text.SetText(_score.ToString());
+            _text.SetText(FormatTotalScore());
         }
+    }
+
+    private string FormatTotalScore()
+    {
+        int digits = Mathf.Max(7, _scoreDigits);
+
+        if (_score < 0)
+        {
+            return $"-{Mathf.Abs(_score).ToString().PadLeft(digits, '0')}";
+        }
+
+        return _score.ToString().PadLeft(digits, '0');
     }
 
     private void ShowDelta(int value)
@@ -58,8 +72,7 @@ public class Score : MonoBehaviour
 
         if (_text != null)
         {
-            string sign = value >= 0 ? "+" : string.Empty;
-            _text.SetText($"{sign}{value}");
+            _text.SetText(Mathf.Abs(value).ToString());
         }
 
         _showTotalCoroutine = StartCoroutine(ShowTotalAfterDelay());

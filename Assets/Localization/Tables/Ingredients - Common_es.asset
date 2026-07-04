@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 44765114368
-    m_Localized: '73e8b8f45c49cac45be4c1702e8baf42[Aji - es]'
+    m_Localized: 'e5eef0b8c7842fe40b828901aba66d26[CI_ChiliPepper]'
     m_Metadata:
       m_Items: []
   - m_Id: 19238105739264
@@ -31,35 +31,39 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19267960795136
-    m_Localized: f0f0ce4335bbd084181a57ec6fb1edb5
+    m_Localized: '2c45b412c624eb14d99b58df1da27428[CI_Onion]'
     m_Metadata:
       m_Items: []
   - m_Id: 19288508690432
-    m_Localized: df279e635a697fa4ea0866501820cef4
+    m_Localized: 'c1cabe714c2d94c41923f3dbd2cf9fc1[CI_Pork]'
     m_Metadata:
       m_Items: []
   - m_Id: 19301070630912
-    m_Localized: b5ab84d5c820b53419c1314066820af8
+    m_Localized: '974ed82024da58947be2c049cc009de8[CI_Lime]'
     m_Metadata:
       m_Items: []
   - m_Id: 19312814682112
-    m_Localized: 7b15f5f8dc6152c4db7fbddcb193d291
+    m_Localized: '546dc2d0505e9784d8ff5afe4a1c4045[CI_Bread]'
     m_Metadata:
       m_Items: []
   - m_Id: 19323707289600
-    m_Localized: fa50be6285fd7c34081fd2814f708ebd
+    m_Localized: '0a3388730524b9e4eb244e53fa3e0cef[CI_Potato]'
     m_Metadata:
       m_Items: []
   - m_Id: 19338206998528
-    m_Localized: b893106f4d6aace4e9eca5be6aaea322
+    m_Localized: 'f2af24753c0293c4e813a17beca2847f[CI_Fish]'
     m_Metadata:
       m_Items: []
   - m_Id: 19353541373952
-    m_Localized: 9b321e0793f1ba64a9a3aaf0d05e2be9
+    m_Localized: '7ad09c82623248041b8f9074ef1d353e[CI_Chicken]'
     m_Metadata:
       m_Items: []
   - m_Id: 19366065565696
     m_Localized: 5c935cc95bc46784192e42cbb9b01a36
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21443964032823296
+    m_Localized: '04e8ccaec4a904f418b9846fe478dd72[CI_Beef]'
     m_Metadata:
       m_Items: []
   references:
