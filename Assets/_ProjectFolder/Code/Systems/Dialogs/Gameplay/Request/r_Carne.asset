@@ -52,4 +52,4 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: Dame algo con carne, por favor.
+  message: Quiero algo con carne.

@@ -38,7 +38,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: "Dame algo con aj\xED, por favor."
+  message: Aji, el mas picante que tengas.
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

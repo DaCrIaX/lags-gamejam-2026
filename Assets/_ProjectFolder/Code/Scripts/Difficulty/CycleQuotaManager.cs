@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [Serializable]
@@ -51,6 +52,7 @@ public class CycleQuotaManager : MonoBehaviour
     [SerializeField] private Image _quotaProgressImage;
 
     [Header("Events")]
+    [SerializeField] private SceneLoader _gameOverSceneLoader;
     [SerializeField] private UnityEvent _onCycleSurvived;
     [SerializeField] private UnityEvent _onGameOver;
 
@@ -127,18 +129,9 @@ public class CycleQuotaManager : MonoBehaviour
         int minimumQuota = GetMinimumQuotaForCycle(currentCycle);
         int cycleScore = _score ? _score.CurrentScore : 0;
         int fundsBefore = _funds;
-        int availableScore = cycleScore + _funds;
-        bool survived = availableScore >= minimumQuota;
-
-        if (survived)
-        {
-            if (cycleScore >= minimumQuota)
-                _funds += cycleScore - minimumQuota;
-            else
-                _funds -= minimumQuota - cycleScore;
-        }
-
-        RefreshQuotaProgress();
+        int remainingFunds = fundsBefore + cycleScore - minimumQuota;
+        bool survived = remainingFunds >= 0;
+        _funds = survived ? remainingFunds : fundsBefore;
 
         LastResult = new CycleEvaluationResult(
             currentCycle,
@@ -161,6 +154,7 @@ public class CycleQuotaManager : MonoBehaviour
 
         _onGameOver?.Invoke();
         onGameOver?.Invoke(LastResult);
+        _gameOverSceneLoader?.SwipeScene();
     }
 
     public int GetMinimumQuotaForCycle(int cycle)

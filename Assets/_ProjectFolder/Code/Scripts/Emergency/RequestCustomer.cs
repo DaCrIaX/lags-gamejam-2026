@@ -12,7 +12,7 @@ public class RequestCustomer : MonoBehaviour
     private Card[] _cards;
 
     private bool firstRequest = true;
-    private List<int> firstIngredients = new List<int> { 1, 6, 7 };
+    [SerializeField] private List<int> firstRequestIndices = new List<int> { 2, 6, 7 };
     private int currentValueRequest;
     private int currentRequestIndex = -1;
     private bool match;
@@ -35,15 +35,15 @@ public class RequestCustomer : MonoBehaviour
     {
         if (firstRequest)
         {
-            int randomIndex = Random.Range(0, firstIngredients.Count);
+            int randomIndex = Random.Range(0, firstRequestIndices.Count);
             currentValueRequest = randomIndex;
-            currentRequestIndex = firstIngredients[currentValueRequest];
+            currentRequestIndex = firstRequestIndices[currentValueRequest];
             dialogManager.PlayAtIndex(currentRequestIndex);
             Debug.Log(ingredientsRequest[currentRequestIndex].textRequest);
             return;
         }
 
-        int valueRandom = Random.Range(0, ingredientsRequest.Length - 1);
+        int valueRandom = Random.Range(0, ingredientsRequest.Length);
         currentValueRequest = valueRandom;
         currentRequestIndex = currentValueRequest;
         dialogManager.PlayAtIndex(currentRequestIndex);

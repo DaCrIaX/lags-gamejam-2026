@@ -38,7 +38,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: Dame algo con pollito, por favor.
+  message: Dame pollito... POLLITO.
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
