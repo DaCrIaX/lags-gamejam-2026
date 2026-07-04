@@ -12488,6 +12488,7 @@ MonoBehaviour:
   _database: {fileID: 11400000, guid: e0b9a87d86af6024cab0267be7494523, type: 2}
   _scoringConfig: {fileID: 11400000, guid: ebb3e93ea3c83d141afa3c00afcb2619, type: 2}
   _groupAnimation: {fileID: 1794520920}
+  _cardsSpawnHandler: {fileID: 0}
   _audio: {fileID: 1879722165}
   _requestCustomer: {fileID: 0}
 --- !u!114 &1879722162
@@ -14749,7 +14750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CycleQuotaManager
   _difficultyManager: {fileID: 1718155967}
   _score: {fileID: 1528851324}
-  _baseMinimumQuota: 1000
+  _baseMinimumQuota: 7000
   _quotaGrowthPercentPerCycle: 10
   _startingFunds: 0
   _quotaProgressImage: {fileID: 925624355}

@@ -38,29 +38,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  entryEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  entryEventWait: 0
-  displayMessageWhileEntryEventRuns: 0
-  message: "Eres el nuevo due\xF1o, mira sobrino, no se qu\xE9 tienes pero me caes
-    bien, \xBFnecesitas que te ense\xF1e c\xF3mo hacemos las cosas por aqu\xED?"
-  exitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  exitEventWait: 0
+  message: "Eres el nuevo propietario, mira sobrino, no se que tienes pero me caes
+    bien, \xBFnecesitas que te muestre como hacemos las cosas por aqui?"
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

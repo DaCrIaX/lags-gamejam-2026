@@ -44,7 +44,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: Muy Apurados...
+  message: Muy apurados...
 --- !u!114 &-7977182734104591628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: O directamente corren
+  message: O directamente corren!
 --- !u!114 &-5235752339147917793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: "burp - \"ESO\" es un ceviche. Tal vez y si seas una buena adici\xF3n
-    a la cuadra despu\xE9s de todo."
+  message: burp - "ESO" es un ceviche. Tal vez y si seas una buena adicion a la cuadra
+    despues de todo.
 --- !u!114 &-2535113164775223383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +312,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: "Adem\xE1s, d\xEDa a d\xEDa algunos clientes est\xE1n m\xE1s impacientes
-    que otros."
+  message: Ademas, dia a dia algunos clientes estan mas impacientes que otros.
 --- !u!114 &-433055552700360016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,8 +357,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: "Mira, a diferencia m\xEDa, nuestros clientes son un poco m\xE1s espec\xEDficos
-    a la hora de pedirte comida. Se centran m\xE1s en los ingredientes."
+  message: Mira, a diferencia mia, nuestros clientes son un poco mas especificos
+    a la hora de pedirte comida. Se centran mas en los ingredientes.
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,8 +516,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: "As\xED que mientras les des una combinaci\xF3n de ingredientes incluyendo
-    lo que te pidan, estar\xE1n felices."
+  message: Asi que mientras les des una combinacion de ingredientes incluyendo lo
+    que te pidan, estaran felices.
 --- !u!114 &6163033388441533711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +562,7 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  message: Ah si, antes de irme.
+  message: Ah si... antes de irme.
 --- !u!114 &6890757724273231593
 MonoBehaviour:
   m_ObjectHideFlags: 0

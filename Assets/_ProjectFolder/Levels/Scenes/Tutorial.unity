@@ -5737,8 +5737,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6149,6 +6149,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 852416233}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &667163031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6380,6 +6392,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 254691770}
+    - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 833763786}
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
@@ -6387,9 +6402,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
       addedObject: {fileID: 301055580}
-    - targetCorrespondingSourceObject: {fileID: 3193142425728003447, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 254691770}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7301890332622133844, guid: c2c2e19bedcfaba41989bed7d0a1a062, type: 3}
       insertIndex: -1
@@ -8799,7 +8811,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 23.6
+  m_fontSizeMax: 20
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -12459,18 +12471,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-          - m_Target: {fileID: 852416233}
-            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
       exitEventWait: 0
     - entryEvent:
         m_PersistentCalls:
@@ -12490,6 +12490,18 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 254691769}
+            m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 852416233}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
             m_Mode: 6
@@ -12729,7 +12741,7 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
-              m_BoolArgument: 0
+              m_BoolArgument: 1
             m_CallState: 2
       exitEventWait: 0
     - entryEvent:
@@ -12760,6 +12772,11 @@ MonoBehaviour:
           m_Calls: []
       exitEventWait: 0
     - entryEvent:
+        m_PersistentCalls:
+          m_Calls: []
+      entryEventWait: 0
+      displayMessageWhileEntryEventRuns: 1
+      exitEvent:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 852416233}
@@ -12774,14 +12791,33 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      entryEventWait: 0
-      displayMessageWhileEntryEventRuns: 1
-      exitEvent:
-        m_PersistentCalls:
-          m_Calls:
           - m_Target: {fileID: 1885002425}
             m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 559125323}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+          - m_Target: {fileID: 745370375}
+            m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_MethodName: set_enabled
             m_Mode: 6
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -14086,6 +14122,7 @@ MonoBehaviour:
   _database: {fileID: 11400000, guid: 4241eb273db3e80418d914b2bb02563e, type: 2}
   _scoringConfig: {fileID: 11400000, guid: ebb3e93ea3c83d141afa3c00afcb2619, type: 2}
   _groupAnimation: {fileID: 284245449}
+  _cardsSpawnHandler: {fileID: 0}
   _audio: {fileID: 1672569808}
   _requestCustomer: {fileID: 0}
 --- !u!114 &1672569808

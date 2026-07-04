@@ -41,17 +41,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  entryEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  entryEventWait: 0
-  displayMessageWhileEntryEventRuns: 0
-  message: "Muy bien, escucha con atenci\xF3n: ac\xE1 nosotros llevamos la cocina
-    de una forma algo diferente a los dem\xE1s lugares de la ciudad."
-  exitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  exitEventWait: 0
+  message: 'Muy bien, escucha con atencion: aca nosotros llevamos la cocina de una
+    forma algo diferente a los demas lugares de la ciudad.'
 --- !u!114 &-3114405770109243185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,17 +84,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  entryEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  entryEventWait: 0
-  displayMessageWhileEntryEventRuns: 0
-  message: "Vamos a ver qu\xE9 tienes; combina ese pescado, aj\xED y lim\xF3n y prep\xE1rate
-    un ceviche."
-  exitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  exitEventWait: 0
+  message: Vamos a ver que tienes; combina ese pescado, aji y limon y preparate un
+    ceviche.
 --- !u!114 &-1322931401877702936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,17 +130,8 @@ MonoBehaviour:
       _typeConstraint: 2
       _dynamic: 0
   displaySpeed: 30
-  entryEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  entryEventWait: 0
-  displayMessageWhileEntryEventRuns: 0
-  message: "Estos son tus ingredientes, como puedes ver, no hay mucha variedad as\xED
-    que hay que ser bastante creativos con lo que servimos."
-  exitEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  exitEventWait: 0
+  message: Estos son tus ingredientes, como puedes ver, no hay mucha variedad, asi
+    que hay que ser bastante creativos con lo que servimos.
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
