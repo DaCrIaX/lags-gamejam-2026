@@ -79,7 +79,7 @@ public class DishEvaluator
 
         // Fallback: combinación aleatoria
         result.Type = DishEvaluationResult.DishType.InvalidDish;
-        result.Score = 0;
+        result.Score = 30;
         result.SuspicionChange = _scoringConfig.InvalidDishSuspicion;
         result.Description = "Combinación de ingredientes aleatoria";
         return result;

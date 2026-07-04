@@ -6,6 +6,7 @@ namespace UnityEngine.SceneManagement
 
         public void AddScene() => SceneController.Instance.AddScene(_path);
         public void SwipeScene() => SceneController.Instance.ChangeScene(_path);
+        public void ReloadCurrentScene() => SceneController.Instance.ChangeScene(SceneManager.GetActiveScene().path);
         public void RemoveScene() => SceneController.Instance.RemoveScene(_path);
     }
 }

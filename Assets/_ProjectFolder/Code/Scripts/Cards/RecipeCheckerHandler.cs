@@ -10,17 +10,40 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     [SerializeField] private SO_Database _database;
     [SerializeField] private SO_ScoringConfig _scoringConfig;
     [SerializeField] private TweenGroup _groupAnimation;
+    [SerializeField] private CardsSpawnHandler _cardsSpawnHandler;
     [SerializeField] private AudioEmitterID _audio;
     [SerializeField] private RequestCustomer _requestCustomer;
 
     private DishEvaluator _dishEvaluator;
     public event Action<DishEvaluationResult> onPlateEvaluated;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (_cardsSpawnHandler == null)
+        {
+            _cardsSpawnHandler = FindObjectOfType<CardsSpawnHandler>(true);
+        }
+    }
     private void OnEnable()
     {
         if (_dishEvaluator == null)
         {
             _dishEvaluator = new DishEvaluator(_scoringConfig, _database);
+        }
+
+        if (_cardsSpawnHandler != null)
+        {
+            _cardsSpawnHandler.onCardsSpawned += OnCardsSpawned;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_cardsSpawnHandler != null)
+        {
+            _cardsSpawnHandler.onCardsSpawned -= OnCardsSpawned;
         }
     }
 
@@ -49,6 +72,7 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
     public void EvaluatePlate()
     {
+        SetInteractionEnabled(false);
         FindIngredients(out var ingredients);
         var evaluationResult = _dishEvaluator.EvaluateDish(ingredients);
         ApplyRequestScoreRule(evaluationResult, ingredients);
@@ -59,13 +83,16 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
     private void ApplyRequestScoreRule(DishEvaluationResult result, Dictionary<SO_IngredientBase, int> ingredients)
     {
         RequestCustomer requestCustomer = GetRequestCustomer();
-        if (result == null || requestCustomer == null || requestCustomer.DoesPlateMatchCurrentRequest(ingredients))
+        if (result == null ||
+            result.Type == DishEvaluationResult.DishType.InsufficientCards ||
+            requestCustomer == null ||
+            requestCustomer.DoesPlateMatchCurrentRequest(ingredients))
         {
             return;
         }
 
-        Debug.Log("No contiene el ingrediente pedido. Puntaje anulado.");
-        result.Score = 0;
+        Debug.Log("No contiene el ingrediente pedido. Puntaje reducido a 30.");
+        result.Score = 30;
     }
 
     private RequestCustomer GetRequestCustomer()
@@ -118,7 +145,6 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
         _roundManager?.UpdateSuspicion(result.SuspicionChange);
 
         _audio.PlayOneShot("Success");
-        _groupAnimation.DisableGroup();
 
         StartCoroutine(NextRoundRoutine());
     }
@@ -135,7 +161,6 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
         _roundManager?.UpdateSuspicion(result.SuspicionChange);
 
         _audio.PlayOneShot("Success");
-        _groupAnimation.DisableGroup();
 
         StartCoroutine(NextRoundRoutine());
     }
@@ -150,31 +175,45 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
         _roundManager?.UpdateSuspicion(result.SuspicionChange);
 
         _audio.PlayOneShot("Failure");
-        _groupAnimation.DisableGroup();
 
         // Retornar al round sin completarlo
         _roundManager?.CompleteRound();
-        _groupAnimation.EnableGroup();
     }
 
     private void HandleInsufficientCards(DishEvaluationResult result)
     {
         Debug.Log($"{result.Description}");
 
-        _roundManager?.SendedIngredients(result.Score);
-
         _audio.PlayOneShot("Failure");
-        _groupAnimation.DisableGroup();
 
         // Retornar al round sin completarlo
         _roundManager?.CompleteRound();
-        _groupAnimation.EnableGroup();
     }
 
     private IEnumerator NextRoundRoutine()
     {
         yield return new WaitForSeconds(_manager.PreviewNewRecipeDuration + 0.5f);
         _roundManager?.CompleteRound();
-        _groupAnimation.EnableGroup();
+    }
+
+    private void OnCardsSpawned(int spawnedAmount)
+    {
+        SetInteractionEnabled(true);
+    }
+
+    private void SetInteractionEnabled(bool enabled)
+    {
+        if (_groupAnimation == null)
+        {
+            return;
+        }
+
+        if (enabled)
+        {
+            _groupAnimation.EnableGroup();
+            return;
+        }
+
+        _groupAnimation.DisableGroup();
     }
 }
