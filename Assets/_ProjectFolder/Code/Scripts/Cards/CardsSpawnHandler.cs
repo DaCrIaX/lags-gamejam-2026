@@ -10,6 +10,8 @@ public class CardsSpawnHandler : HOVCardsGroupHandler
     [SerializeField] private AudioEmitter _audioSpawn;
     [SerializeField] private Card _prefab;
     [SerializeField] private bool _clearExistingCardsOnStart;
+    [SerializeField] private bool _replaceHandAfterClient = true;
+    [SerializeField, Min(1)] private int _cardsAfterClient = 5;
     [SerializeField] private List<SO_IngredientBase> _startingHand = new List<SO_IngredientBase>();
 
     public bool IsRandom { private get; set; }
@@ -39,13 +41,33 @@ public class CardsSpawnHandler : HOVCardsGroupHandler
 
     public void SpawnRoundHand()
     {
-        SpawnCardsUntilAmount(_manager.RoundAmount);
+        SpawnNewHand(_cardsAfterClient);
     }
 
     private void OnNextRound()
     {
-        int amount = IsRandom ? Random.Range(2, _manager.RoundAmount) : _manager.RoundAmount;
+        int amount = IsRandom ? Random.Range(2, _cardsAfterClient + 1) : _cardsAfterClient;
+
+        if (_replaceHandAfterClient)
+        {
+            SpawnNewHand(amount);
+            return;
+        }
+
         SpawnCardsUntilAmount(amount);
+    }
+
+    private void SpawnNewHand(int amount)
+    {
+        StartCoroutine(SpawnNewHandRoutine(amount));
+    }
+
+    private IEnumerator SpawnNewHandRoutine(int amount)
+    {
+        _group.ClearChildren();
+        yield return null;
+
+        StartCoroutine(SpawnCardsRoutine(amount));
     }
 
     private void SpawnCardsUntilAmount(int targetAmount)
