@@ -104,6 +104,18 @@ public class RoundManager : SingletonBasic<RoundManager>
         StartNextClient(false);
     }
 
+    public void PauseClientTimer()
+    {
+        if (_isCompletingClient || _isGameOver) return;
+        _timer.PauseTimer();
+    }
+
+    public void ResumeClientTimer()
+    {
+        if (_isCompletingClient || _isGameOver) return;
+        _timer.ResumeTimer();
+    }
+
     public void StopClientTimer()
     {
         _timer.Stop();
@@ -249,7 +261,15 @@ public class RoundManager : SingletonBasic<RoundManager>
     private void OnCycleSurvived(CycleEvaluationResult result)
     {
         if (_isGameOver) return;
-        if (!TryStartNextRound()) return;
+        StartCoroutine(StartNextCycleRound());
+    }
+
+    private IEnumerator StartNextCycleRound()
+    {
+        yield return null;
+
+        if (_isGameOver) yield break;
+        if (!TryStartNextRound()) yield break;
 
         onChoiceEvent?.Invoke();
         NextClient();

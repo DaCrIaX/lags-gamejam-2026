@@ -39,4 +39,5 @@ public abstract class TimerBase : MonoBehaviour
     public void Stop() => StopAllCoroutines();
     public void Continue() => StartCoroutine(TimerUpdateRoutine());
     public void PauseTimer() => _isPaused = true;
+    public void ResumeTimer() => _isPaused = false;
 }

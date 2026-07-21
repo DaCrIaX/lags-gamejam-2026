@@ -5,9 +5,15 @@ namespace UnityEngine.EventSystems
         [SerializeField] private float _timeClicked;
         private float _currentTime;
 
-        public void OnPointerDown(PointerEventData eventData) => _currentTime = Time.time;
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+            _currentTime = Time.time;
+        }
+
         public void OnPointerUp(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled) return;
             if (!_card.Ingredient || Time.time - _currentTime > _timeClicked) return;
 
             var navigation = GetComponentInParent<CardsGroupNavigation>();

@@ -10,6 +10,7 @@ public class DifficultyManagerEditor : Editor
     private const float MinBarNormalizedHeight = 0.12f;
 
     private SerializedProperty _startingCycle;
+    private SerializedProperty _startingRound;
     private SerializedProperty _roundsPerCycle;
     private SerializedProperty _maxCyclePhaseShift;
     private SerializedProperty _intensityCurve;
@@ -31,6 +32,7 @@ public class DifficultyManagerEditor : Editor
     private void OnEnable()
     {
         _startingCycle = serializedObject.FindProperty("_startingCycle");
+        _startingRound = serializedObject.FindProperty("_startingRound");
         _roundsPerCycle = serializedObject.FindProperty("_roundsPerCycle");
         _maxCyclePhaseShift = serializedObject.FindProperty("_maxCyclePhaseShift");
         _intensityCurve = serializedObject.FindProperty("_intensityCurve");
@@ -68,6 +70,7 @@ public class DifficultyManagerEditor : Editor
     private void DrawSettings()
     {
         EditorGUILayout.PropertyField(_startingCycle);
+        EditorGUILayout.PropertyField(_startingRound);
         EditorGUILayout.PropertyField(_roundsPerCycle);
         EditorGUILayout.PropertyField(_maxCyclePhaseShift);
         EditorGUILayout.PropertyField(_intensityCurve);
@@ -111,8 +114,7 @@ public class DifficultyManagerEditor : Editor
             EditorGUILayout.FloatField("Current Client Time Limit", manager.CurrentClientTimeLimit);
 
             var currentRound = manager.CurrentRound;
-            EditorGUILayout.IntField("Current Global Round", manager.CurrentGlobalRound);
-            EditorGUILayout.IntField("Current Cycle Round", currentRound != null ? currentRound.RoundNumber : 1);
+            EditorGUILayout.IntField("Current Cycle Round", manager.CurrentCycleRound);
             EditorGUILayout.EnumPopup("Current Complexity", currentRound != null ? currentRound.Complexity : ComplexityLevel.Bajo);
             EditorGUILayout.IntField("Current Round Clients", currentRound != null ? currentRound.ClientAmount : 0);
             EditorGUILayout.FloatField("Current Round Client Time", currentRound != null ? currentRound.ClientTimeLimit : 0f);

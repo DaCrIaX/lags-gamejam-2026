@@ -9328,10 +9328,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CycleQuotaManager
   _difficultyManager: {fileID: 1004969166}
   _score: {fileID: 833763789}
+  _startingRound: 1
+  _startingScore: 0
   _baseMinimumQuota: 1000
   _quotaGrowthPercentPerCycle: 10
   _startingFunds: 0
   _quotaProgressImage: {fileID: 0}
+  _quotaStateText: {fileID: 1252715283}
+  _quotaText: Cuota
+  _cycleRestartText: Siguiente semana...
+  _cycleRestartMessageDuration: 3
   _gameOverSceneLoader: {fileID: 0}
   _onCycleSurvived:
     m_PersistentCalls:

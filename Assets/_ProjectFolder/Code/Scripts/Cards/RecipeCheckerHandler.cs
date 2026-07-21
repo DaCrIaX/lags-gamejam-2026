@@ -203,6 +203,8 @@ public class RecipeCheckerHandler : HOVCardsGroupHandler
 
     private void SetInteractionEnabled(bool enabled)
     {
+        _manager?.SetCardInteractionEnabled(enabled);
+
         if (_groupAnimation == null)
         {
             return;

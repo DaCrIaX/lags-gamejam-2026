@@ -13,7 +13,7 @@ namespace UnityEngine.EventSystems
 
         private void LateUpdate()
         {
-            if (_cardTransform.IsDragging || !_cardTransform.IsHovering) return;
+            if (!_gameplay.IsCardInteractionEnabled || _cardTransform.IsDragging || !_cardTransform.IsHovering) return;
 
             float time = Time.time * _gameplay.Frequency;
             float sine = Mathf.Sin(time) * _gameplay.Amplitude;
@@ -31,6 +31,8 @@ namespace UnityEngine.EventSystems
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+
             _reset.Complete();
             _cardSize.ScaleIn();
             _cardTransform.IsHovering = true;
@@ -39,13 +41,24 @@ namespace UnityEngine.EventSystems
         }
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+
             _cardSize.ScaleOut();
             _cardTransform.IsHovering = false;
             _cardTransform.RectTransform.LocalPositionZ(0);
             _reset = Tween.Rotation(_cardTransform.RectTransform, Quaternion.identity, 0.2f);
         }
 
-        public void OnPointerDown(PointerEventData eventData) => _cardSize.ScaleOut();
-        public void OnPointerMove(PointerEventData eventData) => _input = eventData.pointerCurrentRaycast.worldPosition;
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+            _cardSize.ScaleOut();
+        }
+
+        public void OnPointerMove(PointerEventData eventData)
+        {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+            _input = eventData.pointerCurrentRaycast.worldPosition;
+        }
     }
 }

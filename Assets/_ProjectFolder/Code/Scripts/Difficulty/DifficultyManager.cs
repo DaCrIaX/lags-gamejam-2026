@@ -81,6 +81,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
 {
     [Header("Cycle")]
     [SerializeField, Min(1)] private int _startingCycle = 1;
+    [SerializeField, Min(1)] private int _startingRound = 1;
     [SerializeField, Range(4, 7)] private int _roundsPerCycle = 6;
     [SerializeField, Range(0f, 1f)] private float _maxCyclePhaseShift;
     [SerializeField] private AnimationCurve _intensityCurve = new(
@@ -121,14 +122,20 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
 
     public int CurrentCycle => _currentCycle;
     public int StartingCycle => _startingCycle;
+    public int StartingRound => GetValidStartingRound();
     public int RoundsPerCycle => _roundsPerCycle;
     public bool UseVariableClientTime => _useVariableClientTime;
     public float FixedClientTimeLimit => _fixedClientTimeLimit;
     public float CurrentClientTimeLimit => GetClientTimeLimit(CurrentRound);
     public float CurrentCyclePhaseShift => _currentCyclePhaseShift;
-    public int CurrentGlobalRound => GetGlobalRoundNumber(CurrentRound);
+    public int CurrentCycleRound => GetCycleRoundNumber(CurrentRound);
     public DifficultyRoundData CurrentRound { get; private set; }
     public IReadOnlyList<DifficultyRoundData> Rounds => _rounds;
+
+    public void SetStartingRound(int startingRound)
+    {
+        _startingRound = Mathf.Clamp(startingRound, 1, Mathf.Max(1, _roundsPerCycle));
+    }
 
     private void Start()
     {
@@ -137,6 +144,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
 
     private void OnValidate()
     {
+        _startingRound = GetValidStartingRound();
         RefreshRoundText();
     }
 
@@ -242,6 +250,7 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
     {
         _currentCycle = Mathf.Max(1, _startingCycle);
         GenerateCycle();
+        _currentRoundIndex = GetValidStartingRound() - 2;
         RefreshRoundText();
         onCycleStarted?.Invoke(_currentCycle);
     }
@@ -285,18 +294,22 @@ public class DifficultyManager : SingletonBasic<DifficultyManager>
             return;
         }
 
-        _roundText.SetText(GetGlobalRoundNumber(CurrentRound).ToString());
+        _roundText.SetText(GetCycleRoundNumber(CurrentRound).ToString());
     }
 
-    private int GetGlobalRoundNumber(DifficultyRoundData round)
+    private int GetCycleRoundNumber(DifficultyRoundData round)
     {
         if (round == null)
         {
             return 1;
         }
 
-        int completedCycles = Mathf.Max(0, round.Cycle - 1);
-        return completedCycles * _roundsPerCycle + round.RoundNumber;
+        return round.RoundNumber;
+    }
+
+    private int GetValidStartingRound()
+    {
+        return Mathf.Clamp(_startingRound, 1, Mathf.Max(1, _roundsPerCycle));
     }
 
     private void GenerateCycle()

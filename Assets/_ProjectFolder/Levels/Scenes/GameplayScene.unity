@@ -4529,8 +4529,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Recetas
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
-  m_sharedMaterial: {fileID: 639449358017232448, guid: 0ed36101345902b4489b2d298b3b71aa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c70363138810ae144ab6a4c7b2fd336a, type: 2}
+  m_sharedMaterial: {fileID: 9164929473890816121, guid: c70363138810ae144ab6a4c7b2fd336a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6010,6 +6010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeBook
   _button: {fileID: 1188245716}
+  _pauseClientTimerWhenOpen: 1
   _name: {fileID: 259347178}
   _dish: {fileID: 1673550402}
   _ingredients:
@@ -6050,7 +6051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -31.9, y: 18.8}
+  m_AnchoredPosition: {x: 0, y: 18.8}
   m_SizeDelta: {x: 52.61, y: 28.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911768346
@@ -11478,6 +11479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
   _startingCycle: 1
+  _startingRound: 1
   _roundsPerCycle: 6
   _maxCyclePhaseShift: 0
   _intensityCurve:
@@ -12695,7 +12697,7 @@ RectTransform:
   m_GameObject: {fileID: 1922879201}
   m_LocalRotation: {x: -0, y: -0.99962497, z: -0, w: -0.027385997}
   m_LocalPosition: {x: 0, y: 0, z: 0.128}
-  m_LocalScale: {x: 0.009999996, y: 0.01, z: 0.009999996}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 911768345}
@@ -12703,8 +12705,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 176.861, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.328, y: -0.027}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -0.027}
+  m_SizeDelta: {x: 196.74, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1922879203
 Canvas:
@@ -14750,11 +14752,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CycleQuotaManager
   _difficultyManager: {fileID: 1718155967}
   _score: {fileID: 1528851324}
-  _baseMinimumQuota: 7000
+  _startingRound: 1
+  _startingScore: 0
+  _baseMinimumQuota: 4000
   _quotaGrowthPercentPerCycle: 10
   _startingFunds: 0
   _quotaProgressImage: {fileID: 925624355}
-  _gameOverSceneLoader: {fileID: 0}
+  _quotaStateText: {fileID: 911768346}
+  _quotaText: Cuota
+  _cycleRestartText: Siguiente semana...
+  _cycleRestartMessageDuration: 3
+  _gameOverSceneLoader: {fileID: 960669135}
   _onCycleSurvived:
     m_PersistentCalls:
       m_Calls: []

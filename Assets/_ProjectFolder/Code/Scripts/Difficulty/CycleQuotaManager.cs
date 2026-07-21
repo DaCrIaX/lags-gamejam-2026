@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -43,6 +45,10 @@ public class CycleQuotaManager : MonoBehaviour
     [SerializeField] private DifficultyManager _difficultyManager;
     [SerializeField] private Score _score;
 
+    [Header("Start State")]
+    [SerializeField, Min(1)] private int _startingRound = 1;
+    [SerializeField, Min(0)] private int _startingScore;
+
     [Header("Quota")]
     [SerializeField, Min(0)] private int _baseMinimumQuota = 1000;
     [SerializeField, Min(0f)] private float _quotaGrowthPercentPerCycle = 10f;
@@ -50,6 +56,10 @@ public class CycleQuotaManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Image _quotaProgressImage;
+    [SerializeField] private TextMeshProUGUI _quotaStateText;
+    [SerializeField] private string _quotaText = "Cuota";
+    [SerializeField] private string _cycleRestartText = "Siguiente semana...";
+    [SerializeField, Min(0f)] private float _cycleRestartMessageDuration = 3f;
 
     [Header("Events")]
     [SerializeField] private SceneLoader _gameOverSceneLoader;
@@ -61,7 +71,10 @@ public class CycleQuotaManager : MonoBehaviour
     public event Action<CycleEvaluationResult> onGameOver;
 
     private int _funds;
+    private bool _isRestartingCycle;
 
+    public int StartingRound => _startingRound;
+    public int StartingScore => _startingScore;
     public int Funds => _funds;
     public int BaseMinimumQuota => _baseMinimumQuota;
     public float QuotaGrowthPercentPerCycle => _quotaGrowthPercentPerCycle;
@@ -72,6 +85,7 @@ public class CycleQuotaManager : MonoBehaviour
     private void Awake()
     {
         _funds = _startingFunds;
+        ApplyStartingRound();
     }
 
     private void OnEnable()
@@ -104,17 +118,22 @@ public class CycleQuotaManager : MonoBehaviour
 
     private void OnCycleStarted(int cycle)
     {
-        _score?.ResetScore();
+        _isRestartingCycle = false;
+        RefreshQuotaStateText(_quotaText);
+        _score?.ResetScore(_startingScore);
         RefreshQuotaProgress();
     }
 
     private void Start()
     {
+        RefreshQuotaStateText(_quotaText);
         RefreshQuotaProgress();
     }
 
     private void OnValidate()
     {
+        _startingRound = Mathf.Max(1, _startingRound);
+        ApplyStartingRound();
         RefreshQuotaProgress();
     }
 
@@ -123,8 +142,23 @@ public class CycleQuotaManager : MonoBehaviour
         RefreshQuotaProgress();
     }
 
+    private void ApplyStartingRound()
+    {
+        if (_difficultyManager == null)
+        {
+            return;
+        }
+
+        _difficultyManager.SetStartingRound(_startingRound);
+    }
+
     public void EvaluateCycle()
     {
+        if (_isRestartingCycle)
+        {
+            return;
+        }
+
         int currentCycle = _difficultyManager ? _difficultyManager.CurrentCycle : 1;
         int minimumQuota = GetMinimumQuotaForCycle(currentCycle);
         int cycleScore = _score ? _score.CurrentScore : 0;
@@ -145,16 +179,36 @@ public class CycleQuotaManager : MonoBehaviour
 
         if (survived)
         {
-            _difficultyManager?.AdvanceCycle();
-            RefreshQuotaProgress();
-            _onCycleSurvived?.Invoke();
-            onCycleSurvived?.Invoke(LastResult);
+            StartCoroutine(RestartCycleRoutine(LastResult));
             return;
         }
 
         _onGameOver?.Invoke();
         onGameOver?.Invoke(LastResult);
-        _gameOverSceneLoader?.SwipeScene();
+
+        if (_gameOverSceneLoader)
+        {
+            _gameOverSceneLoader.SwipeScene();
+            return;
+        }
+
+        Debug.LogWarning($"{nameof(CycleQuotaManager)} detected game over, but no game over scene loader is assigned.", this);
+    }
+
+    private IEnumerator RestartCycleRoutine(CycleEvaluationResult result)
+    {
+        _isRestartingCycle = true;
+        RefreshQuotaStateText(_cycleRestartText);
+
+        if (_cycleRestartMessageDuration > 0f)
+        {
+            yield return new WaitForSeconds(_cycleRestartMessageDuration);
+        }
+
+        _difficultyManager?.AdvanceCycle();
+        RefreshQuotaProgress();
+        _onCycleSurvived?.Invoke();
+        onCycleSurvived?.Invoke(result);
     }
 
     public int GetMinimumQuotaForCycle(int cycle)
@@ -172,6 +226,16 @@ public class CycleQuotaManager : MonoBehaviour
         }
 
         _quotaProgressImage.fillAmount = CurrentQuotaProgress;
+    }
+
+    private void RefreshQuotaStateText(string text)
+    {
+        if (_quotaStateText == null)
+        {
+            return;
+        }
+
+        _quotaStateText.SetText(text);
     }
 
     private float GetQuotaProgress()

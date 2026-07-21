@@ -35,9 +35,11 @@ public class Score : MonoBehaviour
         onScoreChanged?.Invoke(_score);
     }
 
-    public void ResetScore()
+    public void ResetScore() => ResetScore(0);
+
+    public void ResetScore(int value)
     {
-        _score = 0;
+        _score = value;
         StopShowTotalCoroutine();
         RefreshText();
         onScoreChanged?.Invoke(_score);

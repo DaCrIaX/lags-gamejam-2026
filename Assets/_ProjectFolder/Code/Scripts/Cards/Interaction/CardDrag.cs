@@ -11,7 +11,7 @@ namespace UnityEngine.EventSystems
 
         private void LateUpdate()
         {
-            if (!_cardTransform.IsDragging) return;
+            if (!_gameplay.IsCardInteractionEnabled || !_cardTransform.IsDragging) return;
 
             int index = _cardTransform.SiblingIndex;
             float speed = Time.deltaTime * _gameplay.DragVelocity;
@@ -25,17 +25,29 @@ namespace UnityEngine.EventSystems
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled) return;
+
             _cardTransform.CardGroup?.OnBeginDrag(_cardTransform);
             _cardTransform.IsDragging = true;
         }
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled)
+            {
+                _cardTransform.ResetCardParent();
+                _cardTransform.IsDragging = false;
+                _cardShadow?.ForceSwipeIn();
+                return;
+            }
+
             _cardTransform.CardGroup?.OnDropElement(eventData.pointerCurrentRaycast.worldPosition);
             _cardTransform.IsDragging = false;
             _cardShadow?.ForceSwipeIn();
         }
         public void OnDrag(PointerEventData eventData)
         {
+            if (!_gameplay.IsCardInteractionEnabled || !_cardTransform.IsDragging) return;
+
             Vector2 bounds = Bounds, point = eventData.position;
             point.x = Mathf.Clamp(point.x, bounds.x, Screen.width - bounds.x);
             point.y = Mathf.Clamp(point.y, bounds.y, Screen.height - bounds.y);

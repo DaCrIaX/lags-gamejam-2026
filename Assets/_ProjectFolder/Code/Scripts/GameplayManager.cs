@@ -55,14 +55,36 @@ public class GameplayManager : SingletonBasic<GameplayManager>
     public float DragDeltaMultiply => _dragDeltaMultiply;
 
     public bool IsDraggingObject => Selected != null;
+    public bool IsCardInteractionEnabled { get; private set; } = true;
     public Action<bool> onObjectSelectedChanged;
+    public Action<bool> onCardInteractionChanged;
 
     public Vector3 ScreenToWorldPoint(Vector2 screen) =>
         _camera.ScreenToWorldPoint(new(screen.x, screen.y, _canvas.planeDistance));
 
     public void SelectCard(CardTransform card)
     {
+        if (!IsCardInteractionEnabled && card != null)
+        {
+            return;
+        }
+
         Selected = card;
         onObjectSelectedChanged?.Invoke(!IsDraggingObject);
+    }
+
+    public void SetCardInteractionEnabled(bool enabled)
+    {
+        IsCardInteractionEnabled = enabled;
+
+        if (!enabled && Selected != null)
+        {
+            Selected.ResetCardParent();
+            Selected.IsDragging = false;
+            Selected = null;
+        }
+
+        onObjectSelectedChanged?.Invoke(enabled && !IsDraggingObject);
+        onCardInteractionChanged?.Invoke(enabled);
     }
 }
